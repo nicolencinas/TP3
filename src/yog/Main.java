@@ -17,6 +17,7 @@ public class Main {
 	{
 	
 		ArrayList <Atleta> lista = new ArrayList <Atleta>();
+		ArrayList <String> at = new ArrayList <String>();
 		String nombreArchivo="YOG.xlsx";
 		String rutaArchivo = "C:\\Ficheros-Excel\\"+nombreArchivo;
 		
@@ -38,12 +39,17 @@ public class Main {
 				Iterator<Cell> cellIterator = row.cellIterator();
 				Cell cell;
 				//se recorre cada celda
-				while (cellIterator.hasNext()) {
+				while (cellIterator.hasNext())
+				{
 					// se obtiene la celda en específico y se la imprime
 					cell = cellIterator.next();
-					System.out.print(cell.getStringCellValue()+" | ");
+					at.add(cell.getStringCellValue());
+					//System.out.print(cell.getStringCellValue()+" ");
 				}
-				System.out.println();
+				
+				lista.add(new Atleta(at.get(0),at.get(1),at.get(2),at.get(3)));
+				at.clear();
+				//System.out.println();
 			}
 		} catch (Exception e) {
 			e.getMessage();
@@ -52,6 +58,10 @@ public class Main {
 		{
 			//worbook.close();
 		}
+		
+		for (Atleta a :lista)
+			System.out.println(a);
+		
 			
 	}
 
