@@ -8,7 +8,7 @@ public class Atleta
 	private String deporte;
 	private String genero;
 	
-	public Atleta(String nombre,String nacionalidad,String deporte,String genero)
+	public Atleta(String nombre,String genero,String deporte,String nacionalidad)
 	{
 		this.nombre=nombre;
 		this.nacionalidad=nacionalidad;
@@ -55,6 +55,26 @@ public class Atleta
 	public String toString() 
 	{
 		return "Atleta: "+nombre +" Deporte: "+deporte+" Nacionalidad: "+nacionalidad + " Genero: "+genero;
+	}
+	
+	public boolean mismoDeporte(Atleta at)
+	{
+		return this.deporte.equals(at.deporte);
+	}
+	
+	public boolean mismaNacionalidad(Atleta at)
+	{
+		return this.nacionalidad.equals(at.nacionalidad);
+	}
+	
+	public boolean mismoGenero(Atleta at)
+	{
+		return this.genero.equals(at.genero);
+	}
+	
+	public boolean equals(Atleta at)
+	{
+		return this.nombre.equals(at.nombre);
 	}
 	
 	

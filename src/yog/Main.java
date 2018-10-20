@@ -76,8 +76,13 @@ public class Main
 			}
 		
 			retorno+="]";
-			 
+			 System.out.println(lista.get(2)+" Y  "+lista.get(1)+" Comprueba mismo deporte: "+lista.get(2).mismoDeporte(lista.get(1)));
+			 System.out.println(lista.get(2)+" "+lista.get(1)+" Comprueba misma nacionalidad: "+lista.get(2).mismaNacionalidad(lista.get(1)));
+			 System.out.println(lista.get(2)+" "+lista.get(1)+" Comprueba mismo genero: "+lista.get(2).mismoGenero(lista.get(1)));
+			 System.out.println(lista.get(2)+" "+lista.get(1)+" Compruba misma persona "+lista.get(2).equals(lista.get(1)));
 			return retorno;
+			
+			
 			
 			
 				
