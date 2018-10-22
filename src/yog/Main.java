@@ -28,24 +28,32 @@ public class Main
 			
 
 			try (FileInputStream file = new FileInputStream(new File(rutaArchivo))) {
-				
+				// leer archivo excel
 				worbook = new XSSFWorkbook(file);
+				//obtener la hoja que se va leer
 				XSSFSheet sheet = worbook.getSheetAt(0);
+				//obtener todas las filas de la hoja excel
 				Iterator<Row> rowIterator = sheet.iterator();
 	 
 				Row row;
+				// se recorre cada fila hasta el final
 				while (rowIterator.hasNext()) {
 					row = rowIterator.next();
+					//se obtiene las celdas por fila
 					Iterator<Cell> cellIterator = row.cellIterator();
 					Cell cell;
+					//se recorre cada celda
 					while (cellIterator.hasNext())
 					{
+						// se obtiene la celda en específico y se la imprime
 						cell = cellIterator.next();
 						at.add(cell.getStringCellValue());
+						//System.out.print(cell.getStringCellValue()+" ");
 					}
 					
 					lista.add(new Atleta(at.get(0),at.get(1),at.get(2),at.get(3)));
 					at.clear();
+					//System.out.println();
 				}
 			} catch (Exception e) {
 				e.getMessage();
@@ -55,6 +63,7 @@ public class Main
 				try {
 					worbook.close();
 				} catch (IOException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
