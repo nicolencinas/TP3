@@ -64,9 +64,11 @@ public class Interfaz {
 				Atleta[] atletas= gson.fromJson(json, Atleta[].class );
 				
 		String e="";
+		int i=1;
 		for (Atleta a: atletas)
 		{
-			e +=a+"\n";
+			e +=i+" "+a+"\n";
+			i++;
 		}
 		
 		textArea.setText(e);

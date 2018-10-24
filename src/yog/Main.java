@@ -71,6 +71,7 @@ public class Main
 			
 			String retorno="[";
 			int i=0;
+			System.out.println(lista.size());
 			for (Atleta a : lista) 
 			{
 				
@@ -94,6 +95,7 @@ public class Main
 
 	public static void main(String[] args) 
 	{
+		
 		Gson gson=new Gson();
 		String retorno=jsonConstruct("YOG.xlsx");
 		System.out.println(retorno);
