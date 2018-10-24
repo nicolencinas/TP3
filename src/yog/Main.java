@@ -70,19 +70,20 @@ public class Main
 			
 			
 			String retorno="[";
+			int i=0;
 			for (Atleta a : lista) 
 			{
-				retorno +=gson.toJson(a)+", \n";
+				
+				retorno +=gson.toJson(a);
+				if (i!=lista.size()-1)
+				{
+					retorno+=",\n";
+				}
+				i++;
 			}
 		
 			retorno+="]";
-			
 		
-			
-			 System.out.println(lista.get(2)+" Y  "+lista.get(1)+" Comprueba mismo deporte: "+lista.get(2).mismoDeporte(lista.get(1)));
-			 System.out.println(lista.get(2)+" "+lista.get(1)+" Comprueba misma nacionalidad: "+lista.get(2).mismaNacionalidad(lista.get(1)));
-			 System.out.println(lista.get(2)+" "+lista.get(1)+" Comprueba mismo genero: "+lista.get(2).mismoGenero(lista.get(1)));
-			 System.out.println(lista.get(2)+" "+lista.get(1)+" Compruba misma persona "+lista.get(2).equals(lista.get(1)));
 			return retorno;
 			
 			
@@ -97,9 +98,9 @@ public class Main
 		String retorno=jsonConstruct("YOG.xlsx");
 		System.out.println(retorno);
 		
-		Atleta [] ata=gson.fromJson(retorno, Atleta [].class);
-		for (Atleta a: ata)
-			System.out.println(a);
+//		Atleta [] ata=gson.fromJson(retorno, Atleta [].class);
+//		for (Atleta a: ata)
+//			System.out.println(a);
 	}
 		
 
