@@ -16,6 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+
 public class Interfaz {
 
 	private JFrame frame;
@@ -53,7 +54,8 @@ public class Interfaz {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		  try {
+		
+		 try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
@@ -75,7 +77,6 @@ public class Interfaz {
 			
 				Atleta[] atletas= gson.fromJson(json, Atleta[].class );
 				
-		
 		int i=0;
 		
 		
