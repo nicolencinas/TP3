@@ -13,6 +13,8 @@ import javax.swing.table.TableColumn;
 import com.google.gson.Gson;
 
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class Interfaz {
 
@@ -51,7 +53,21 @@ public class Interfaz {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		
+		  try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		String json=Main.jsonConstruct("YOG.xlsx");
 				
@@ -59,13 +75,16 @@ public class Interfaz {
 			
 				Atleta[] atletas= gson.fromJson(json, Atleta[].class );
 				
-		String e="";
+		
 		int i=0;
-		Object[][] objetos=new Object[2141][4];
+		
+		
+		Object[][] objetos=new Object[2141][5];
 		for (Atleta a: atletas)
 		{
-			
-			objetos[i][0] =a.getName();objetos[i][1] =a.getGenre();objetos[i][2] =a.getSport();objetos[i][3] =a.getNacionality();
+			int ub=i+1;
+			String ubi=ub+"";
+			objetos [i][0]=ubi ;objetos[i][1] =a.getName();objetos[i][2] =a.getGenre();objetos[i][3] =a.getSport();objetos[i][4] =a.getNacionality();
 			i++;
 		}
 		
@@ -75,13 +94,13 @@ public class Interfaz {
 		table.setModel(new DefaultTableModel(
 			objetos,
 			new String[] {
-				"Nombre", "Genero", "Deporte", "Nacionalidad"
+				"Nº" ,"Nombre", "Genero", "Deporte", "Nacionalidad"
 			}
 		));
 	   JScrollPane pane=new JScrollPane (table);
-		
-	   table.getColumnModel().getColumn(0).setPreferredWidth(200);
-	   table.getColumnModel().getColumn(1).setPreferredWidth(20);
+	   table.getColumnModel().getColumn(0).setPreferredWidth(2);
+	   table.getColumnModel().getColumn(1).setPreferredWidth(200);
+	   table.getColumnModel().getColumn(2).setPreferredWidth(20);
 	   pane = new javax.swing.JScrollPane(); 
 	   pane.setHorizontalScrollBarPolicy(javax.swing.JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); pane.setVerticalScrollBarPolicy(javax.swing.JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
 	   pane.setViewportView(table); 
