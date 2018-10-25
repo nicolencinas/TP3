@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.ScrollPane;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.CompoundBorder;
 import javax.swing.table.DefaultTableModel;
@@ -50,12 +51,7 @@ public class Interfaz {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JTextArea textArea = new JTextArea();
 		
-		ScrollPane scroll=new ScrollPane();
-		scroll.setBounds(10, 11, 538, 929);
-		scroll.add(textArea);
-		frame.getContentPane().add(scroll);
 		
 		String json=Main.jsonConstruct("YOG.xlsx");
 				
@@ -64,14 +60,36 @@ public class Interfaz {
 				Atleta[] atletas= gson.fromJson(json, Atleta[].class );
 				
 		String e="";
-		int i=1;
+		int i=0;
+		Object[][] objetos=new Object[2141][4];
 		for (Atleta a: atletas)
 		{
-			e +=i+" "+a+"\n";
+			
+			objetos[i][0] =a.getName();objetos[i][1] =a.getGenre();objetos[i][2] =a.getSport();objetos[i][3] =a.getNacionality();
 			i++;
 		}
 		
-		textArea.setText(e);
+		JTable table =new JTable();
+		table.setBounds(10, 11, 538, 929);
+		
+		table.setModel(new DefaultTableModel(
+			objetos,
+			new String[] {
+				"Nombre", "Genero", "Deporte", "Nacionalidad"
+			}
+		));
+	   JScrollPane pane=new JScrollPane (table);
+		
+	   table.getColumnModel().getColumn(0).setPreferredWidth(200);
+	   table.getColumnModel().getColumn(1).setPreferredWidth(20);
+	   pane = new javax.swing.JScrollPane(); 
+	   pane.setHorizontalScrollBarPolicy(javax.swing.JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); pane.setVerticalScrollBarPolicy(javax.swing.JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
+	   pane.setViewportView(table); 
+	   pane.setBounds(10, 10, 600, 955); 
+	   frame.add(pane);
+		table.setAutoscrolls(true);
+		
+		
 		
 		
 				
