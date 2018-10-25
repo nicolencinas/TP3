@@ -80,7 +80,7 @@ public class Interfaz {
 		int i=0;
 		
 		
-		Object[][] objetos=new Object[2141][5];
+		Object[][] objetos=new Object[2244][5];
 		for (Atleta a: atletas)
 		{
 			int ub=i+1;
@@ -98,6 +98,8 @@ public class Interfaz {
 				"Nº" ,"Nombre", "Genero", "Deporte", "Nacionalidad"
 			}
 		));
+		
+		System.out.println(Main.Cuantos(atletas, "ma"));
 	   JScrollPane pane=new JScrollPane (table);
 	   table.getColumnModel().getColumn(0).setMinWidth(30);
 	   table.getColumnModel().getColumn(0).setMaxWidth(30);
