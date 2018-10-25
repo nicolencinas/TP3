@@ -99,7 +99,7 @@ public class Interfaz {
 			}
 		));
 		
-		System.out.println(Main.Cuantos(atletas, "ma"));
+		System.out.println(Main.Cuantos(atletas, "ciclismo"));
 	   JScrollPane pane=new JScrollPane (table);
 	   table.getColumnModel().getColumn(0).setMinWidth(30);
 	   table.getColumnModel().getColumn(0).setMaxWidth(30);

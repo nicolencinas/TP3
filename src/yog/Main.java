@@ -26,7 +26,7 @@ public class Main
 		{
 			String nacion=a.getNacionality().toLowerCase();
 			String gen=a.getGenre().toLowerCase();
-			String dep=a.getSport();
+			String dep=a.getSport().toLowerCase();
 			if (nacion.equals(d)) 
 			{
 				i++;
