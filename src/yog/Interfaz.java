@@ -99,9 +99,14 @@ public class Interfaz {
 			}
 		));
 	   JScrollPane pane=new JScrollPane (table);
-	   table.getColumnModel().getColumn(0).setPreferredWidth(2);
-	   table.getColumnModel().getColumn(1).setPreferredWidth(200);
-	   table.getColumnModel().getColumn(2).setPreferredWidth(20);
+	   table.getColumnModel().getColumn(0).setMinWidth(30);
+	   table.getColumnModel().getColumn(0).setMaxWidth(30);
+	   table.getColumnModel().getColumn(1).setMinWidth(200);
+	   table.getColumnModel().getColumn(1).setMaxWidth(200);
+	   table.getColumnModel().getColumn(2).setMinWidth(60);
+	   table.getColumnModel().getColumn(2).setMaxWidth(60);
+	   table.getColumnModel().getColumn(3).setMaxWidth(180);
+	   table.getColumnModel().getColumn(3).setMinWidth(180);
 	   pane = new javax.swing.JScrollPane(); 
 	   pane.setHorizontalScrollBarPolicy(javax.swing.JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); pane.setVerticalScrollBarPolicy(javax.swing.JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
 	   pane.setViewportView(table); 
