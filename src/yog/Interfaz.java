@@ -61,8 +61,17 @@ public class Interfaz {
         dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         jtableBuscar.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(consulta));
+       
+		tr.setRowFilter(RowFilter.regexFilter(consulta));
 }
+	
+	private String formatear(String consulta) 
+	{
+		String ret=Character.toUpperCase(consulta.charAt(0))+consulta.substring(1, consulta.length());
+		ret=ret.replace(" ", "");
+		return ret;
+	}
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -151,8 +160,11 @@ public class Interfaz {
  			{
  				if (e.getKeyCode()==KeyEvent.VK_ENTER) 
  				{
+ 					String value=formatear(text.getText());
+ 					text.setText(value);
  					
- 					filtro(text.getText(),table);
+ 					filtro(value,table);
+ 	
  					JOptionPane.showMessageDialog(frame, "Se encontraron: "+Main.Cuantos(atletas, text.getText())+" resultados");
  					frame.requestFocus();
  				}
