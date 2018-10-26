@@ -8,6 +8,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.CompoundBorder;
@@ -152,6 +153,8 @@ public class Interfaz {
  				{
  					
  					filtro(text.getText(),table);
+ 					JOptionPane.showMessageDialog(frame, "Se encontraron: "+Main.Cuantos(atletas, text.getText())+" resultados");
+ 					frame.requestFocus();
  				}
  				
  				if (text.getText().equals("")) 
