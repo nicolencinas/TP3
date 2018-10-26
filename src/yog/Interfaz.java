@@ -150,7 +150,7 @@ public class Interfaz {
  			{
  				if (e.getKeyCode()==KeyEvent.VK_ENTER) 
  				{
- 					System.out.println("Se presiono enter");
+ 					
  					filtro(text.getText(),table);
  				}
  				
