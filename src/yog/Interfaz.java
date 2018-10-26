@@ -153,6 +153,11 @@ public class Interfaz {
  					System.out.println("Se presiono enter");
  					filtro(text.getText(),table);
  				}
+ 				
+ 				if (text.getText().equals("")) 
+ 				{
+ 					filtro("",table);
+ 				}
  			}
  			
 	   });
