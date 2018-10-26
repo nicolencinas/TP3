@@ -80,7 +80,7 @@ public class Interfaz {
 		int i=0;
 		
 		
-		Object[][] objetos=new Object[2244][5];
+		Object[][] objetos=new Object[atletas.length][5];
 		for (Atleta a: atletas)
 		{
 			int ub=i+1;
