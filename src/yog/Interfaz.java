@@ -2,17 +2,25 @@ package yog;
 
 import java.awt.EventQueue;
 import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.CompoundBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableRowSorter;
 
 import com.google.gson.Gson;
 
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -45,15 +53,35 @@ public class Interfaz {
 		initialize();
 	}
 
+	
+	private void filtro(String consulta, JTable jtableBuscar)
+	{
+		DefaultTableModel dm;
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jtableBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
+}
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	
+
+	private void initialize()
+	{
 		frame = new JFrame();
 		frame.setBounds(300, 0, 1000, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		JTextField text=new JTextField();
+		text.setBorder(new TitledBorder("Ingrese Busqueda:"));
+		
+		text.setBounds(800,10,150,40);
+		
+		
+				   
+		frame.add(text);
 		
 		 try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -109,11 +137,29 @@ public class Interfaz {
 	   table.getColumnModel().getColumn(2).setMaxWidth(60);
 	   table.getColumnModel().getColumn(3).setMaxWidth(180);
 	   table.getColumnModel().getColumn(3).setMinWidth(180);
+	   table.setEnabled(false);
 	   pane = new javax.swing.JScrollPane(); 
 	   pane.setHorizontalScrollBarPolicy(javax.swing.JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); pane.setVerticalScrollBarPolicy(javax.swing.JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
 	   pane.setViewportView(table); 
 	   pane.setBounds(10, 10, 600, 955); 
+	   
+	   
+	   text.addKeyListener(new KeyAdapter() 
+	   {
+ 			public void keyReleased(KeyEvent e)
+ 			{
+ 				if (e.getKeyCode()==37) 
+ 				{
+ 					System.out.println("Se presiono enter");
+ 					filtro(text.getText(),table);
+ 				}
+ 			}
+ 			
+	   });
+	   
+	   
 	   frame.add(pane);
+	   
 		table.setAutoscrolls(true);
 		
 		
