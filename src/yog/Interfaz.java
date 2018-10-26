@@ -69,7 +69,31 @@ public class Interfaz {
 	{
 		String ret=Character.toUpperCase(consulta.charAt(0))+consulta.substring(1, consulta.length());
 		ret=ret.replace(" ", "");
-		return ret;
+		
+		String ret2="";
+		
+		for (int i=0;i<ret.length();i++)
+		{
+//			char ch=ret.charAt(i);
+//			try 
+//			{
+//				
+//				Integer e=Integer.parseInt(ch+"");
+//				
+//			}
+//			catch(Exception e)
+//			{
+//				ret2=ret2+ch;
+//			}
+			char ch=ret.charAt(i);
+			int j=(int)ch;
+			if ((j>=65 && j<=90) || (j>=97 && j<=122)) 
+			{
+				ret2+=ch;
+			}
+			
+		}
+		return ret2;
 	}
 
 	/**
