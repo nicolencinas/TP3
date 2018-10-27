@@ -475,6 +475,7 @@ public class Interfaz {
  						filtro(value,table);
  						
  						render.setInput(value);
+ 						combo.setSelectedItem(value);
  						table.updateUI();
  					JOptionPane.showMessageDialog(frame, "Se encontraron: "+Main.Cuantos(atletas, text.getText())+" resultados","Busqueda para: "+text.getText(), JOptionPane.INFORMATION_MESSAGE);
  					
