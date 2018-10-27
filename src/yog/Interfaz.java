@@ -193,6 +193,9 @@ public class Interfaz {
  				{
  					String value = text.getText();
  					
+ 					if (esValorDeterminado(formatear(value),atletas))
+ 						value=formatear(value);
+ 					
  					if (!text.getText().equals("")) 
  					{
  					
