@@ -1,5 +1,6 @@
 package yog;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
@@ -7,12 +8,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.CompoundBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -377,9 +380,14 @@ public class Interfaz {
 		combo.addItem("Zimbabue");
 		
 		
-		combo.setBounds(820,15,120,30);
+		combo.setBounds(780,5,120,50);
+		combo.setBorder(new TitledBorder("Seleccione filtro:"));
 		text.setBounds(620,10,150,40);	   
 		frame.add(combo);
+		
+		JButton limpiar=new JButton("Clear");
+		limpiar.setBounds(905,20,65,20);
+		frame.add(limpiar);
 	
 		
 		
@@ -521,6 +529,7 @@ public class Interfaz {
 			      }
 			      else 
 					{
+			    	  combo.setSelectedItem("Seleccionar...");
 						render.setInput("");
 						
 					    text.setText("");
@@ -528,13 +537,26 @@ public class Interfaz {
 					}
 			   }
 			   });
+		
+		
 	   
 	   frame.add(pane);
 	   
 		table.setAutoscrolls(true);
 		
 		
-		
+		limpiar.addActionListener(new ActionListener() 
+		{
+			   @Override
+			   public void actionPerformed(ActionEvent e) 
+			   {
+				 combo.setSelectedItem("Seleccionar...");
+				 text.setText("");
+				 filtro("",table);
+			   }
+			   
+			   
+		});
 		
 				
 	    
