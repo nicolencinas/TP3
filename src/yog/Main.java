@@ -123,13 +123,9 @@ public class Main
 	public static void main(String[] args) 
 	{
 		
-		Gson gson=new Gson();
-		String retorno=jsonConstruct("YOG.xlsx");
-		System.out.println(retorno);
+	
 		
-//		Atleta [] ata=gson.fromJson(retorno, Atleta [].class);
-//		for (Atleta a: ata)
-//			System.out.println(a);
+	
 	}
 		
 
