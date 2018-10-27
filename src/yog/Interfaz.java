@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -29,7 +30,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class Interfaz {
 
 	private JFrame frame;
-
+	MiRender render=new MiRender();
 	/**
 	 * Launch the application.
 	 */
@@ -54,6 +55,30 @@ public class Interfaz {
 		initialize();
 	}
 
+	public String capitalizar(String str) 
+	{
+		return Character.toUpperCase(str.charAt(0))+str.substring(1, str.length());
+		
+	}
+	private boolean esValorDeterminado(String val, Atleta[] atletas)
+	{
+		String value=val.toLowerCase();
+		for (Atleta a: atletas) 
+		{
+			if (value.equals(a.getGenre().toLowerCase()))
+				return true;
+			if (value.equals(a.getNacionality().toLowerCase()))
+				return true;
+			
+			if (value.equals(a.getName().toLowerCase()))
+				return true;
+				
+		     if (value.equals(a.getSport().toLowerCase()))
+		    	 return true;
+			
+		}
+		return false;
+	}
 	
 	private void filtro(String consulta, JTable jtableBuscar)
 	{
@@ -67,27 +92,24 @@ public class Interfaz {
 	
 	private String formatear(String consulta) 
 	{
-		String ret=Character.toUpperCase(consulta.charAt(0))+consulta.substring(1, consulta.length());
-		ret=ret.replace(" ", "");
-		
+		String ret=consulta;
 		String ret2="";
 		
 		for (int i=0;i<ret.length();i++)
 		{
 			char ch=ret.charAt(i);
 			int j=(int)ch;
+			
 			if ((j>=65 && j<=90) || (j>=97 && j<=122)) 
 			{
+				System.out.println("letra"+ch+ " codigo" +j);
 				ret2+=ch;
 			}
 		}
-		return ret2;
+		
+		String ret3=Character.toUpperCase(ret2.charAt(0))+ret2.substring(1, ret2.length());
+		return ret3;
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	
 
 	private void initialize()
 	{
@@ -99,10 +121,7 @@ public class Interfaz {
 		JTextField text=new JTextField();
 		text.setBorder(new TitledBorder("Ingrese Busqueda:"));
 		
-		text.setBounds(800,10,150,40);
-		
-		
-				   
+		text.setBounds(800,10,150,40);	   
 		frame.add(text);
 		
 		 try {
@@ -164,7 +183,7 @@ public class Interfaz {
 	   pane.setHorizontalScrollBarPolicy(javax.swing.JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); pane.setVerticalScrollBarPolicy(javax.swing.JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
 	   pane.setViewportView(table); 
 	   pane.setBounds(10, 10, 600, 955); 
-	   
+	   table.setDefaultRenderer(Object.class, render);
 	   
 	   text.addKeyListener(new KeyAdapter() 
 	   {
@@ -172,20 +191,50 @@ public class Interfaz {
  			{
  				if (e.getKeyCode()==KeyEvent.VK_ENTER) 
  				{
- 					String value=formatear(text.getText());
- 					text.setText(value);
+ 					String value = text.getText();
  					
- 					filtro(value,table);
- 	
- 					JOptionPane.showMessageDialog(frame, "Se encontraron: "+Main.Cuantos(atletas, text.getText())+" resultados");
+ 					if (!text.getText().equals("")) 
+ 					{
+ 					
+ 						value=capitalizar(value);
+ 						
+ 						
+ 					if	(esValorDeterminado(value,atletas)) 
+ 					{
+ 							text.setText(value);
+ 						filtro(value,table);
+ 						
+ 						render.setInput(value);
+ 						table.updateUI();
+ 					JOptionPane.showMessageDialog(frame, "Se encontraron: "+Main.Cuantos(atletas, text.getText())+" resultados","Busqueda para: "+text.getText(), JOptionPane.OK_OPTION);
+ 					
+ 					
+ 					System.out.println(render.input);
+ 					
  					frame.requestFocus();
+ 					}
+ 					else 
+ 					{
+ 						render.setInput("");
+ 						JOptionPane.showMessageDialog(frame, "No se encontraron resultados");
+ 					    text.setText("");
+ 	 					
+ 					}
+ 				
+ 				}
+ 					
+ 			
+ 					
  				}
  				
  				if (text.getText().equals("")) 
  				{
+ 					render.setInput("");
  					filtro("",table);
  				}
  			}
+
+		
  			
 	   });
 	   
