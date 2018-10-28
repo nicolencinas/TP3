@@ -1,17 +1,27 @@
 package yog;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.CompoundBorder;
@@ -34,6 +44,7 @@ public class Interfaz {
 
 	private JFrame frame;
 	MiRender render=new MiRender();
+	private JTextArea ta = new JTextArea("",33,42);
 	/**
 	 * Launch the application.
 	 */
@@ -117,7 +128,7 @@ public class Interfaz {
 	private void initialize()
 	{
 		frame = new JFrame();
-		frame.setBounds(300, 0, 1000, 1000);
+		frame.setBounds(300, 0, 1050, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -127,6 +138,38 @@ public class Interfaz {
 		
 		frame.add(text);
 		
+		
+		
+		
+	  
+		//ta.setFocusable(false);
+	     ta.setLineWrap(true);
+		 ta.setSize(300, 300);
+		 ta.setLocation(200,200);
+		// ta.setText(consoleOut.toString());
+		 
+		 JLabel consoleIcon=new JLabel("");
+			consoleIcon.setBounds(666,294,25,25);
+			Image im2=new ImageIcon("console.png").getImage();
+			consoleIcon.setIcon(new ImageIcon(im2.getScaledInstance(25, 25, Image.SCALE_SMOOTH)));
+			consoleIcon.setToolTipText("Consola de informacion");
+			frame.add(consoleIcon);
+		 		
+		JScrollPane	scroll = new JScrollPane(ta);
+		scroll.setBounds(615, 300, 400, 650);
+		scroll.setBorder(new TitledBorder("Console: "));
+			scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+			
+		
+			JLabel imagen = new JLabel("");
+			imagen.setSize(157,241);
+			imagen.setLocation(740,60);
+			Image im=new ImageIcon("Yog.png").getImage();
+			imagen.setIcon(new ImageIcon( im.getScaledInstance(157, 241, Image.SCALE_SMOOTH)));
+			imagen.setToolTipText("Ir a la pagina oficial de las olimpiadas");
+			frame.add(imagen);
+		//consola.add(scroll);
+		frame.add(scroll);
 		
 		JComboBox<String> combo=new JComboBox<String>();
 		combo.addItem("Seleccionar...");
@@ -539,7 +582,42 @@ public class Interfaz {
 			   }
 			   });
 		
-		
+		imagen.addMouseListener(new MouseAdapter() 
+		{
+
+			public void mouseReleased(MouseEvent e)
+			{
+				String uri="https://www.buenosaires2018.com/results/es/all-sports/atletas.htm?lng=es";
+				try 
+				{
+					Desktop.getDesktop().browse(java.net.URI.create(uri));
+				} catch (IOException e1)
+				{
+			
+					e1.printStackTrace();
+				}
+			}
+			
+			public void mouseEntered(MouseEvent e)
+			{
+				try {
+					Thread.sleep(300);
+				} catch (InterruptedException e1)
+				{
+				
+					e1.printStackTrace();
+				}
+				imagen.setLocation(741, 60);
+				imagen.setBorder(BorderFactory.createLineBorder(new Color(58,76,186)));
+			}
+			
+			public void  mouseExited(MouseEvent e)
+			{
+				imagen.setLocation(740, 60);
+				imagen.setBorder(null);
+			}
+
+		});
 	   
 	   frame.add(pane);
 	   
