@@ -147,7 +147,7 @@ public class Interfaz {
 		
 		
 	  
-		//ta.setFocusable(false);
+		ta.setFocusable(false);
 	     ta.setLineWrap(true);
 		 ta.setSize(300, 300);
 		 ta.setLocation(200,200);
