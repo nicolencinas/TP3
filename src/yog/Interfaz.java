@@ -137,8 +137,10 @@ public class Interfaz {
 		
 		
 		frame.add(text);
+		frame.setTitle("Gestor de habitaciones");
+	Image titleIcon=new ImageIcon("Title.png").getImage();
 		
-		
+		frame.setIconImage(titleIcon);
 		
 		
 	  
@@ -427,6 +429,8 @@ public class Interfaz {
 		combo.setBorder(new TitledBorder("Seleccione filtro:"));
 		text.setBounds(620,10,150,40);	   
 		frame.add(combo);
+		
+	
 		
 		JButton limpiar=new JButton("Clear");
 		limpiar.setBounds(905,20,65,20);
