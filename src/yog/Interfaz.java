@@ -34,6 +34,7 @@ public class Interfaz {
 
 	private JFrame frame;
 	MiRender render=new MiRender();
+	SavesManager save=new SavesManager();
 	/**
 	 * Launch the application.
 	 */
@@ -407,7 +408,7 @@ public class Interfaz {
 			e1.printStackTrace();
 		}
 		
-		String json=Main.jsonConstruct("YOG.xlsx");
+		String json=save.cargar();
 				
 				Gson gson=new Gson();
 			
