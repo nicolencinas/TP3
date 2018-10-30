@@ -169,11 +169,12 @@ public class SavesManager
     	}
 }
 
-	public String cargar()
+	public String cargar(String path)
 	{
 		String linea="";
 	
-	File f = new File( "input.json" ); 
+	File f = new File(path); 
+	System.out.println(f.getAbsolutePath());
 	
 	if (f.exists())  
 	{

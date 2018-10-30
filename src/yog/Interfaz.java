@@ -1,38 +1,26 @@
 package yog;
 
-import java.awt.Color;
-import java.awt.Desktop;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.Image;
-import java.awt.ScrollPane;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.plaf.ProgressBarUI;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
-
 import com.google.gson.Gson;
-
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -47,6 +35,11 @@ public class Interfaz {
 
 	SavesManager save=new SavesManager();
 	private JTextArea ta = new JTextArea("",33,42);
+	String jsonFile="";
+	Object[][] objetos=new Object[5][5];
+	Atleta[] atletas=new Atleta[0];
+	JTable table=new JTable();
+	
 
 	/**
 	 * Launch the application.
@@ -145,6 +138,82 @@ public class Interfaz {
 		
 		frame.setIconImage(titleIcon);
 		
+
+		
+		JFileChooser fc=new JFileChooser();
+		FileNameExtensionFilter filtro2= new FileNameExtensionFilter("JavaScript Object Notation Archive", "json", "JSON"); 
+		
+		
+		
+		fc.setFileFilter(filtro2);
+		fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
+		
+		
+		JButton seleccionar=new JButton("Seleccionar json...");
+		seleccionar.setBounds(10,10,160,20);
+		frame.add(seleccionar);
+		frame.add(fc);
+		
+		
+		seleccionar.addActionListener(new ActionListener() 
+		{
+			   @Override
+			   public void actionPerformed(ActionEvent e) 
+			   {
+				  int seleccion= fc.showOpenDialog(seleccionar);
+				  if (seleccion==JFileChooser.APPROVE_OPTION) 
+				  {
+					  File fichero=fc.getSelectedFile();
+					  jsonFile = fichero.getAbsolutePath();
+					  
+						 String json=save.cargar(jsonFile);
+							
+							Gson gson=new Gson();
+						
+							 atletas= gson.fromJson(json, Atleta[].class );
+							
+					int i=0;
+					
+					
+					objetos=new Object[atletas.length][5];
+					for (Atleta a: atletas)
+					{
+						
+						int ub=i+1;
+						String ubi=ub+"";
+						objetos [i][0]=ubi ;objetos[i][1] =a.getName();objetos[i][2] =a.getGenre();objetos[i][3] =a.getSport();objetos[i][4] =a.getNacionality();
+						i++;
+					}
+					
+					
+					table.setBounds(10, 11, 538, 929);
+					
+					table.setModel(new DefaultTableModel(
+						objetos,
+						new String[] {
+							"Nº" ,"Nombre", "Genero", "Deporte", "Nacionalidad"
+						}
+					));
+					System.out.println(Main.Cuantos(atletas, "ciclismo"));
+					   JScrollPane pane=new JScrollPane (table);
+					   table.getColumnModel().getColumn(0).setMinWidth(30);
+					   table.getColumnModel().getColumn(0).setMaxWidth(30);
+					   table.getColumnModel().getColumn(1).setMinWidth(200);
+					   table.getColumnModel().getColumn(1).setMaxWidth(200);
+					   table.getColumnModel().getColumn(2).setMinWidth(60);
+					   table.getColumnModel().getColumn(2).setMaxWidth(60);
+					   table.getColumnModel().getColumn(3).setMaxWidth(180);
+					   table.getColumnModel().getColumn(3).setMinWidth(180);
+					   table.setEnabled(false);
+					   pane = new javax.swing.JScrollPane(); 
+					   pane.setHorizontalScrollBarPolicy(javax.swing.JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); pane.setVerticalScrollBarPolicy(javax.swing.JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
+					   pane.setViewportView(table); 
+					   pane.setBounds(10, 10, 600, 955); 
+					   table.setDefaultRenderer(Object.class, render);
+					   frame.add(pane);
+				  }
+			   }
+		});
 		
 	  
 		ta.setFocusable(false);
@@ -457,51 +526,39 @@ public class Interfaz {
 			e1.printStackTrace();
 		}
 		
-		String json=save.cargar();
-				
-				Gson gson=new Gson();
+		 
+//		 String json=save.cargar(jsonFile);
+//				
+//				Gson gson=new Gson();
+//			
+//				Atleta[] atletas= gson.fromJson(json, Atleta[].class );
+//				
+//		int i=0;
+//		
+//		
+//		Object[][] objetos=new Object[atletas.length][5];
+//		for (Atleta a: atletas)
+//		{
+//			
+//			int ub=i+1;
+//			String ubi=ub+"";
+//			objetos [i][0]=ubi ;objetos[i][1] =a.getName();objetos[i][2] =a.getGenre();objetos[i][3] =a.getSport();objetos[i][4] =a.getNacionality();
+//			i++;
+//		}
+//		
+		
 			
-				Atleta[] atletas= gson.fromJson(json, Atleta[].class );
-				
-		int i=0;
 		
 		
-		Object[][] objetos=new Object[atletas.length][5];
-		for (Atleta a: atletas)
-		{
-			int ub=i+1;
-			String ubi=ub+"";
-			objetos [i][0]=ubi ;objetos[i][1] =a.getName();objetos[i][2] =a.getGenre();objetos[i][3] =a.getSport();objetos[i][4] =a.getNacionality();
-			i++;
-		}
-		
-		JTable table =new JTable();
-		table.setBounds(10, 11, 538, 929);
-		
-		table.setModel(new DefaultTableModel(
-			objetos,
-			new String[] {
-				"Nº" ,"Nombre", "Genero", "Deporte", "Nacionalidad"
-			}
-		));
+
 		
 		System.out.println(Main.Cuantos(atletas, "ciclismo"));
 	   JScrollPane pane=new JScrollPane (table);
-	   table.getColumnModel().getColumn(0).setMinWidth(30);
-	   table.getColumnModel().getColumn(0).setMaxWidth(30);
-	   table.getColumnModel().getColumn(1).setMinWidth(200);
-	   table.getColumnModel().getColumn(1).setMaxWidth(200);
-	   table.getColumnModel().getColumn(2).setMinWidth(60);
-	   table.getColumnModel().getColumn(2).setMaxWidth(60);
-	   table.getColumnModel().getColumn(3).setMaxWidth(180);
-	   table.getColumnModel().getColumn(3).setMinWidth(180);
-	   table.setEnabled(false);
-	   pane = new javax.swing.JScrollPane(); 
-	   pane.setHorizontalScrollBarPolicy(javax.swing.JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); pane.setVerticalScrollBarPolicy(javax.swing.JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
-	   pane.setViewportView(table); 
-	   pane.setBounds(10, 10, 600, 955); 
-	   table.setDefaultRenderer(Object.class, render);
+	  
+	  // table.setDefaultRenderer(Object.class, render);
 	   
+	
+	
 	   text.addKeyListener(new KeyAdapter() 
 	   {
  			public void keyReleased(KeyEvent e)
@@ -626,10 +683,11 @@ public class Interfaz {
 
 		});
 	   
-	   frame.add(pane);
+	   
 	   
 		table.setAutoscrolls(true);
-		
+		double r=8400/3098;
+		System.out.println(r);
 		
 		limpiar.addActionListener(new ActionListener() 
 		{
@@ -639,6 +697,7 @@ public class Interfaz {
 				 combo.setSelectedItem("Seleccionar...");
 				 text.setText("");
 				 filtro("",table);
+				  
 			   }
 			   
 			   
