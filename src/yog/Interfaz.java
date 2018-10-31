@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,6 +43,13 @@ public class Interfaz {
 	Object[][] objetos=new Object[5][5];
 	Atleta[] atletas=new Atleta[0];
 	JTable table=new JTable();
+	
+	//Recursos para el timer
+	static int contador=0;
+	int dir=0;
+	Timer timer;
+	TimerTask tarea;
+	
 	
 
 	/**
@@ -144,9 +154,159 @@ public class Interfaz {
 		JLabel selector=new JLabel();
 		selector.setBounds(10, 10, 600, 955);;
 		
-		Image ima=new ImageIcon("out.png").getImage();
-		selector.setIcon(new ImageIcon(ima.getScaledInstance(600,955
-				, Image.SCALE_SMOOTH)));
+		tarea=new TimerTask()
+		{
+
+			@Override
+			public void run() 
+			{
+				
+				ImageIcon icono;
+				
+				if (dir==1) 
+				{
+					System.out.println(contador);
+					switch(contador) 
+				{
+					
+				case 0:
+					contador=1;
+					icono=new ImageIcon("f00.png");
+					selector.setIcon(icono);
+				case 1:
+					contador=2;
+					icono=new ImageIcon(("f01.png"));
+					selector.setIcon(icono);
+				case 2:
+					contador=3;
+					icono=new ImageIcon(("f02.png"));
+					selector.setIcon(icono);
+					break;
+				case 3:
+					contador=4;
+					icono=new ImageIcon(("f03.png"));
+					selector.setIcon(icono);
+					break;
+				case 4:
+					contador=5;
+					icono=new ImageIcon(("f04.png"));
+					selector.setIcon(icono);
+					break;
+				case 5:
+					contador=6;
+					icono=new ImageIcon(("f05.png"));
+					selector.setIcon(icono);
+					break;
+				case 6:
+					contador=7;
+					icono=new ImageIcon(("f06.png"));
+					selector.setIcon(icono);
+					break;
+				case 7:
+					contador=8;
+					icono=new ImageIcon(("f07.png"));
+					selector.setIcon(icono);
+					break;
+				case 8:
+					contador=9;
+					icono=new ImageIcon(("f08.png"));
+					selector.setIcon(icono);
+					break;
+				case 9:
+					contador=10;
+					icono=new ImageIcon(("f09.png"));
+					selector.setIcon(icono);
+					break;
+				case 10:
+					contador=11;
+					icono=new ImageIcon(("f10.png"));
+					selector.setIcon(icono);
+					break;
+				case 11:
+					
+					icono=new ImageIcon(("f11.png"));
+					selector.setIcon(icono);
+					break;
+				
+				}
+				
+			}
+				
+				else  
+				{
+					System.out.println(contador);
+					switch(contador) 
+				{
+				case 11:
+					contador=10;
+					icono=new ImageIcon("f11.png");
+					selector.setIcon(icono);
+				case 10:
+					contador=9;
+					icono=new ImageIcon(("f10.png"));
+					selector.setIcon(icono);
+				case 9:
+					contador=8;
+					icono=new ImageIcon(("f09.png"));
+					selector.setIcon(icono);
+					break;
+				case 8:
+					contador=7;
+					icono=new ImageIcon(("f08.png"));
+					selector.setIcon(icono);
+					break;
+				case 7:
+					contador=6;
+					icono=new ImageIcon(("f07.png"));
+					selector.setIcon(icono);
+					break;
+				case 6:
+					contador=5;
+					icono=new ImageIcon(("f06.png"));
+					selector.setIcon(icono);
+					break;
+				case 5:
+					contador=4;
+					icono=new ImageIcon(("f05.png"));
+					selector.setIcon(icono);
+					break;
+				case 4:
+					contador=3;
+					icono=new ImageIcon(("f04.png"));
+					selector.setIcon(icono);
+					break;
+				case 3:
+					contador=2;
+					icono=new ImageIcon(("f03.png"));
+					selector.setIcon(icono);
+					break;
+				case 2:
+					contador=1;
+					icono=new ImageIcon(("f02.png"));
+					selector.setIcon(icono);
+					break;
+				case 1:
+					contador=0;
+					icono=new ImageIcon(("f01.png"));
+					selector.setIcon(icono);
+				break;
+				case 0:
+					
+					icono=new ImageIcon(("f00.png"));
+					selector.setIcon(icono);
+					break;
+				
+				}
+				
+			}
+				}
+				
+			
+		};
+		
+		timer=new Timer();
+		timer.scheduleAtFixedRate(tarea,30, 30);
+		
 		frame.add(selector);
 		
 		
@@ -472,31 +632,6 @@ public class Interfaz {
 			e1.printStackTrace();
 		}
 		
-		 
-//		 String json=save.cargar(jsonFile);
-//				
-//				Gson gson=new Gson();
-//			
-//				Atleta[] atletas= gson.fromJson(json, Atleta[].class );
-//				
-//		int i=0;
-//		
-//		
-//		Object[][] objetos=new Object[atletas.length][5];
-//		for (Atleta a: atletas)
-//		{
-//			
-//			int ub=i+1;
-//			String ubi=ub+"";
-//			objetos [i][0]=ubi ;objetos[i][1] =a.getName();objetos[i][2] =a.getGenre();objetos[i][3] =a.getSport();objetos[i][4] =a.getNacionality();
-//			i++;
-//		}
-//		
-		
-			
-		
-		
-
 		
 		System.out.println(Main.Cuantos(atletas, "ciclismo"));
 	   JScrollPane pane=new JScrollPane (table);
@@ -654,15 +789,11 @@ public class Interfaz {
 
 			public void mouseEntered(MouseEvent e)
 			{
-				Image ima=new ImageIcon("in.png").getImage();
-				selector.setIcon(new ImageIcon(ima.getScaledInstance(600,955
-						, Image.SCALE_SMOOTH)));
+				dir=1;
 			}
 			public void mouseExited(MouseEvent e)
 			{
-				Image ima=new ImageIcon("out.png").getImage();
-				selector.setIcon(new ImageIcon(ima.getScaledInstance(600,955
-						, Image.SCALE_SMOOTH)));
+				dir=0;
 			}
 			public void mouseReleased(MouseEvent e)
 			{
@@ -724,6 +855,7 @@ public class Interfaz {
 					   combo.setVisible(true);
 					   text.setVisible(true);
 					   limpiar.setVisible(true);
+					   timer.cancel();
 				  }
 			}
 			
