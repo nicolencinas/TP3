@@ -28,6 +28,8 @@ import com.google.gson.Gson;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -338,7 +340,22 @@ public class Interfaz {
 			scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 			
 		
-			JLabel imagen = new JLabel("");
+			JLabel imagen =new JLabel("Ir a la pagina oficial de las olimpiadas",SwingConstants.CENTER)
+			{
+
+				private static final long serialVersionUID = 1L;
+				public Point getToolTipLocation(MouseEvent event)
+			      {
+					
+			        return new Point(60, 200);
+			        
+			      }
+
+			 };
+			    
+			 
+			 
+			ToolTipManager.sharedInstance().setInitialDelay(0);
 			imagen.setSize(157,241);
 			imagen.setLocation(740,60);
 			Image im=new ImageIcon("Yog.png").getImage();
