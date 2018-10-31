@@ -125,7 +125,7 @@ public class Interfaz {
 			
 			if ((j>=65 && j<=90) || (j>=97 && j<=122)) 
 			{
-				System.out.println("letra"+ch+ " codigo" +j);
+				
 				ret2+=ch;
 			}
 		}
@@ -167,7 +167,6 @@ public class Interfaz {
 				
 				if (dir==1) 
 				{
-					System.out.println(contador);
 					switch(contador) 
 				{
 					
@@ -236,7 +235,6 @@ public class Interfaz {
 				
 				else  
 				{
-					System.out.println(contador);
 					switch(contador) 
 				{
 				case 11:
@@ -649,14 +647,6 @@ public class Interfaz {
 			e1.printStackTrace();
 		}
 		
-		
-		System.out.println(Main.Cuantos(atletas, "ciclismo"));
-	   JScrollPane pane=new JScrollPane (table);
-	  
-	  // table.setDefaultRenderer(Object.class, render);
-	   
-	
-	
 	   text.addKeyListener(new KeyAdapter() 
 	   {
  			public void keyReleased(KeyEvent e)
@@ -684,8 +674,6 @@ public class Interfaz {
  						table.updateUI();
  					JOptionPane.showMessageDialog(frame, "Se encontraron: "+Main.Cuantos(atletas, text.getText())+" resultados","Busqueda para: "+text.getText(), JOptionPane.INFORMATION_MESSAGE);
  					
- 					
- 					System.out.println(render.input);
  					
  					frame.requestFocus();
  					}
@@ -781,8 +769,7 @@ public class Interfaz {
 	   
 	   
 		table.setAutoscrolls(true);
-		double r=8400/3098;
-		System.out.println(r);
+		
 		
 		limpiar.addActionListener(new ActionListener() 
 		{
@@ -812,22 +799,45 @@ public class Interfaz {
 			public void mouseReleased(MouseEvent e)
 			{
 				int seleccion= fc.showOpenDialog(selector);
-				  
+				 boolean continuar=true;
 				  if (seleccion==JFileChooser.APPROVE_OPTION) 
 				  {
 					  File fichero=fc.getSelectedFile();
+					  
+					 
 					 
 					  jsonFile = fichero.getAbsolutePath();
+					  String json="";
+
+					  String extension=jsonFile.substring(jsonFile.lastIndexOf(".") +1);
+					  if (!extension.equals("json"))
+					  {
+						  continuar=false;
+						  JOptionPane.showMessageDialog(selector, "No se admiten archivos con formato ."+ extension.toUpperCase(), "Extension of archive not Supported", JOptionPane.ERROR_MESSAGE);
+					  }
 					  
+					  else 
+					  {
+						json=save.cargar(jsonFile);   
+					  }
 					  
-						 String json=save.cargar(jsonFile);
-							
-							Gson gson=new Gson();
+					Gson gson=new Gson();
 						
-							 atletas= gson.fromJson(json, Atleta[].class );
-							
-					int i=0;
+					try 
+					{
+						 atletas= gson.fromJson(json, Atleta[].class );
+					}catch (Exception r) 
+					{
+						continuar=false;
+						JOptionPane.showMessageDialog(selector, "Error: "+r.getCause().getMessage()+" \n No se puede transformar el json en una lista de atletas", "Illegal State Exception:", JOptionPane.ERROR_MESSAGE);
+					}
 					
+							
+						
+				
+						if (continuar)
+						{
+						int i=0;
 					
 					objetos=new Object[atletas.length][5];
 					for (Atleta a: atletas)
@@ -848,7 +858,7 @@ public class Interfaz {
 							"Nº" ,"Nombre", "Genero", "Deporte", "Nacionalidad"
 						}
 					));
-					System.out.println(Main.Cuantos(atletas, "ciclismo"));
+				
 					   JScrollPane pane=new JScrollPane (table);
 					   table.getColumnModel().getColumn(0).setMinWidth(30);
 					   table.getColumnModel().getColumn(0).setMaxWidth(30);
@@ -871,6 +881,8 @@ public class Interfaz {
 					   limpiar.setVisible(true);
 					   timer.cancel();
 				  }
+						}
+					
 			}
 			
 		});
