@@ -130,6 +130,7 @@ public class Interfaz {
 		frame.getContentPane().setLayout(null);
 		
 		JTextField text=new JTextField();
+		text.setVisible(false);
 		text.setBorder(new TitledBorder("Ingrese Busqueda:"));
 		
 		
@@ -141,10 +142,10 @@ public class Interfaz {
 		
 
 		JLabel selector=new JLabel();
-		selector.setBounds(10, 11, 538, 929);;
+		selector.setBounds(10, 10, 600, 955);;
 		
 		Image ima=new ImageIcon("out.png").getImage();
-		selector.setIcon(new ImageIcon(ima.getScaledInstance(538, 929
+		selector.setIcon(new ImageIcon(ima.getScaledInstance(600,955
 				, Image.SCALE_SMOOTH)));
 		frame.add(selector);
 		
@@ -152,82 +153,7 @@ public class Interfaz {
 		JFileChooser fc=new JFileChooser();
 		FileNameExtensionFilter filtro2= new FileNameExtensionFilter("JavaScript Object Notation Archive", "json", "JSON"); 
 		
-		selector.addMouseListener(new MouseAdapter() 
-		{
-
-			public void mouseEntered(MouseEvent e)
-			{
-				Image ima=new ImageIcon("in.png").getImage();
-				selector.setIcon(new ImageIcon(ima.getScaledInstance(538, 929
-						, Image.SCALE_SMOOTH)));
-			}
-			public void mouseExited(MouseEvent e)
-			{
-				Image ima=new ImageIcon("out.png").getImage();
-				selector.setIcon(new ImageIcon(ima.getScaledInstance(538, 929
-						, Image.SCALE_SMOOTH)));
-			}
-			public void mouseReleased(MouseEvent e)
-			{
-				int seleccion= fc.showOpenDialog(selector);
-				  
-				  if (seleccion==JFileChooser.APPROVE_OPTION) 
-				  {
-					  File fichero=fc.getSelectedFile();
-					 
-					  jsonFile = fichero.getAbsolutePath();
-					  
-					  
-						 String json=save.cargar(jsonFile);
-							
-							Gson gson=new Gson();
-						
-							 atletas= gson.fromJson(json, Atleta[].class );
-							
-					int i=0;
-					
-					
-					objetos=new Object[atletas.length][5];
-					for (Atleta a: atletas)
-					{
-						
-						int ub=i+1;
-						String ubi=ub+"";
-						objetos [i][0]=ubi ;objetos[i][1] =a.getName();objetos[i][2] =a.getGenre();objetos[i][3] =a.getSport();objetos[i][4] =a.getNacionality();
-						i++;
-					}
-					
-					
-					table.setBounds(10, 11, 538, 929);
-					
-					table.setModel(new DefaultTableModel(
-						objetos,
-						new String[] {
-							"Nº" ,"Nombre", "Genero", "Deporte", "Nacionalidad"
-						}
-					));
-					System.out.println(Main.Cuantos(atletas, "ciclismo"));
-					   JScrollPane pane=new JScrollPane (table);
-					   table.getColumnModel().getColumn(0).setMinWidth(30);
-					   table.getColumnModel().getColumn(0).setMaxWidth(30);
-					   table.getColumnModel().getColumn(1).setMinWidth(200);
-					   table.getColumnModel().getColumn(1).setMaxWidth(200);
-					   table.getColumnModel().getColumn(2).setMinWidth(60);
-					   table.getColumnModel().getColumn(2).setMaxWidth(60);
-					   table.getColumnModel().getColumn(3).setMaxWidth(180);
-					   table.getColumnModel().getColumn(3).setMinWidth(180);
-					   table.setEnabled(false);
-					   pane = new javax.swing.JScrollPane(); 
-					   pane.setHorizontalScrollBarPolicy(javax.swing.JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); pane.setVerticalScrollBarPolicy(javax.swing.JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
-					   pane.setViewportView(table); 
-					   pane.setBounds(10, 10, 600, 955); 
-					   table.setDefaultRenderer(Object.class, render);
-					   frame.add(pane);
-					   selector.setVisible(false);
-				  }
-			}
-			
-		});
+		
 		
 		
 		fc.setFileFilter(filtro2);
@@ -263,6 +189,8 @@ public class Interfaz {
 		frame.add(scroll);
 		
 		JComboBox<String> combo=new JComboBox<String>();
+		combo.setVisible(false);
+		
 		combo.addItem("Seleccionar...");
 		combo.addItem("[Genero]");
 		combo.addItem("Femenino");
@@ -522,6 +450,7 @@ public class Interfaz {
 	
 		
 		JButton limpiar=new JButton("Clear");
+		limpiar.setVisible(false);
 		limpiar.setBounds(905,20,65,20);
 		frame.add(limpiar);
 	
@@ -718,6 +647,86 @@ public class Interfaz {
 			   }
 			   
 			   
+		});
+		
+		selector.addMouseListener(new MouseAdapter() 
+		{
+
+			public void mouseEntered(MouseEvent e)
+			{
+				Image ima=new ImageIcon("in.png").getImage();
+				selector.setIcon(new ImageIcon(ima.getScaledInstance(600,955
+						, Image.SCALE_SMOOTH)));
+			}
+			public void mouseExited(MouseEvent e)
+			{
+				Image ima=new ImageIcon("out.png").getImage();
+				selector.setIcon(new ImageIcon(ima.getScaledInstance(600,955
+						, Image.SCALE_SMOOTH)));
+			}
+			public void mouseReleased(MouseEvent e)
+			{
+				int seleccion= fc.showOpenDialog(selector);
+				  
+				  if (seleccion==JFileChooser.APPROVE_OPTION) 
+				  {
+					  File fichero=fc.getSelectedFile();
+					 
+					  jsonFile = fichero.getAbsolutePath();
+					  
+					  
+						 String json=save.cargar(jsonFile);
+							
+							Gson gson=new Gson();
+						
+							 atletas= gson.fromJson(json, Atleta[].class );
+							
+					int i=0;
+					
+					
+					objetos=new Object[atletas.length][5];
+					for (Atleta a: atletas)
+					{
+						
+						int ub=i+1;
+						String ubi=ub+"";
+						objetos [i][0]=ubi ;objetos[i][1] =a.getName();objetos[i][2] =a.getGenre();objetos[i][3] =a.getSport();objetos[i][4] =a.getNacionality();
+						i++;
+					}
+					
+					
+					table.setBounds(10, 11, 538, 929);
+					
+					table.setModel(new DefaultTableModel(
+						objetos,
+						new String[] {
+							"Nº" ,"Nombre", "Genero", "Deporte", "Nacionalidad"
+						}
+					));
+					System.out.println(Main.Cuantos(atletas, "ciclismo"));
+					   JScrollPane pane=new JScrollPane (table);
+					   table.getColumnModel().getColumn(0).setMinWidth(30);
+					   table.getColumnModel().getColumn(0).setMaxWidth(30);
+					   table.getColumnModel().getColumn(1).setMinWidth(200);
+					   table.getColumnModel().getColumn(1).setMaxWidth(200);
+					   table.getColumnModel().getColumn(2).setMinWidth(60);
+					   table.getColumnModel().getColumn(2).setMaxWidth(60);
+					   table.getColumnModel().getColumn(3).setMaxWidth(180);
+					   table.getColumnModel().getColumn(3).setMinWidth(180);
+					   table.setEnabled(false);
+					   pane = new javax.swing.JScrollPane(); 
+					   pane.setHorizontalScrollBarPolicy(javax.swing.JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); pane.setVerticalScrollBarPolicy(javax.swing.JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
+					   pane.setViewportView(table); 
+					   pane.setBounds(10, 10, 600, 955); 
+					   table.setDefaultRenderer(Object.class, render);
+					   frame.add(pane);
+					   selector.setVisible(false);
+					   combo.setVisible(true);
+					   text.setVisible(true);
+					   limpiar.setVisible(true);
+				  }
+			}
+			
 		});
 		
 				
