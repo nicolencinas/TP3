@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ProgressBarUI;
@@ -139,32 +140,43 @@ public class Interfaz {
 		frame.setIconImage(titleIcon);
 		
 
+		JLabel selector=new JLabel();
+		selector.setBounds(10, 11, 538, 929);;
+		
+		Image ima=new ImageIcon("out.png").getImage();
+		selector.setIcon(new ImageIcon(ima.getScaledInstance(538, 929
+				, Image.SCALE_SMOOTH)));
+		frame.add(selector);
+		
 		
 		JFileChooser fc=new JFileChooser();
 		FileNameExtensionFilter filtro2= new FileNameExtensionFilter("JavaScript Object Notation Archive", "json", "JSON"); 
 		
-		
-		
-		fc.setFileFilter(filtro2);
-		fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
-		
-		
-		JButton seleccionar=new JButton("Seleccionar json...");
-		seleccionar.setBounds(10,10,160,20);
-		frame.add(seleccionar);
-		frame.add(fc);
-		
-		
-		seleccionar.addActionListener(new ActionListener() 
+		selector.addMouseListener(new MouseAdapter() 
 		{
-			   @Override
-			   public void actionPerformed(ActionEvent e) 
-			   {
-				  int seleccion= fc.showOpenDialog(seleccionar);
+
+			public void mouseEntered(MouseEvent e)
+			{
+				Image ima=new ImageIcon("in.png").getImage();
+				selector.setIcon(new ImageIcon(ima.getScaledInstance(538, 929
+						, Image.SCALE_SMOOTH)));
+			}
+			public void mouseExited(MouseEvent e)
+			{
+				Image ima=new ImageIcon("out.png").getImage();
+				selector.setIcon(new ImageIcon(ima.getScaledInstance(538, 929
+						, Image.SCALE_SMOOTH)));
+			}
+			public void mouseReleased(MouseEvent e)
+			{
+				int seleccion= fc.showOpenDialog(selector);
+				  
 				  if (seleccion==JFileChooser.APPROVE_OPTION) 
 				  {
 					  File fichero=fc.getSelectedFile();
+					 
 					  jsonFile = fichero.getAbsolutePath();
+					  
 					  
 						 String json=save.cargar(jsonFile);
 							
@@ -211,11 +223,16 @@ public class Interfaz {
 					   pane.setBounds(10, 10, 600, 955); 
 					   table.setDefaultRenderer(Object.class, render);
 					   frame.add(pane);
+					   selector.setVisible(false);
 				  }
-			   }
+			}
+			
 		});
 		
-	  
+		
+		fc.setFileFilter(filtro2);
+		fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
+		
 		ta.setFocusable(false);
 	     ta.setLineWrap(true);
 		 ta.setSize(300, 300);
