@@ -340,7 +340,7 @@ public class Interfaz {
 			scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 			
 		
-			JLabel imagen =new JLabel("Ir a la pagina oficial de las olimpiadas",SwingConstants.CENTER)
+			JLabel imagen =new JLabel("",SwingConstants.CENTER)
 			{
 
 				private static final long serialVersionUID = 1L;
@@ -359,7 +359,7 @@ public class Interfaz {
 			imagen.setSize(157,241);
 			imagen.setLocation(740,60);
 			Image im=new ImageIcon("Yog.png").getImage();
-			imagen.setIcon(new ImageIcon( im.getScaledInstance(157, 241, Image.SCALE_SMOOTH)));
+			imagen.setIcon(new ImageIcon( im.getScaledInstance(140, 220, Image.SCALE_SMOOTH)));
 			imagen.setToolTipText("Ir a la pagina oficial de las olimpiadas");
 			frame.add(imagen);
 		//consola.add(scroll);
@@ -762,21 +762,18 @@ public class Interfaz {
 			
 			public void mouseEntered(MouseEvent e)
 			{
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e1)
-				{
-				
-					e1.printStackTrace();
-				}
-				imagen.setLocation(741, 60);
-				imagen.setBorder(BorderFactory.createLineBorder(new Color(58,76,186)));
+			
+				Image im=new ImageIcon("Yog.png").getImage();
+				imagen.setIcon(new ImageIcon( im.getScaledInstance(157, 240, Image.SCALE_SMOOTH)));
+				imagen.setLocation(742, 60);
 			}
 			
 			public void  mouseExited(MouseEvent e)
 			{
-				imagen.setLocation(740, 60);
-				imagen.setBorder(null);
+				
+				Image im=new ImageIcon("Yog.png").getImage();
+				imagen.setIcon(new ImageIcon( im.getScaledInstance(140, 220, Image.SCALE_SMOOTH)));
+				imagen.setLocation(741, 60);
 			}
 
 		});
