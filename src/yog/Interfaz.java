@@ -305,7 +305,7 @@ public class Interfaz {
 		};
 		
 		timer=new Timer();
-		timer.scheduleAtFixedRate(tarea,30, 30);
+		timer.scheduleAtFixedRate(tarea,40, 40);
 		
 		frame.add(selector);
 		
@@ -813,12 +813,17 @@ public class Interfaz {
 					  if (!extension.equals("json"))
 					  {
 						  continuar=false;
-						  JOptionPane.showMessageDialog(selector, "No se admiten archivos con formato ."+ extension.toUpperCase(), "Extension of archive not Supported", JOptionPane.ERROR_MESSAGE);
+						  JOptionPane.showMessageDialog(selector, "No se admiten archivos con formato ."+ extension.toUpperCase(), "Archive's extension not Supported", JOptionPane.ERROR_MESSAGE);
 					  }
 					  
 					  else 
 					  {
 						json=save.cargar(jsonFile);   
+					  }
+					  
+					  if (json==null) 
+					  {
+						  JOptionPane.showMessageDialog(selector, "No se obtuvo informacion alguna del archivo .json o se produjo un error de lectura  ", "Archive's extension not Supported", JOptionPane.ERROR_MESSAGE);
 					  }
 					  
 					Gson gson=new Gson();
