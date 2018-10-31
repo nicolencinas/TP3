@@ -304,6 +304,7 @@ public class Interfaz {
 			
 		};
 		
+		
 		timer=new Timer();
 		timer.scheduleAtFixedRate(tarea,40, 40);
 		
@@ -682,6 +683,7 @@ public class Interfaz {
  						render.setInput("");
  						JOptionPane.showMessageDialog(frame, "No se encontraron resultados");
  					    text.setText("");
+ 					    
  	 					
  					}
  				
@@ -695,6 +697,7 @@ public class Interfaz {
  				{
  					render.setInput("");
  					filtro("",table);
+ 					combo.setSelectedItem("Seleccionar...");
  				}
  			}
 
@@ -814,6 +817,7 @@ public class Interfaz {
 					  {
 						  continuar=false;
 						  JOptionPane.showMessageDialog(selector, "No se admiten archivos con formato ."+ extension.toUpperCase(), "Archive's extension not Supported", JOptionPane.ERROR_MESSAGE);
+						  fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
 					  }
 					  
 					  else 
@@ -821,10 +825,7 @@ public class Interfaz {
 						json=save.cargar(jsonFile);   
 					  }
 					  
-					  if (json==null) 
-					  {
-						  JOptionPane.showMessageDialog(selector, "No se obtuvo informacion alguna del archivo .json o se produjo un error de lectura  ", "Archive's extension not Supported", JOptionPane.ERROR_MESSAGE);
-					  }
+					
 					  
 					Gson gson=new Gson();
 						
@@ -834,25 +835,36 @@ public class Interfaz {
 					}catch (Exception r) 
 					{
 						continuar=false;
-						JOptionPane.showMessageDialog(selector, "Error: "+r.getCause().getMessage()+" \n No se puede transformar el json en una lista de atletas", "Illegal State Exception:", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(selector, "Gson Error: "+r.getCause().getMessage()+" \n No se puede transformar el json en una lista de atletas", "Illegal State Exception:", JOptionPane.ERROR_MESSAGE);
+						fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
 					}
 					
 							
-						
+							try 
+						{
+							objetos=new Object[atletas.length][5];
+						}
+							catch (Exception r) 
+						{
+						continuar=false;
+						  JOptionPane.showMessageDialog(selector, "No se obtuvo informacion alguna del archivo .json o se produjo un error de lectura  ", "Empty archive or corrupted", JOptionPane.ERROR_MESSAGE);
+						  fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
+						}
 				
 						if (continuar)
 						{
 						int i=0;
 					
-					objetos=new Object[atletas.length][5];
-					for (Atleta a: atletas)
-					{
+					
+					
+						for (Atleta a: atletas)
+						{
 						
 						int ub=i+1;
 						String ubi=ub+"";
 						objetos [i][0]=ubi ;objetos[i][1] =a.getName();objetos[i][2] =a.getGenre();objetos[i][3] =a.getSport();objetos[i][4] =a.getNacionality();
 						i++;
-					}
+						}
 					
 					
 					table.setBounds(10, 11, 538, 929);
