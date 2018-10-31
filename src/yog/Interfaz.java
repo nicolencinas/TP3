@@ -655,9 +655,16 @@ public class Interfaz {
  				if (e.getKeyCode()==KeyEvent.VK_ENTER) 
  				{
  					String value = text.getText();
- 					
+ 					try 
+ 						{
  					if (esValorDeterminado(formatear(value),atletas))
- 						value=formatear(value);
+ 						
+ 						value=formatear(value);	
+ 						}catch(Exception s)
+ 						{
+ 							
+ 						}
+ 						
  					
  					if (!text.getText().equals("")) 
  					{
