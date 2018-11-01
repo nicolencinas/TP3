@@ -14,6 +14,9 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
@@ -24,7 +27,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ProgressBarUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+
 import com.google.gson.Gson;
+
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -157,10 +162,32 @@ public class Interfaz {
 		
 		frame.setIconImage(titleIcon);
 		
+		JMenuBar menubar=new JMenuBar();
+		menubar.setBounds(0,0,3000,20);
+		menubar.setBorder(new LineBorder(Color.blue));
+		ImageIcon icon=new ImageIcon();
+		JMenu menu= new JMenu("Archivo");
 		
+		JMenuItem itemCerrar=new JMenuItem("Cerrar");
+		menu.add(itemCerrar);
+		menubar.add(menu);
+		frame.getContentPane().add(menubar);
 
 		JLabel selector=new JLabel();
-		selector.setBounds(10, 10, 600, 955);;
+		selector.setBounds(10, 30, 600, 955);;
+		
+		itemCerrar.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+			
+				frame.dispose();
+				
+			}
+			
+		});
 		
 		tarea=new TimerTask()
 		{
@@ -333,7 +360,7 @@ public class Interfaz {
 		 
 		ToolTipManager.sharedInstance().setInitialDelay(0);
 		imagen.setSize(157,241);
-		imagen.setLocation(740,60);
+		imagen.setLocation(740,80);
 		Image im=new ImageIcon("Yog.png").getImage();
 		imagen.setIcon(new ImageIcon( im.getScaledInstance(140, 220, Image.SCALE_SMOOTH)));
 		imagen.setToolTipText("Ir a la pagina oficial de las olimpiadas");
@@ -352,7 +379,7 @@ public class Interfaz {
 				
 				if (dir2==1) 
 				{
-					System.out.println(contador2);
+				
 					switch(contador2) 
 				{
 					
@@ -476,7 +503,7 @@ public class Interfaz {
 		
 		
 		timer2=new Timer();
-		timer2.scheduleAtFixedRate(tarea2,40, 40);
+		timer2.scheduleAtFixedRate(tarea2,20, 20);
 		
 		frame.add(selector);
 		
@@ -497,14 +524,14 @@ public class Interfaz {
 		// ta.setText(consoleOut.toString());
 		 
 		 JLabel consoleIcon=new JLabel("");
-			consoleIcon.setBounds(666,294,25,25);
+			consoleIcon.setBounds(666,314,25,25);
 			Image im2=new ImageIcon("console.png").getImage();
 			consoleIcon.setIcon(new ImageIcon(im2.getScaledInstance(25, 25, Image.SCALE_SMOOTH)));
 			consoleIcon.setToolTipText("Consola de informacion");
 			frame.add(consoleIcon);
 		 		
 		JScrollPane	scroll = new JScrollPane(ta);
-		scroll.setBounds(615, 300, 400, 650);
+		scroll.setBounds(615, 320, 400, 650);
 		scroll.setBorder(new TitledBorder("Console: "));
 			scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 			
@@ -767,16 +794,16 @@ public class Interfaz {
 		combo.addItem("Zimbabue");
 		
 		
-		combo.setBounds(780,5,120,50);
+		combo.setBounds(780,25,120,50);
 		combo.setBorder(new TitledBorder("Seleccione filtro:"));
-		text.setBounds(620,10,150,40);	   
+		text.setBounds(620,30,150,40);	   
 		frame.add(combo);
 		
 	
 		
 		JButton limpiar=new JButton("Clear");
 		limpiar.setVisible(false);
-		limpiar.setBounds(905,20,65,20);
+		limpiar.setBounds(905,50,65,20);
 		frame.add(limpiar);
 	
 		
@@ -1023,7 +1050,7 @@ public class Interfaz {
 						}
 					
 					
-					table.setBounds(10, 11, 538, 929);
+					table.setBounds(10, 31, 538, 929);
 					
 					table.setModel(new DefaultTableModel(
 						objetos,
@@ -1045,7 +1072,7 @@ public class Interfaz {
 					   pane = new javax.swing.JScrollPane(); 
 					   pane.setHorizontalScrollBarPolicy(javax.swing.JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); pane.setVerticalScrollBarPolicy(javax.swing.JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
 					   pane.setViewportView(table); 
-					   pane.setBounds(10, 10, 600, 955); 
+					   pane.setBounds(10, 30, 600, 955); 
 					   table.setDefaultRenderer(Object.class, render);
 					   frame.add(pane);
 					   selector.setVisible(false);
