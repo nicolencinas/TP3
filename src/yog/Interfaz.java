@@ -52,6 +52,11 @@ public class Interfaz {
 	Timer timer;
 	TimerTask tarea;
 	
+	static int contador2=0;
+	int dir2=0;
+	Timer timer2;
+	TimerTask tarea2;
+	
 	
 
 	/**
@@ -147,10 +152,11 @@ public class Interfaz {
 		
 		
 		frame.add(text);
-		frame.setTitle("Gestor de habitaciones");
+		frame.setTitle("Gestor de asignacion de habitaciones");
 	Image titleIcon=new ImageIcon("Title.png").getImage();
 		
 		frame.setIconImage(titleIcon);
+		
 		
 
 		JLabel selector=new JLabel();
@@ -162,6 +168,7 @@ public class Interfaz {
 			@Override
 			public void run() 
 			{
+				
 				
 				ImageIcon icono;
 				
@@ -308,6 +315,169 @@ public class Interfaz {
 		timer=new Timer();
 		timer.scheduleAtFixedRate(tarea,40, 40);
 		
+		
+		JLabel imagen =new JLabel("",SwingConstants.CENTER)
+		{
+
+			private static final long serialVersionUID = 1L;
+			public Point getToolTipLocation(MouseEvent event)
+		      {
+				
+		        return new Point(60, 200);
+		        
+		      }
+
+		 };
+		    
+		 
+		 
+		ToolTipManager.sharedInstance().setInitialDelay(0);
+		imagen.setSize(157,241);
+		imagen.setLocation(740,60);
+		Image im=new ImageIcon("Yog.png").getImage();
+		imagen.setIcon(new ImageIcon( im.getScaledInstance(140, 220, Image.SCALE_SMOOTH)));
+		imagen.setToolTipText("Ir a la pagina oficial de las olimpiadas");
+		frame.add(imagen);
+		
+		tarea2=new TimerTask()
+		{
+
+			@Override
+			public void run() 
+			{
+				
+				Image im=new ImageIcon("Yog.png").getImage();;
+				
+				
+				
+				if (dir2==1) 
+				{
+					System.out.println(contador2);
+					switch(contador2) 
+				{
+					
+				case 0:
+					contador2=1;
+				
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(140, 220, Image.SCALE_SMOOTH)));
+					break;
+						
+				case 1:
+					contador2=2;
+					
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(142, 222, Image.SCALE_SMOOTH)));
+					break;
+					
+				case 2:
+				
+					contador2=3;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(144, 224, Image.SCALE_SMOOTH)));
+					break;
+				case 3:
+					
+					contador2=4;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(146, 226, Image.SCALE_SMOOTH)));
+					break;
+				case 4:
+					
+					contador2=5;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(148, 228, Image.SCALE_SMOOTH)));
+					break;
+				case 5:
+					
+					contador2=6;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(150, 230, Image.SCALE_SMOOTH)));
+					break;
+				case 6:
+					
+					contador2=7;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(152, 232, Image.SCALE_SMOOTH)));
+					break;
+				case 7:
+					
+					contador2=8;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(154, 234, Image.SCALE_SMOOTH)));
+					break;
+				case 8:
+					
+					contador2=9;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(156, 236, Image.SCALE_SMOOTH)));
+					break;
+				case 9:
+					im=new ImageIcon("Yog.png").getImage();
+					
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(158, 240, Image.SCALE_SMOOTH)));
+					break;
+				
+					
+				
+				}
+				
+			}
+				
+				else  
+				{
+					
+					switch(contador2) 
+					{
+					
+				case 9:
+					contador2=8;
+					
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(158, 240, Image.SCALE_SMOOTH)));
+					break;
+						
+				case 8:
+					contador2=7;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(156, 236, Image.SCALE_SMOOTH)));
+					break;
+					
+				case 7:
+					contador2=6;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(154, 234, Image.SCALE_SMOOTH)));
+					break;
+				case 6:
+					contador2=5;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(152, 232, Image.SCALE_SMOOTH)));
+					break;
+				case 5:
+					contador2=4;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(150, 230, Image.SCALE_SMOOTH)));
+					break;
+				case 4:
+					contador2=3;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(148, 228, Image.SCALE_SMOOTH)));
+					break;
+				case 3:
+					contador2=2;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(146, 226, Image.SCALE_SMOOTH)));
+					break;
+				case 2:
+					contador2=1;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(144, 224, Image.SCALE_SMOOTH)));
+					break;
+				case 1:
+					contador2=0;
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(142, 222, Image.SCALE_SMOOTH)));
+					break;
+				case 0:
+					
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(140, 220, Image.SCALE_SMOOTH)));
+					break;
+				
+				
+				}
+				
+			}
+				}
+				
+			
+		};
+		
+		
+		timer2=new Timer();
+		timer2.scheduleAtFixedRate(tarea2,40, 40);
+		
 		frame.add(selector);
 		
 		
@@ -339,28 +509,7 @@ public class Interfaz {
 			scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 			
 		
-			JLabel imagen =new JLabel("",SwingConstants.CENTER)
-			{
-
-				private static final long serialVersionUID = 1L;
-				public Point getToolTipLocation(MouseEvent event)
-			      {
-					
-			        return new Point(60, 200);
-			        
-			      }
-
-			 };
-			    
-			 
-			 
-			ToolTipManager.sharedInstance().setInitialDelay(0);
-			imagen.setSize(157,241);
-			imagen.setLocation(740,60);
-			Image im=new ImageIcon("Yog.png").getImage();
-			imagen.setIcon(new ImageIcon( im.getScaledInstance(140, 220, Image.SCALE_SMOOTH)));
-			imagen.setToolTipText("Ir a la pagina oficial de las olimpiadas");
-			frame.add(imagen);
+			
 		//consola.add(scroll);
 		frame.add(scroll);
 		
@@ -678,7 +827,7 @@ public class Interfaz {
  						filtro(value,table);
  						
  						render.setInput(value);
- 						combo.setSelectedItem(value);
+ 						//combo.setSelectedItem("Seleccionar...");
  						table.updateUI();
  					JOptionPane.showMessageDialog(frame, "Se encontraron: "+Main.Cuantos(atletas, text.getText())+" resultados","Busqueda para: "+text.getText(), JOptionPane.INFORMATION_MESSAGE);
  					
@@ -761,17 +910,17 @@ public class Interfaz {
 			public void mouseEntered(MouseEvent e)
 			{
 			
-				Image im=new ImageIcon("Yog.png").getImage();
-				imagen.setIcon(new ImageIcon( im.getScaledInstance(157, 240, Image.SCALE_SMOOTH)));
-				imagen.setLocation(742, 60);
+				
+				dir2=1;
+				
 			}
 			
 			public void  mouseExited(MouseEvent e)
 			{
 				
-				Image im=new ImageIcon("Yog.png").getImage();
-				imagen.setIcon(new ImageIcon( im.getScaledInstance(140, 220, Image.SCALE_SMOOTH)));
-				imagen.setLocation(741, 60);
+				
+				dir2=0;
+				
 			}
 
 		});
