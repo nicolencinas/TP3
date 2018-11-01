@@ -10,6 +10,7 @@ import java.util.TimerTask;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -176,10 +177,17 @@ public class Interfaz {
 		Image icon3=new ImageIcon("maximize.png").getImage();
 		JMenuItem itemMax=new JMenuItem("Maximizar",new ImageIcon(icon3.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
 		
+		JMenu menu2=new JMenu("Herramientas");
+		JCheckBoxMenuItem jcheckBox= new JCheckBoxMenuItem("Activar Animaciones");
+		
 		menu.add(itemMax);
 		menu.add(itemMin);
+		itemMax.setEnabled(false);
 		menu.add(itemCerrar);
+		menu2.add(jcheckBox);
 		menubar.add(menu);
+		menubar.add(menu2);
+		
 		frame.getContentPane().add(menubar);
 
 		JLabel selector=new JLabel();
@@ -206,6 +214,7 @@ public class Interfaz {
 			{
 			
 				frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				
 				
 			}
 			
