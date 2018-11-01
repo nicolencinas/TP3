@@ -165,10 +165,19 @@ public class Interfaz {
 		JMenuBar menubar=new JMenuBar();
 		menubar.setBounds(0,0,3000,20);
 		menubar.setBorder(new LineBorder(Color.blue));
-		ImageIcon icon=new ImageIcon();
 		JMenu menu= new JMenu("Archivo");
 		
-		JMenuItem itemCerrar=new JMenuItem("Cerrar");
+		Image icon=new ImageIcon("close.png").getImage();
+		JMenuItem itemCerrar=new JMenuItem("Cerrar",new ImageIcon(icon.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
+		
+		Image icon2=new ImageIcon("minimize.png").getImage();
+		JMenuItem itemMin=new JMenuItem("Minimizar",new ImageIcon(icon2.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
+		
+		Image icon3=new ImageIcon("maximize.png").getImage();
+		JMenuItem itemMax=new JMenuItem("Maximizar",new ImageIcon(icon3.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
+		
+		menu.add(itemMax);
+		menu.add(itemMin);
 		menu.add(itemCerrar);
 		menubar.add(menu);
 		frame.getContentPane().add(menubar);
@@ -184,6 +193,32 @@ public class Interfaz {
 			{
 			
 				frame.dispose();
+				
+			}
+			
+		});
+		
+		itemMax.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+			
+				frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				
+			}
+			
+		});
+		
+		itemMin.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+			
+				frame.setExtendedState(1);
 				
 			}
 			
