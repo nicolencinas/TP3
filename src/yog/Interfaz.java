@@ -20,6 +20,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
@@ -167,7 +168,7 @@ public class Interfaz {
 		
 		JMenuBar menubar=new JMenuBar();
 		menubar.setBounds(0,0,3000,20);
-		menubar.setBorder(new LineBorder(Color.blue));
+		menubar.setBorder(new LineBorder(Color.black));
 		JMenu menu= new JMenu("Archivo");
 		
 		Image icon=new ImageIcon("close.png").getImage();
@@ -182,6 +183,11 @@ public class Interfaz {
 		JMenu menu2=new JMenu("Herramientas");
 		JCheckBoxMenuItem jcheckBox= new JCheckBoxMenuItem("Activar Animaciones");
 	
+		JMenu menu3=new JMenu("Tipo de archivo");
+		JRadioButtonMenuItem excel= new JRadioButtonMenuItem("Excel");
+		JRadioButtonMenuItem json= new JRadioButtonMenuItem("json");
+		menu3.add(json);
+		menu3.add(excel);
 		
 		menu.add(itemMax);
 		menu.add(itemMin);
