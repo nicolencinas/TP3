@@ -196,6 +196,7 @@ public class Interfaz {
 		menu2.add(jcheckBox);
 		menubar.add(menu);
 		menubar.add(menu2);
+		menubar.add(menu3);
 		
 		frame.getContentPane().add(menubar);
 
