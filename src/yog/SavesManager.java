@@ -24,7 +24,7 @@ public class SavesManager
 	ArrayList<String> list;
 	StringBuilder retorno;
 	String elem;
-	
+	Integer contador=0;
 	public SavesManager()
 	{
 
@@ -67,7 +67,7 @@ public class SavesManager
 						at.add(cell.getStringCellValue());
 						//System.out.print(cell.getStringCellValue()+" ");
 					}
-					
+					contador++;
 					lista.add(new Atleta(at.get(0),at.get(1),at.get(2),at.get(3)));
 					at.clear();
 					//System.out.println();

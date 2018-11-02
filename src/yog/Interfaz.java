@@ -161,6 +161,7 @@ public class Interfaz {
 		frame.setBounds(300, 0, 1050, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
 		JFileChooser fc=new JFileChooser();
 		
 		JTextField text=new JTextField();
@@ -189,7 +190,7 @@ public class Interfaz {
 		JMenuItem itemMax=new JMenuItem("Maximizar",new ImageIcon(icon3.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
 		
 		JMenu menu2=new JMenu("Herramientas");
-		JCheckBoxMenuItem jcheckBox= new JCheckBoxMenuItem("Activar Animaciones");
+		JCheckBoxMenuItem jcheckBox= new JCheckBoxMenuItem("Desactivar Animaciones");
 	
 		JMenu menu3=new JMenu("Tipo de archivo");
 		
