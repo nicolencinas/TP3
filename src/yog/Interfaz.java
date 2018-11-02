@@ -65,7 +65,8 @@ public class Interfaz {
 	TimerTask tarea2;
 	
 	boolean activo=true;
-	boolean  archivojson=true;;
+	boolean  archivojson=true;
+	String tipoArchivo="json";
 	
 	
 
@@ -155,6 +156,7 @@ public class Interfaz {
 		frame.setBounds(300, 0, 1050, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		JFileChooser fc=new JFileChooser();
 		
 		JTextField text=new JTextField();
 		text.setVisible(false);
@@ -197,8 +199,19 @@ public class Interfaz {
 			{
 				if (json.isSelected()) 
 				{
+					
+					tipoArchivo="json";
+					
+					System.out.println(tipoArchivo);
 					archivojson=true;
 					excel.setSelected(false);
+					 
+						
+					 FileNameExtensionFilter filtro2= new FileNameExtensionFilter("JavaScript Object Notation File", "json", "JSON"); 
+					fc.setFileFilter(filtro2);
+					json.setEnabled(false);
+					excel.setEnabled(true);
+					
 				}
 				
 			}
@@ -213,8 +226,15 @@ public class Interfaz {
 			{
 				if (excel.isSelected()) 
 				{
+					tipoArchivo="xlsx";
 					archivojson=false;
 					json.setSelected(false);
+					 FileNameExtensionFilter filtro2= new FileNameExtensionFilter("Excel file", "xlsx", "XLSX","xls","XLS"); 
+						 fc.setFileFilter(filtro2);
+						 
+						 excel.setEnabled(false);
+						 json.setEnabled(true);
+					
 				}
 				
 			}
@@ -286,8 +306,8 @@ public class Interfaz {
 			public void run() 
 			{
 				
-				System.out.println(contador);
-					System.out.println(activo);
+				
+					
 				ImageIcon icono;
 				String im= (archivojson) ? "f" : "e";
 				
@@ -609,13 +629,8 @@ public class Interfaz {
 		frame.add(selector);
 		
 		
-		JFileChooser fc=new JFileChooser();
-		FileNameExtensionFilter filtro2= new FileNameExtensionFilter("JavaScript Object Notation Archive", "json", "JSON"); 
-		
-		
-		
-		
-		fc.setFileFilter(filtro2);
+	
+
 		fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
 		
 		ta.setFocusable(false);
@@ -1087,6 +1102,8 @@ public class Interfaz {
 			{
 				int seleccion= fc.showOpenDialog(selector);
 				 boolean continuar=true;
+				 
+			
 				  if (seleccion==JFileChooser.APPROVE_OPTION) 
 				  {
 					  File fichero=fc.getSelectedFile();
@@ -1097,7 +1114,10 @@ public class Interfaz {
 					  String json="";
 
 					  String extension=jsonFile.substring(jsonFile.lastIndexOf(".") +1);
-					  if (!extension.equals("json"))
+					 
+					  System.out.println(tipoArchivo);
+					  System.out.println(extension);
+					  if (!extension.equals(tipoArchivo))
 					  {
 						  continuar=false;
 						  JOptionPane.showMessageDialog(selector, "No se admiten archivos con formato ."+ extension.toUpperCase(), "Archive's extension not Supported", JOptionPane.ERROR_MESSAGE);
@@ -1106,7 +1126,12 @@ public class Interfaz {
 					  
 					  else 
 					  {
+						  
+						  
+						  if (tipoArchivo.equals("json"))
 						json=save.cargar(jsonFile);   
+						  if (tipoArchivo.equals("excel"))
+							  json=save.jsonConstruct(jsonFile);
 					  }
 					  
 					
