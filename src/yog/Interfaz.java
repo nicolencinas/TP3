@@ -4,6 +4,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -1130,8 +1135,33 @@ public class Interfaz {
 						  
 						  if (tipoArchivo.equals("json"))
 						json=save.cargar(jsonFile);   
-						  if (tipoArchivo.equals("excel"))
-							  json=save.jsonConstruct(jsonFile);
+						  if (tipoArchivo.equals("xlsx")) 
+						  {
+							  
+						
+							 
+							   
+							   Path origenPath = FileSystems.getDefault().getPath(fichero.getAbsolutePath());
+						        Path destinoPath = FileSystems.getDefault().getPath("C:\\Ficheros-Excel\\"+fichero.getAbsoluteFile().getName());
+						        
+							    if (fichero.exists()) {
+							        try {
+							        	File folder = new File("C:\\Ficheros-Excel\\");
+							        	folder.mkdirs();
+										Files.copy(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+									} catch (IOException e1) {
+										// TODO Auto-generated catch block
+										JOptionPane.showMessageDialog(selector, "Se requieren permisos de administrador");
+									}
+							    } else {
+							        System.out.println("El fichero "+fichero+" no existe en el directorio ");
+							    }
+							    
+							     json=save.jsonConstruct(fichero.getAbsoluteFile().getName());
+							    System.out.println(json);
+						  }
+							  
+							 
 					  }
 					  
 					
@@ -1141,6 +1171,7 @@ public class Interfaz {
 					try 
 					{
 						 atletas= gson.fromJson(json, Atleta[].class );
+						// System.out.println(atletas[2]);
 					}catch (Exception r) 
 					{
 						continuar=false;
@@ -1152,6 +1183,7 @@ public class Interfaz {
 							try 
 						{
 							objetos=new Object[atletas.length][5];
+							
 						}
 							catch (Exception r) 
 						{

@@ -88,7 +88,7 @@ public class SavesManager
 			
 			String retorno="[";
 			int i=0;
-			System.out.println(lista.size());
+			
 			for (Atleta a : lista) 
 			{
 				
@@ -185,7 +185,7 @@ public class SavesManager
 	entrada = new BufferedReader( new FileReader( f ) ); 
 	while(entrada.ready())
 	linea+=entrada.readLine();
-	System.out.println(linea);
+	
 	
 	}catch (Exception e)
 	{
