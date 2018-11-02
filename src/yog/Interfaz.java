@@ -192,8 +192,13 @@ public class Interfaz {
 		JCheckBoxMenuItem jcheckBox= new JCheckBoxMenuItem("Activar Animaciones");
 	
 		JMenu menu3=new JMenu("Tipo de archivo");
-		JRadioButtonMenuItem excel= new JRadioButtonMenuItem("Excel");
-		JRadioButtonMenuItem json= new JRadioButtonMenuItem("Json");
+		
+		Image icon4=new ImageIcon("excel.png").getImage();
+		JRadioButtonMenuItem excel= new JRadioButtonMenuItem("Excel",new ImageIcon(icon4.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
+		
+		Image icon5=new ImageIcon("json.png").getImage();
+		JRadioButtonMenuItem json= new JRadioButtonMenuItem("Json",new ImageIcon(icon5.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
+		
 		json.setSelected(true);
 		
 		json.addActionListener(new ActionListener() 
