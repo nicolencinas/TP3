@@ -63,6 +63,8 @@ public class Interfaz {
 	Timer timer2;
 	TimerTask tarea2;
 	
+	boolean activo=true;
+	
 	
 
 	/**
@@ -179,6 +181,7 @@ public class Interfaz {
 		
 		JMenu menu2=new JMenu("Herramientas");
 		JCheckBoxMenuItem jcheckBox= new JCheckBoxMenuItem("Activar Animaciones");
+	
 		
 		menu.add(itemMax);
 		menu.add(itemMin);
@@ -240,11 +243,15 @@ public class Interfaz {
 			public void run() 
 			{
 				
-				
+				System.out.println(contador);
+					System.out.println(activo);
 				ImageIcon icono;
 				
+				if (activo)
+				{
 				if (dir==1) 
 				{
+					
 					switch(contador) 
 				{
 					
@@ -376,7 +383,9 @@ public class Interfaz {
 				
 				}
 				
-			}
+			}	
+				}
+				
 				}
 				
 			
@@ -420,126 +429,129 @@ public class Interfaz {
 				Image im=new ImageIcon("Yog.png").getImage();;
 				
 				
-				
-				if (dir2==1) 
+				if (activo)
 				{
-				
-					switch(contador2) 
-				{
-					
-				case 0:
-					contador2=1;
-				
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(140, 220, Image.SCALE_SMOOTH)));
-					break;
-						
-				case 1:
-					contador2=2;
-					
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(142, 222, Image.SCALE_SMOOTH)));
-					break;
-					
-				case 2:
-				
-					contador2=3;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(144, 224, Image.SCALE_SMOOTH)));
-					break;
-				case 3:
-					
-					contador2=4;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(146, 226, Image.SCALE_SMOOTH)));
-					break;
-				case 4:
-					
-					contador2=5;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(148, 228, Image.SCALE_SMOOTH)));
-					break;
-				case 5:
-					
-					contador2=6;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(150, 230, Image.SCALE_SMOOTH)));
-					break;
-				case 6:
-					
-					contador2=7;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(152, 232, Image.SCALE_SMOOTH)));
-					break;
-				case 7:
-					
-					contador2=8;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(154, 234, Image.SCALE_SMOOTH)));
-					break;
-				case 8:
-					
-					contador2=9;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(156, 236, Image.SCALE_SMOOTH)));
-					break;
-				case 9:
-					im=new ImageIcon("Yog.png").getImage();
-					
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(158, 240, Image.SCALE_SMOOTH)));
-					break;
-				
-					
-				
-				}
-				
-			}
-				
-				else  
-				{
-					
-					switch(contador2) 
+					if (dir2==1) 
 					{
 					
-				case 9:
-					contador2=8;
-					
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(158, 240, Image.SCALE_SMOOTH)));
-					break;
+						switch(contador2) 
+					{
 						
-				case 8:
-					contador2=7;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(156, 236, Image.SCALE_SMOOTH)));
-					break;
+					case 0:
+						contador2=1;
 					
-				case 7:
-					contador2=6;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(154, 234, Image.SCALE_SMOOTH)));
-					break;
-				case 6:
-					contador2=5;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(152, 232, Image.SCALE_SMOOTH)));
-					break;
-				case 5:
-					contador2=4;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(150, 230, Image.SCALE_SMOOTH)));
-					break;
-				case 4:
-					contador2=3;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(148, 228, Image.SCALE_SMOOTH)));
-					break;
-				case 3:
-					contador2=2;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(146, 226, Image.SCALE_SMOOTH)));
-					break;
-				case 2:
-					contador2=1;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(144, 224, Image.SCALE_SMOOTH)));
-					break;
-				case 1:
-					contador2=0;
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(142, 222, Image.SCALE_SMOOTH)));
-					break;
-				case 0:
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(140, 220, Image.SCALE_SMOOTH)));
+						break;
+							
+					case 1:
+						contador2=2;
+						
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(142, 222, Image.SCALE_SMOOTH)));
+						break;
+						
+					case 2:
 					
-					imagen.setIcon(new ImageIcon( im.getScaledInstance(140, 220, Image.SCALE_SMOOTH)));
-					break;
-				
-				
+						contador2=3;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(144, 224, Image.SCALE_SMOOTH)));
+						break;
+					case 3:
+						
+						contador2=4;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(146, 226, Image.SCALE_SMOOTH)));
+						break;
+					case 4:
+						
+						contador2=5;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(148, 228, Image.SCALE_SMOOTH)));
+						break;
+					case 5:
+						
+						contador2=6;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(150, 230, Image.SCALE_SMOOTH)));
+						break;
+					case 6:
+						
+						contador2=7;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(152, 232, Image.SCALE_SMOOTH)));
+						break;
+					case 7:
+						
+						contador2=8;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(154, 234, Image.SCALE_SMOOTH)));
+						break;
+					case 8:
+						
+						contador2=9;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(156, 236, Image.SCALE_SMOOTH)));
+						break;
+					case 9:
+						im=new ImageIcon("Yog.png").getImage();
+						
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(158, 240, Image.SCALE_SMOOTH)));
+						break;
+					
+						
+					
+					}
+					
+				}
+					
+					else  
+					{
+						
+						switch(contador2) 
+						{
+						
+					case 9:
+						contador2=8;
+						
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(158, 240, Image.SCALE_SMOOTH)));
+						break;
+							
+					case 8:
+						contador2=7;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(156, 236, Image.SCALE_SMOOTH)));
+						break;
+						
+					case 7:
+						contador2=6;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(154, 234, Image.SCALE_SMOOTH)));
+						break;
+					case 6:
+						contador2=5;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(152, 232, Image.SCALE_SMOOTH)));
+						break;
+					case 5:
+						contador2=4;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(150, 230, Image.SCALE_SMOOTH)));
+						break;
+					case 4:
+						contador2=3;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(148, 228, Image.SCALE_SMOOTH)));
+						break;
+					case 3:
+						contador2=2;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(146, 226, Image.SCALE_SMOOTH)));
+						break;
+					case 2:
+						contador2=1;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(144, 224, Image.SCALE_SMOOTH)));
+						break;
+					case 1:
+						contador2=0;
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(142, 222, Image.SCALE_SMOOTH)));
+						break;
+					case 0:
+						
+						imagen.setIcon(new ImageIcon( im.getScaledInstance(140, 220, Image.SCALE_SMOOTH)));
+						break;
+					
+					
+					}
+					
+				}
 				}
 				
-			}
 				}
 				
 			
@@ -1127,6 +1139,37 @@ public class Interfaz {
 				  }
 						}
 					
+			}
+			
+		});
+		
+		jcheckBox.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if (jcheckBox.isSelected())
+				{
+					activo=false;
+					
+					ImageIcon icono=new ImageIcon("f00.png");
+					selector.setIcon(icono);
+					
+					Image im=new ImageIcon("Yog.png").getImage();
+					imagen.setIcon(new ImageIcon( im.getScaledInstance(140, 220, Image.SCALE_SMOOTH)));
+					contador=0;
+					contador2=0;
+					dir=0;
+					dir2=0;
+					
+					
+				}
+				else
+				{
+					activo=true;
+				}
+				
 			}
 			
 		});
