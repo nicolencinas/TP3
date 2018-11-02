@@ -65,6 +65,7 @@ public class Interfaz {
 	TimerTask tarea2;
 	
 	boolean activo=true;
+	boolean  archivojson=true;;
 	
 	
 
@@ -185,7 +186,42 @@ public class Interfaz {
 	
 		JMenu menu3=new JMenu("Tipo de archivo");
 		JRadioButtonMenuItem excel= new JRadioButtonMenuItem("Excel");
-		JRadioButtonMenuItem json= new JRadioButtonMenuItem("json");
+		JRadioButtonMenuItem json= new JRadioButtonMenuItem("Json");
+		json.setSelected(true);
+		
+		json.addActionListener(new ActionListener() 
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if (json.isSelected()) 
+				{
+					archivojson=true;
+					excel.setSelected(false);
+				}
+				
+			}
+			
+		});
+		
+		excel.addActionListener(new ActionListener() 
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if (excel.isSelected()) 
+				{
+					archivojson=false;
+					json.setSelected(false);
+				}
+				
+			}
+			
+		});
+		
+		
 		menu3.add(json);
 		menu3.add(excel);
 		
@@ -253,6 +289,8 @@ public class Interfaz {
 				System.out.println(contador);
 					System.out.println(activo);
 				ImageIcon icono;
+				String im= (archivojson) ? "f" : "e";
+				
 				
 				if (activo)
 				{
@@ -264,60 +302,60 @@ public class Interfaz {
 					
 				case 0:
 					contador=1;
-					icono=new ImageIcon("f00.png");
+					icono=new ImageIcon(im+"00.png");
 					selector.setIcon(icono);
 				case 1:
 					contador=2;
-					icono=new ImageIcon(("f01.png"));
+					icono=new ImageIcon(im+"01.png");
 					selector.setIcon(icono);
 				case 2:
 					contador=3;
-					icono=new ImageIcon(("f02.png"));
+					icono=new ImageIcon(im+"02.png");
 					selector.setIcon(icono);
 					break;
 				case 3:
 					contador=4;
-					icono=new ImageIcon(("f03.png"));
+					icono=new ImageIcon(im+"03.png");
 					selector.setIcon(icono);
 					break;
 				case 4:
 					contador=5;
-					icono=new ImageIcon(("f04.png"));
+					icono=new ImageIcon(im+"04.png");
 					selector.setIcon(icono);
 					break;
 				case 5:
 					contador=6;
-					icono=new ImageIcon(("f05.png"));
+					icono=new ImageIcon((im+"05.png"));
 					selector.setIcon(icono);
 					break;
 				case 6:
 					contador=7;
-					icono=new ImageIcon(("f06.png"));
+					icono=new ImageIcon((im+"06.png"));
 					selector.setIcon(icono);
 					break;
 				case 7:
 					contador=8;
-					icono=new ImageIcon(("f07.png"));
+					icono=new ImageIcon((im+"07.png"));
 					selector.setIcon(icono);
 					break;
 				case 8:
 					contador=9;
-					icono=new ImageIcon(("f08.png"));
+					icono=new ImageIcon((im+"08.png"));
 					selector.setIcon(icono);
 					break;
 				case 9:
 					contador=10;
-					icono=new ImageIcon(("f09.png"));
+					icono=new ImageIcon((im+"09.png"));
 					selector.setIcon(icono);
 					break;
 				case 10:
 					contador=11;
-					icono=new ImageIcon(("f10.png"));
+					icono=new ImageIcon((im+"10.png"));
 					selector.setIcon(icono);
 					break;
 				case 11:
 					
-					icono=new ImageIcon(("f11.png"));
+					icono=new ImageIcon((im+"11.png"));
 					selector.setIcon(icono);
 					break;
 				
@@ -331,60 +369,60 @@ public class Interfaz {
 				{
 				case 11:
 					contador=10;
-					icono=new ImageIcon("f11.png");
+					icono=new ImageIcon(im+"11.png");
 					selector.setIcon(icono);
 				case 10:
 					contador=9;
-					icono=new ImageIcon(("f10.png"));
+					icono=new ImageIcon((im+"10.png"));
 					selector.setIcon(icono);
 				case 9:
 					contador=8;
-					icono=new ImageIcon(("f09.png"));
+					icono=new ImageIcon((im+"09.png"));
 					selector.setIcon(icono);
 					break;
 				case 8:
 					contador=7;
-					icono=new ImageIcon(("f08.png"));
+					icono=new ImageIcon((im+"08.png"));
 					selector.setIcon(icono);
 					break;
 				case 7:
 					contador=6;
-					icono=new ImageIcon(("f07.png"));
+					icono=new ImageIcon(im+"07.png");
 					selector.setIcon(icono);
 					break;
 				case 6:
 					contador=5;
-					icono=new ImageIcon(("f06.png"));
+					icono=new ImageIcon((im+"06.png"));
 					selector.setIcon(icono);
 					break;
 				case 5:
 					contador=4;
-					icono=new ImageIcon(("f05.png"));
+					icono=new ImageIcon((im+"05.png"));
 					selector.setIcon(icono);
 					break;
 				case 4:
 					contador=3;
-					icono=new ImageIcon(("f04.png"));
+					icono=new ImageIcon((im+"04.png"));
 					selector.setIcon(icono);
 					break;
 				case 3:
 					contador=2;
-					icono=new ImageIcon(("f03.png"));
+					icono=new ImageIcon((im+"03.png"));
 					selector.setIcon(icono);
 					break;
 				case 2:
 					contador=1;
-					icono=new ImageIcon(("f02.png"));
+					icono=new ImageIcon((im+"02.png"));
 					selector.setIcon(icono);
 					break;
 				case 1:
 					contador=0;
-					icono=new ImageIcon(("f01.png"));
+					icono=new ImageIcon((im+"01.png"));
 					selector.setIcon(icono);
 				break;
 				case 0:
 					
-					icono=new ImageIcon(("f00.png"));
+					icono=new ImageIcon((im+"00.png"));
 					selector.setIcon(icono);
 					break;
 				
