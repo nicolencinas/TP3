@@ -13,6 +13,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
@@ -72,6 +73,9 @@ public class Interfaz {
 	boolean activo=true;
 	boolean  archivojson=true;
 	String tipoArchivo="json";
+	
+	StringBuilder consoleOut=new StringBuilder();
+	
 	
 	
 
@@ -155,8 +159,16 @@ public class Interfaz {
 		return ret3;
 	}
 
+	public void addConsoleLine(String message) 
+	{
+		consoleOut.append(message);
+		consoleOut.append("\n");
+		ta.setText(consoleOut.toString());
+		
+	}
 	private void initialize()
 	{
+		
 		frame = new JFrame();
 		frame.setBounds(300, 0, 1050, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -173,10 +185,22 @@ public class Interfaz {
 		frame.setTitle("Gestor de asignacion de habitaciones");
 	Image titleIcon=new ImageIcon("Title.png").getImage();
 		
-		frame.setIconImage(titleIcon);
+	
+	
+	try 
+	{
+		save.testAdminrigths();
+	} catch (IOException e2) {
+		
+		JOptionPane.showMessageDialog(frame, "Este programa necesita derechos de administrador para ejecutar ciertas acciones.\n Podrian ocasionarse errores de lectura/escritura", "Administrator Rigths Required", JOptionPane.WARNING_MESSAGE);
+	}
+	
+		
+	
+	frame.setIconImage(titleIcon);
 		
 		JMenuBar menubar=new JMenuBar();
-		menubar.setBounds(0,0,3000,20);
+		menubar.setBounds(0,0,1040,20);
 		menubar.setBorder(new LineBorder(Color.black));
 		JMenu menu= new JMenu("Archivo");
 		
@@ -200,8 +224,14 @@ public class Interfaz {
 		Image icon5=new ImageIcon("json.png").getImage();
 		JRadioButtonMenuItem json= new JRadioButtonMenuItem("Json",new ImageIcon(icon5.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
 		
-		json.setSelected(true);
 		
+		
+		json.setSelected(true);
+		json.setEnabled(false);
+		
+		
+		
+		addConsoleLine("Bienvenido al sistema de asiganacion de habitaciones: ");
 		json.addActionListener(new ActionListener() 
 		{
 
@@ -219,6 +249,7 @@ public class Interfaz {
 					 
 						
 					 FileNameExtensionFilter filtro2= new FileNameExtensionFilter("JavaScript Object Notation File", "json", "JSON"); 
+					 addConsoleLine("El tipo de archivo seleccionado es Json");
 					fc.setFileFilter(filtro2);
 					json.setEnabled(false);
 					excel.setEnabled(true);
@@ -241,6 +272,7 @@ public class Interfaz {
 					archivojson=false;
 					json.setSelected(false);
 					 FileNameExtensionFilter filtro2= new FileNameExtensionFilter("Excel file", "xlsx", "XLSX","xls","XLS"); 
+					 addConsoleLine("El tipo de archivo seleccionado es Excel");
 						 fc.setFileFilter(filtro2);
 						 
 						 excel.setEnabled(false);
@@ -264,6 +296,12 @@ public class Interfaz {
 		menubar.add(menu);
 		menubar.add(menu2);
 		menubar.add(menu3);
+		
+		JMenu ayuda=new JMenu("Ayuda");
+		JMenuItem mostrarAyuda= new JMenuItem("Mostrar Ayuda");
+		ayuda.add(mostrarAyuda);
+		menubar.add(Box.createHorizontalGlue());
+		menubar.add(ayuda);
 		
 		frame.getContentPane().add(menubar);
 
@@ -460,6 +498,15 @@ public class Interfaz {
 				}
 				
 			}	
+				}
+				else 
+				{
+					
+					icono=new ImageIcon((im+"11.png"));
+					selector.setIcon(icono);
+					
+					
+					
 				}
 				
 				}
@@ -981,9 +1028,9 @@ public class Interfaz {
  						filtro(value,table);
  						
  						render.setInput(value);
- 						//combo.setSelectedItem("Seleccionar...");
  						table.updateUI();
  					JOptionPane.showMessageDialog(frame, "Se encontraron: "+Main.Cuantos(atletas, text.getText())+" resultados","Busqueda para: "+text.getText(), JOptionPane.INFORMATION_MESSAGE);
+ 					addConsoleLine("La busqueda para "+value+ " a arrojado "+Main.Cuantos(atletas, value)+ " resultados");
  					
  					
  					frame.requestFocus();
@@ -991,7 +1038,9 @@ public class Interfaz {
  					else 
  					{
  						render.setInput("");
- 						JOptionPane.showMessageDialog(frame, "No se encontraron resultados");
+ 						JOptionPane.showMessageDialog(frame, "No se encontraron resultados para: '"+value+"'");
+ 						addConsoleLine(">>Search content Exception<<");
+ 						addConsoleLine( "No se encontraron resultados para: "+value+"\n");
  					    text.setText("");
  					    
  	 					
@@ -1032,6 +1081,7 @@ public class Interfaz {
 					
 					
 					JOptionPane.showMessageDialog(frame, "Se encontraron: "+Main.Cuantos(atletas, text.getText())+" resultados","Busqueda para: "+text.getText(), JOptionPane.INFORMATION_MESSAGE);
+					addConsoleLine("La busqueda para '"+value+ "' a arrojado "+Main.Cuantos(atletas, value)+ " resultados");
 					frame.requestFocus();
 			      }
 			      else 
@@ -1054,6 +1104,7 @@ public class Interfaz {
 				try 
 				{
 					Desktop.getDesktop().browse(java.net.URI.create(uri));
+					addConsoleLine("Redigigiendo a >> "+uri);
 				} catch (IOException e1)
 				{
 			
@@ -1131,7 +1182,9 @@ public class Interfaz {
 					  if (!extension.equals(tipoArchivo))
 					  {
 						  continuar=false;
-						  JOptionPane.showMessageDialog(selector, "No se admiten archivos con formato ."+ extension.toUpperCase(), "Archive's extension not Supported", JOptionPane.ERROR_MESSAGE);
+						  JOptionPane.showMessageDialog(selector, "No se admiten archivos con formato : "+ extension.toUpperCase(), "Archive's extension not Supported", JOptionPane.ERROR_MESSAGE);
+						  addConsoleLine(">>Archive's extension not Supported Exception<<<");
+						  addConsoleLine("No se admiten archivos con formato '"+extension.toUpperCase()+"'\n");
 						  fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
 					  }
 					  
@@ -1148,7 +1201,7 @@ public class Interfaz {
 							 
 							   
 							   Path origenPath = FileSystems.getDefault().getPath(fichero.getAbsolutePath());
-						        Path destinoPath = FileSystems.getDefault().getPath("C:\\Ficheros-Excel\\"+fichero.getAbsoluteFile().getName());
+						       Path destinoPath = FileSystems.getDefault().getPath("C:\\Ficheros-Excel\\"+fichero.getAbsoluteFile().getName());
 						        
 							    if (fichero.exists()) {
 							        try {
@@ -1160,7 +1213,7 @@ public class Interfaz {
 										JOptionPane.showMessageDialog(selector, "Se requieren permisos de administrador");
 									}
 							    } else {
-							        System.out.println("El fichero "+fichero+" no existe en el directorio ");
+							        addConsoleLine("El fichero "+fichero+" no existe en el directorio ");
 							    }
 							    
 							     json=save.jsonConstruct(fichero.getAbsoluteFile().getName());
@@ -1182,6 +1235,8 @@ public class Interfaz {
 					{
 						continuar=false;
 						JOptionPane.showMessageDialog(selector, "Gson Error: "+r.getCause().getMessage()+" \n No se puede transformar el json en una lista de atletas", "Illegal State Exception:", JOptionPane.ERROR_MESSAGE);
+						addConsoleLine(">>"+r.getCause().getMessage()+"<<");
+						addConsoleLine("Error al transformar el archivo json");
 						fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
 					}
 					
@@ -1194,7 +1249,9 @@ public class Interfaz {
 							catch (Exception r) 
 						{
 						continuar=false;
-						  JOptionPane.showMessageDialog(selector, "No se obtuvo informacion alguna del archivo .json o se produjo un error de lectura  ", "Empty archive or corrupted", JOptionPane.ERROR_MESSAGE);
+						  JOptionPane.showMessageDialog(selector, "No se obtuvo informacion alguna del archivo .json o se produjo un error de lectura  ", "Empty or corrupted File Exception", JOptionPane.ERROR_MESSAGE);
+							addConsoleLine(">>Empty or corrupted File Exception<<");
+							addConsoleLine("Error al transformar el archivo json");
 						  fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
 						}
 				
@@ -1261,6 +1318,7 @@ public class Interfaz {
 				{
 					activo=false;
 					
+					addConsoleLine("Se desactivaron las animaciones");
 					ImageIcon icono=new ImageIcon("f00.png");
 					selector.setIcon(icono);
 					
@@ -1276,6 +1334,7 @@ public class Interfaz {
 				else
 				{
 					activo=true;
+					addConsoleLine("Se reaunudaron las animaciones");
 				}
 				
 			}
