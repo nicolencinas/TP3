@@ -297,11 +297,7 @@ public class Interfaz {
 		menubar.add(menu2);
 		menubar.add(menu3);
 		
-		JMenu ayuda=new JMenu("Ayuda");
-		JMenuItem mostrarAyuda= new JMenuItem("Mostrar Ayuda");
-		ayuda.add(mostrarAyuda);
-		menubar.add(Box.createHorizontalGlue());
-		menubar.add(ayuda);
+	
 		
 		frame.getContentPane().add(menubar);
 
