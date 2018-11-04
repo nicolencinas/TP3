@@ -31,6 +31,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ProgressBarUI;
 import javax.swing.table.DefaultTableModel;
@@ -175,6 +176,8 @@ public class Interfaz {
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 		JFileChooser fc=new JFileChooser();
+		FileNameExtensionFilter filtro2= new FileNameExtensionFilter("JavaScript Object Notation File", "json", "JSON"); 
+		fc.setFileFilter(filtro2);
 		
 		JTextField text=new JTextField();
 		text.setVisible(false);
@@ -247,8 +250,8 @@ public class Interfaz {
 					archivojson=true;
 					excel.setSelected(false);
 					 
-						
 					 FileNameExtensionFilter filtro2= new FileNameExtensionFilter("JavaScript Object Notation File", "json", "JSON"); 
+					 fc.resetChoosableFileFilters();
 					 addConsoleLine("El tipo de archivo seleccionado es Json");
 					fc.setFileFilter(filtro2);
 					json.setEnabled(false);
@@ -272,6 +275,7 @@ public class Interfaz {
 					archivojson=false;
 					json.setSelected(false);
 					 FileNameExtensionFilter filtro2= new FileNameExtensionFilter("Excel file", "xlsx", "XLSX","xls","XLS"); 
+					 fc.resetChoosableFileFilters();
 					 addConsoleLine("El tipo de archivo seleccionado es Excel");
 						 fc.setFileFilter(filtro2);
 						 
