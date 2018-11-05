@@ -76,6 +76,7 @@ public class Interfaz {
 	String tipoArchivo="json";
 	
 	StringBuilder consoleOut=new StringBuilder();
+	boolean adminRights=true;
 	
 	
 	
@@ -196,8 +197,10 @@ public class Interfaz {
 	} catch (IOException e2) {
 		
 		JOptionPane.showMessageDialog(frame, "Este programa necesita derechos de administrador para ejecutar ciertas acciones.\n Podrian ocasionarse errores de lectura/escritura", "Administrator Rigths Required", JOptionPane.WARNING_MESSAGE);
+		adminRights=false;
 	}
 	
+		
 		
 	
 	frame.setIconImage(titleIcon);
@@ -206,6 +209,7 @@ public class Interfaz {
 		menubar.setBounds(0,0,1040,20);
 		menubar.setBorder(new LineBorder(Color.black));
 		JMenu menu= new JMenu("Archivo");
+		menu.setMnemonic('a');
 		
 		Image icon=new ImageIcon("close.png").getImage();
 		JMenuItem itemCerrar=new JMenuItem("Cerrar",new ImageIcon(icon.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
@@ -217,17 +221,36 @@ public class Interfaz {
 		JMenuItem itemMax=new JMenuItem("Maximizar",new ImageIcon(icon3.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
 		
 		JMenu menu2=new JMenu("Herramientas");
+		menu2.setMnemonic('h');
 		JCheckBoxMenuItem jcheckBox= new JCheckBoxMenuItem("Desactivar Animaciones");
 	
 		JMenu menu3=new JMenu("Tipo de archivo");
+		menu3.setMnemonic('t');
 		
 		Image icon4=new ImageIcon("excel.png").getImage();
 		JRadioButtonMenuItem excel= new JRadioButtonMenuItem("Excel",new ImageIcon(icon4.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
+		excel.setMnemonic('e');
 		
 		Image icon5=new ImageIcon("json.png").getImage();
 		JRadioButtonMenuItem json= new JRadioButtonMenuItem("Json",new ImageIcon(icon5.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
+		json.setMnemonic('j');
 		
+		JMenu check=new JMenu("Derechos de administrador");
 		
+		if (adminRights)
+		{
+			Image yes=new ImageIcon("Yes.png").getImage();
+			ImageIcon yesicon=new ImageIcon(yes.getScaledInstance(15, 15, Image.SCALE_SMOOTH));
+			check.setIcon(yesicon);
+		}
+			
+		else 
+		{
+			Image no=new ImageIcon("No.png").getImage();
+			ImageIcon noicon=new ImageIcon(no.getScaledInstance(15, 15, Image.SCALE_SMOOTH));
+			check.setIcon(noicon);
+		}
+			
 		
 		json.setSelected(true);
 		json.setEnabled(false);
@@ -300,6 +323,9 @@ public class Interfaz {
 		menubar.add(menu);
 		menubar.add(menu2);
 		menubar.add(menu3);
+		
+		menubar.add(Box.createHorizontalGlue());
+		menubar.add(check);
 		
 	
 		
