@@ -240,6 +240,10 @@ public class Interfaz {
 		
 		JMenu check=new JMenu("Derechos de administrador");
 		
+		JButton asignar=new JButton ("Asignar...");
+		//asignar.setEnabled(false);
+		asignar.setBounds(620,290,100,20);
+		frame.add(asignar);
 		if (adminRights)
 		{
 			Image yes=new ImageIcon("Yes.png").getImage();
