@@ -213,9 +213,11 @@ public class Interfaz {
 		
 		Image icon=new ImageIcon("close.png").getImage();
 		JMenuItem itemCerrar=new JMenuItem("Cerrar",new ImageIcon(icon.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
+		itemCerrar.setMnemonic('c');
 		
 		Image icon2=new ImageIcon("minimize.png").getImage();
 		JMenuItem itemMin=new JMenuItem("Minimizar",new ImageIcon(icon2.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
+		itemMin.setMnemonic('m');
 		
 		Image icon3=new ImageIcon("maximize.png").getImage();
 		JMenuItem itemMax=new JMenuItem("Maximizar",new ImageIcon(icon3.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
@@ -223,6 +225,7 @@ public class Interfaz {
 		JMenu menu2=new JMenu("Herramientas");
 		menu2.setMnemonic('h');
 		JCheckBoxMenuItem jcheckBox= new JCheckBoxMenuItem("Desactivar Animaciones");
+		jcheckBox.setMnemonic('d');
 	
 		JMenu menu3=new JMenu("Tipo de archivo");
 		menu3.setMnemonic('t');
