@@ -60,7 +60,7 @@ public class Interfaz {
 	Atleta[] atletas=new Atleta[0];
 	JTable table=new JTable();
 	
-	//Recursos para el timer
+	//Recursos para las animaciones
 	static int contador=0;
 	int dir=0;
 	Timer timer;
@@ -78,7 +78,8 @@ public class Interfaz {
 	StringBuilder consoleOut=new StringBuilder();
 	boolean adminRights=true;
 	
-	
+	//Logica del solver
+	Solver solver=null;
 	
 
 	/**
@@ -1264,6 +1265,7 @@ public class Interfaz {
 					try 
 					{
 						 atletas= gson.fromJson(json, Atleta[].class );
+						 solver=new Solver(atletas);
 						// System.out.println(atletas[2]);
 					}catch (Exception r) 
 					{
@@ -1370,6 +1372,18 @@ public class Interfaz {
 					activo=true;
 					addConsoleLine("Se reaunudaron las animaciones");
 				}
+				
+			}
+			
+		});
+		
+		asignar.addActionListener(new ActionListener() 
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				solver.imprimir();
 				
 			}
 			
