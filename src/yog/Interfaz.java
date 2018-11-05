@@ -244,6 +244,7 @@ public class Interfaz {
 		//asignar.setEnabled(false);
 		asignar.setBounds(620,290,100,20);
 		frame.add(asignar);
+		
 		if (adminRights)
 		{
 			Image yes=new ImageIcon("Yes.png").getImage();
