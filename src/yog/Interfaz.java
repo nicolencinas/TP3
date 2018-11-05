@@ -242,7 +242,7 @@ public class Interfaz {
 		JMenu check=new JMenu("Derechos de administrador");
 		
 		JButton asignar=new JButton ("Asignar...");
-		//asignar.setEnabled(false);
+		asignar.setEnabled(false);
 		asignar.setBounds(620,290,100,20);
 		frame.add(asignar);
 		
@@ -1064,8 +1064,8 @@ public class Interfaz {
  						
  						render.setInput(value);
  						table.updateUI();
- 					JOptionPane.showMessageDialog(frame, "Se encontraron: "+Main.Cuantos(atletas, text.getText())+" resultados","Busqueda para: "+text.getText(), JOptionPane.INFORMATION_MESSAGE);
- 					addConsoleLine("La busqueda para "+value+ " a arrojado "+Main.Cuantos(atletas, value)+ " resultados");
+ 					JOptionPane.showMessageDialog(frame, "Se encontraron: "+solver.Cuantos( text.getText())+" resultados","Busqueda para: "+text.getText(), JOptionPane.INFORMATION_MESSAGE);
+ 					addConsoleLine("La busqueda para "+value+ " a arrojado "+solver.Cuantos( value)+ " resultados");
  					
  					
  					frame.requestFocus();
@@ -1115,8 +1115,8 @@ public class Interfaz {
 						table.updateUI();
 					
 					
-					JOptionPane.showMessageDialog(frame, "Se encontraron: "+Main.Cuantos(atletas, text.getText())+" resultados","Busqueda para: "+text.getText(), JOptionPane.INFORMATION_MESSAGE);
-					addConsoleLine("La busqueda para '"+value+ "' a arrojado "+Main.Cuantos(atletas, value)+ " resultados");
+					JOptionPane.showMessageDialog(frame, "Se encontraron: "+solver.Cuantos( text.getText())+" resultados","Busqueda para: "+text.getText(), JOptionPane.INFORMATION_MESSAGE);
+					addConsoleLine("La busqueda para '"+value+ "' a arrojado "+solver.Cuantos( value)+ " resultados");
 					frame.requestFocus();
 			      }
 			      else 
@@ -1265,7 +1265,7 @@ public class Interfaz {
 					try 
 					{
 						 atletas= gson.fromJson(json, Atleta[].class );
-						 solver=new Solver(atletas);
+						
 						// System.out.println(atletas[2]);
 					}catch (Exception r) 
 					{
@@ -1295,7 +1295,8 @@ public class Interfaz {
 						{
 						int i=0;
 					
-					
+						solver=new Solver(atletas);
+						asignar.setEnabled(true);
 					
 						for (Atleta a: atletas)
 						{
@@ -1383,6 +1384,9 @@ public class Interfaz {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
+			
+				solver.resolvedor();
+				addConsoleLine(solver.estadisticas());
 				solver.imprimir();
 				
 			}

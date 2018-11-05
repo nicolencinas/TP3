@@ -17,32 +17,7 @@ import com.google.gson.Gson;
 public class Main 
 {
 	
-	public static int Cuantos(Atleta[] at,String dato) 
-	{
-		int i=0;
-	
-		String d=dato.toLowerCase();
-		for (Atleta a:at) 
-		{
-			String nacion=a.getNacionality().toLowerCase();
-			String gen=a.getGenre().toLowerCase();
-			String dep=a.getSport().toLowerCase();
-			if (nacion.equals(d)) 
-			{
-				i++;
-			}
-			if (gen.equals(d)) 
-			{
-				i++;
-			}
-			if (dep.equals(d)) 
-			{
-				i++;
-			}
-			
-		}
-		return i;
-	}
+
 	public static String jsonConstruct (String path) 
 	{
 		 Gson gson= new Gson();

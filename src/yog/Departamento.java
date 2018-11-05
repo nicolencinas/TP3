@@ -2,7 +2,8 @@ package yog;
 
 import java.util.ArrayList;
 
-public class Departamento {
+public class Departamento
+{
 	private ArrayList <Atleta> dep;
 
 	Departamento(){

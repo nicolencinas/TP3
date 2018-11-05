@@ -7,11 +7,13 @@ import java.util.LinkedList;
 
 public class Solver 
 {
-	private ArrayList<Atleta> listaAtletas = new ArrayList<Atleta>();
+	private static ArrayList<Atleta> listaAtletas = new ArrayList<Atleta>();
 	private ArrayList<Departamento> listaDepartamentos = new ArrayList<Departamento>();
 	private LinkedList<Atleta> femenino = new LinkedList<Atleta>();
 	private LinkedList<Atleta> masculino = new LinkedList<Atleta>();
 	private ArrayList<Atleta> temp = new ArrayList<Atleta>();
+	int totalDeptos=0;
+	
 	
 	
 	public Solver(Atleta[] atletas) 
@@ -20,9 +22,73 @@ public class Solver
 		{
 			listaAtletas.add(a);
 		}
+	}
+	
+	public String estadisticas() 
+	{
+		Integer fem=Cuantos("Femenino");
+		Integer masc=Cuantos("Masculino");
+		Integer femComp=fem/4;
+		Integer mascComp=masc/4;
+		Integer femInc=fem-femComp*4;
+		Integer mascInc=masc-mascComp*4;
+		totalDeptos+=femComp+mascComp;
+		
+		StringBuilder builder=new StringBuilder("\n Analisis de la cantidad de habitaciones: \n");
+		
+		builder.append("Cantidad de atletas femeninos: ");
+		builder.append(fem+"\n");
+		builder.append("Departamentos de 4 : "+femComp+"\n");
+		if (femInc!=0) 
+		{
+			builder.append("Departamento adicional de : " +femInc+" mujeres"+"\n");
+			totalDeptos++;
+		}
+		
+		builder.append("\n");
+		
+		builder.append("Cantidad de atletas masculinos: ");
+		builder.append(masc+"\n");
+		builder.append("Departamentos de 4 : "+mascComp+"\n");
+		if (mascInc!=0) 
+		{
+			builder.append("Departamento adicional de : " +mascInc+" varones"+"\n");
+			totalDeptos++;
+		}
+		
+		builder.append("\nCantidad de habitaciones necesarias: "+ totalDeptos);
+		return builder.toString();
 		
 	}
 	
+	
+	public int Cuantos(String dato) 
+	{
+		int i=0;
+	
+		String d=dato.toLowerCase();
+		for (Atleta a:listaAtletas) 
+		{
+			String nacion=a.getNacionality().toLowerCase();
+			String gen=a.getGenre().toLowerCase();
+			String dep=a.getSport().toLowerCase();
+			
+			if (nacion.equals(d)) 
+			{
+				i++;
+			}
+			if (gen.equals(d)) 
+			{
+				i++;
+			}
+			if (dep.equals(d)) 
+			{
+				i++;
+			}
+			
+		}
+		return i;
+	}
 	
 	public void imprimir() 
 	{
@@ -63,12 +129,14 @@ public class Solver
 	
 
 	//ordenamos la  lista por genero, primero femenino y luego masculinos
-	public void ordenarPorGenero() {
+	public void ordenarPorGenero() 
+	{
 		Collections.sort(listaAtletas, new compararGenero());
 	}
 
 	//duplicamos el array original 
-	public ArrayList<Atleta> duplicarListaAtletas() {
+	public ArrayList<Atleta> duplicarListaAtletas() 
+	{
 		Collections.copy(temp, listaAtletas);
 		return temp;
 	}
@@ -93,20 +161,23 @@ public class Solver
 //falta transformar el json en arraylist
 	public void resolvedor()
 	{
-		duplicarListaAtletas();
+		
 		ordenarPorGenero();
 		repartirPorGenero();
+		for (Atleta a :masculino) 
+		{
+			
+		}
 		ordenarPorNacionalidad();
+		
+		
 
 	}
 	
 	
-	public Departamento[] solver()
-	{
-		return null;
-		
-		
-	}
+	
+	
+
 	
 	
 
