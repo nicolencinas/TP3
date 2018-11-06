@@ -10,6 +10,10 @@ public class Departamento
 		dep=new ArrayList <Atleta>();
 	}
 	
+	public ArrayList <Atleta> getIntegrantes()
+	{
+		return dep;
+	}
 	public boolean agregarAtleta(Atleta a) 
 	{
 		if (dep.size()==4)
