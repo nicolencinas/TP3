@@ -33,6 +33,7 @@ public class Solver
 		Integer mascComp=masc/4;
 		Integer femInc=fem-femComp*4;
 		Integer mascInc=masc-mascComp*4;
+		totalDeptos=0;
 		totalDeptos+=femComp+mascComp;
 		
 		StringBuilder builder=new StringBuilder("\n Analisis de la cantidad de habitaciones: \n");
@@ -143,7 +144,10 @@ public class Solver
 	}
 
 	//llena el array femenino con atletas femaninas y array masculino con altetas masculinos
-	public void repartirPorGenero(){
+	public void repartirPorGenero()
+	{
+		femenino=new LinkedList <Atleta>();
+		masculino=new LinkedList <Atleta>();
 		for(Atleta a:listaAtletas){
 			if(a.getGenre().equals("Femenino")){
 				femenino.add(a);
@@ -167,57 +171,61 @@ public class Solver
 		repartirPorGenero();
 		ordenarPorNacionalidad();
 		
-		int control=0;
-		int controldeptos=0;
-		for (int i=0;i<femenino.size()-1;i++) 
+		ideales(femenino);
+		ideales(masculino);
+		
+		for (Departamento dep: listaDepartamentos)
 		{
-			int contador=1;
-			
-			for(int j=i+1;j<femenino.size();j++)
+			for (Atleta a: dep.getIntegrantes())
 			{
-				
-				
-				Atleta comparando=femenino.get(i);
-				Atleta comparador=femenino.get(j);
-				
-				if (comparando.mismaNacionalidad(comparador) && comparando.mismoDeporte(comparador)) 
-				{
-					contador++;
-					
-				}
-				else contador=1;
-				
-				if (contador==4)
-				{
-					Departamento depto=new Departamento();
-					for (int e=j;e>j-4;e--)
-					{
-						depto.agregarAtleta(femenino.remove(e));
-						control++;
-					}
-					
-					this.listaDepartamentos.add(depto);
-					controldeptos++;
-				}
+				this.listaAtletas.remove(a);
 			}
 		}
 		
+		System.out.println("La cantidad de atletas sin asignar es: "+listaAtletas.size());
 		
 		
-	
-			
-		System.out.println("Se ubicaron: "+control);
-		System.out.println("Se crearon deptos "+controldeptos);
-		
-		System.out.println("Cantidad de femeninos sin acomodar "+ femenino.size());
-		System.out.println("Departamentos ideales de mujeres: "+listaDepartamentos.size());		
-		
+
 
 	}
 	
 	
-	
-	
+	private boolean sonTodosIguales(int i,LinkedList <Atleta> atletas) 
+	{
+		boolean retorno=true; 
+		retorno &= atletas.get(i).mismaNacionalidad(atletas.get(i+1)) && atletas.get(i).mismoDeporte(atletas.get(i+1)) ;
+		retorno &= atletas.get(i+1).mismaNacionalidad(atletas.get(i+2)) && atletas.get(i+1).mismoDeporte(atletas.get(i+2)) ;
+		retorno &= atletas.get(i+2).mismaNacionalidad(atletas.get(i+3)) && atletas.get(i+2).mismoDeporte(atletas.get(i+3));
+		return retorno;
+		
+	}	
+		
+	public void ideales(LinkedList<Atleta> atletas)
+	{
+		int i=0;
+		while (i<atletas.size()-3)
+		{
+			System.out.println("el i es : "+ i);
+			
+				if (sonTodosIguales(i,atletas))
+				{
+					Departamento depto=new Departamento();
+					depto.agregarAtleta(atletas.get(i));
+					depto.agregarAtleta(atletas.get(i+1));
+					depto.agregarAtleta(atletas.get(i+2));
+					depto.agregarAtleta(atletas.get(i+3));
+					listaDepartamentos.add(depto);
+					i+=4;
+					System.out.println("el i es : "+ i);
+					
+				}
+				
+				else i++;
+			
+		}
+		
+
+	}
 
 	
 	

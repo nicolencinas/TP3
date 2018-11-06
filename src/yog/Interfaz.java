@@ -1384,14 +1384,19 @@ public class Interfaz {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-			
+				addConsoleLine(solver.estadisticas());
+				asignar.setEnabled(false);
 				solver.resolvedor();
 				addConsoleLine(solver.estadisticas());
-				solver.resolvedor();
+				
+				
+				
 				for (Departamento de: solver.listaDepartamentos) 
 				{
 					System.out.println(de);
 				}
+				
+				System.out.print(solver.listaDepartamentos.size());
 				
 			}
 			
