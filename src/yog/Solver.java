@@ -171,8 +171,8 @@ public class Solver
 		repartirPorGenero();
 		ordenarPorNacionalidad();
 		
-		ideales(femenino);
-		ideales(masculino);
+		crearIdeales(femenino);
+		crearIdeales(masculino);
 		
 		for (Departamento dep: listaDepartamentos)
 		{
@@ -200,7 +200,7 @@ public class Solver
 		
 	}	
 		
-	public void ideales(LinkedList<Atleta> atletas)
+	public void crearIdeales(LinkedList<Atleta> atletas)
 	{
 		int i=0;
 		while (i<atletas.size()-3)
