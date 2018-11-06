@@ -167,7 +167,8 @@ public class Solver
 		repartirPorGenero();
 		ordenarPorNacionalidad();
 		
-		
+		int control=0;
+		int controldeptos=0;
 		for (int i=0;i<femenino.size()-1;i++) 
 		{
 			int contador=1;
@@ -192,10 +193,11 @@ public class Solver
 					for (int e=j;e>j-4;e--)
 					{
 						depto.agregarAtleta(femenino.remove(e));
-						
+						control++;
 					}
 					
 					this.listaDepartamentos.add(depto);
+					controldeptos++;
 				}
 			}
 		}
@@ -204,9 +206,10 @@ public class Solver
 		
 	
 			
-			
+		System.out.println("Se ubicaron: "+control);
+		System.out.println("Se crearon deptos "+controldeptos);
 		
-		System.out.println("Cantidad de femeninos si acomodar "+ femenino.size());
+		System.out.println("Cantidad de femeninos sin acomodar "+ femenino.size());
 		System.out.println("Departamentos ideales de mujeres: "+listaDepartamentos.size());		
 		
 
