@@ -1387,7 +1387,11 @@ public class Interfaz {
 			
 				solver.resolvedor();
 				addConsoleLine(solver.estadisticas());
-				solver.imprimir();
+				solver.resolvedor();
+				for (Departamento de: solver.listaDepartamentos) 
+				{
+					System.out.println(de);
+				}
 				
 			}
 			

@@ -8,11 +8,12 @@ import java.util.LinkedList;
 public class Solver 
 {
 	private static ArrayList<Atleta> listaAtletas = new ArrayList<Atleta>();
-	private ArrayList<Departamento> listaDepartamentos = new ArrayList<Departamento>();
+	 ArrayList<Departamento> listaDepartamentos = new ArrayList<Departamento>();
 	private LinkedList<Atleta> femenino = new LinkedList<Atleta>();
 	private LinkedList<Atleta> masculino = new LinkedList<Atleta>();
 	private ArrayList<Atleta> temp = new ArrayList<Atleta>();
 	int totalDeptos=0;
+	SavesManager save=new SavesManager();
 	
 	
 	
@@ -143,8 +144,8 @@ public class Solver
 
 	//llena el array femenino con atletas femaninas y array masculino con altetas masculinos
 	public void repartirPorGenero(){
-		for(Atleta a:temp){
-			if(a.getGenre()=="femenino"){
+		for(Atleta a:listaAtletas){
+			if(a.getGenre().equals("Femenino")){
 				femenino.add(a);
 			}else{
 				masculino.add(a);
@@ -164,12 +165,49 @@ public class Solver
 		
 		ordenarPorGenero();
 		repartirPorGenero();
-		for (Atleta a :masculino) 
-		{
-			
-		}
 		ordenarPorNacionalidad();
 		
+		
+		for (int i=0;i<femenino.size()-1;i++) 
+		{
+			int contador=1;
+			
+			for(int j=i+1;j<femenino.size();j++)
+			{
+				
+				
+				Atleta comparando=femenino.get(i);
+				Atleta comparador=femenino.get(j);
+				
+				if (comparando.mismaNacionalidad(comparador) && comparando.mismoDeporte(comparador)) 
+				{
+					contador++;
+					
+				}
+				else contador=1;
+				
+				if (contador==4)
+				{
+					Departamento depto=new Departamento();
+					for (int e=j;e>j-4;e--)
+					{
+						depto.agregarAtleta(femenino.remove(e));
+						
+					}
+					
+					this.listaDepartamentos.add(depto);
+				}
+			}
+		}
+		
+		
+		
+	
+			
+			
+		
+		System.out.println("Cantidad de femeninos si acomodar "+ femenino.size());
+		System.out.println("Departamentos ideales de mujeres: "+listaDepartamentos.size());		
 		
 
 	}
