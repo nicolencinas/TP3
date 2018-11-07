@@ -1455,13 +1455,19 @@ public class Interfaz {
 				addConsoleLine(solver.estadisticasFinales());
 				
 				
+//				
+//				for (Departamento de: solver.listaDepartamentos) 
+//				{
+//					System.out.println(de);
+//				}
+//				
+//				System.out.print(solver.listaDepartamentos.size());
 				
-				for (Departamento de: solver.listaDepartamentos) 
+				for (Atleta a : solver.listaAtletas) 
 				{
-					System.out.println(de);
+					System.out.println(a);
 				}
-				
-				System.out.print(solver.listaDepartamentos.size());
+				System.out.println(solver.listaAtletas.size());
 				
 			}
 			
