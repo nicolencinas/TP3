@@ -1456,18 +1456,18 @@ public class Interfaz {
 				
 				
 //				
-//				for (Departamento de: solver.listaDepartamentos) 
-//				{
-//					System.out.println(de);
-//				}
-//				
-//				System.out.print(solver.listaDepartamentos.size());
-				
-				for (Atleta a : solver.listaAtletas) 
+				for (Departamento de: solver.listaDepartamentos) 
 				{
-					System.out.println(a);
+					System.out.println(de);
 				}
-				System.out.println(solver.listaAtletas.size());
+				
+				System.out.print(solver.listaDepartamentos.size());
+				
+//				for (Atleta a : solver.listaAtletas) 
+//				{
+//					System.out.println(a);
+//				}
+//				System.out.println(solver.listaAtletas.size());
 				
 			}
 			
