@@ -33,7 +33,7 @@ public class SavesManager
 		
 	}
 	
-	public String jsonConstruct (String path) 
+	public String jsonFromExcel (String path) 
 	{
 		 Gson gson= new Gson();
 		 

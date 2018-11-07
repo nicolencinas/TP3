@@ -1310,7 +1310,7 @@ public class Interfaz {
 							        addConsoleLine("El fichero "+fichero+" no existe en el directorio ");
 							    }
 							    
-							     json=save.jsonConstruct(fichero.getAbsoluteFile().getName());
+							     json=save.jsonFromExcel(fichero.getAbsoluteFile().getName());
 							    System.out.println(json);
 						  }
 							  
