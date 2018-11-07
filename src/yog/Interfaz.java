@@ -50,7 +50,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class Interfaz {
 
 	private JFrame frame;
-	MiRender render=new MiRender();
+	BlueForegroundCell render=new BlueForegroundCell();
 
 	SavesManager save=new SavesManager();
 	private JTextArea ta = new JTextArea("",33,42);

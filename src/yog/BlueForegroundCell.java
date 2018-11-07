@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class MiRender extends DefaultTableCellRenderer
+public class BlueForegroundCell extends DefaultTableCellRenderer
 {
 	/**
 	 * 
