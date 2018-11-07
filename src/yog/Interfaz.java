@@ -36,6 +36,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 import com.google.gson.Gson;
+import com.mxrck.autocompleter.TextAutoCompleter;
 
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -75,238 +76,34 @@ public class Interfaz {
 	
 	StringBuilder consoleOut=new StringBuilder();
 	boolean adminRights=true;
-	 JPopupMenu popup=new JPopupMenu();
+	
 	
 	//Logica del solver
 	Solver solver=null;
+	
 	String[] paises={"Femenino","Masculino","Atletismo","Badminton","Baloncesto3x3",
-"Balonmanodeplaya","Boxeo","Breaking","Ciclismo","Ecuestre","Escaladadeportiva","Esgrima","Futsal",
-"Gimnasiaacrobatica","Gimnasiaartistica","Gimnasiaritmica","GimnasiaTrampolin","Gimnasiatrampolin","Golf","Hockey5",
-"Judo",
-"Karate",
-"Levantamientodepesas",
-"Lucha",
-"Natacion",
-"Patinajedevelocidadsobreruedas",
-"Pentatlonmoderno",
-"Piraguismo",
-"Remo",
-"Rugbysiete",
-"Saltos",
-"Taekwondo",
-"Tenis",
-"Tenisdemesa",
-"Tiroconarco",
-"Tirodeportivo",
-"Triatlon",
-"Vela",
-"Voley-playa",
-"Afganistan",
-"Albania",
-"Alemania",
-"Andorra",
-"Angola",
-"AntiguayBarbuda",
-"ArabiaSaudi",
-"Argelia",
-"Argentina",
-"Armenia",
-"Aruba",
-"Australia",
-"Austria",
-"Azerbaiyan",
-"Bahamas",
-"Bahrein",
-"Bangladesh",
-"Barbados",
-"Belgica",
-"Belice",
-"Benin",
-"Bermudas",
-"Bhutan",
-"Bielorrusia",
-"Bolivia",
-"Bosnia",
-"Botsuana",
-"Brasil",
-"Brunei",
-"Bulgaria",
-"BurkinaFaso",
-"Burundi",
-"CaboVerde",
-"Camboya",
-"Camerun",
-"Canada",
-"Chad",
-"Chile",
-"ChinaTaipei",
-"Chipre",
-"Colombia",
-"Comoras",
-"Congo",
-"Costademarfil",
-"CostaRica",
-"Croacia",
-"Cuba",
-"Dinamarca",
-"Djibouti",
-"Dominica",
-"Ecuador",
-"Egipto",
-"Elsalvador",
-"Emiratosarabesunidos",
-"Eritrea",
-"Eslovaquia",
-"Eslovenia",
-"Espania",
-"EstadosFederadosdemicronesia",
-"EstadosUnidos",
-"Estonia",
-"Eswatini",
-"Etiopia",
-"ExrepublicaYugoslava",
-"FederacionRusa",
-"Filipinas",
-"Finlandia",
-"Fiyi",
-"Francia",
-"Gabon",
-"Gambia",
-"Georgia",
-"Ghana",
-"GranBretana",
-"Granada",
-"Grecia",
-"Guam",
-"Guatemala",
-"Guinea",
-"Guineaecuatorial",
-"Guinea-Bissau",
-"Guyana",
-"Haiti",
-"Honduras",
-"HongKong",
-"Hungria",
-"India",
-"Indonesia",
-"Iraq",
-"Irlanda",
-"Islandia",
-"IslasCaiman",
-"IslasCook",
-"IslasMarshall",
-"IslasSalomon",
-"IslasVirgenesBritanicas",
-"IslasVirgenesEstadoUnidenses",
-"Israel",
-"Italia",
-"Jamaica",
-"Japon",
-"Jordania",
-"Kazajstan",
-"Kenia",
-"Kirguistan",
-"Kiribati",
-"Kosovo",
-"Kuwait",
-"Lesotho",
-"Letonia",
-"Libano",
-"Liberia",
-"Libia",
-"Liechtenstein",
-"Lituania",
-"Luxemburgo",
-"Madagascar",
-"Malasia",
-"Malawi",
-"Maldivas",
-"Mali",
-"Malta",
-"Marruecos",
-"Mauricio",
-"Mauritania",
-"Mexico",
-"Monaco",
-"Mongolia",
-"Montenegro",
-"Mozambique",
-"Myanmar",
-"Namibia",
-"Nauru",
-"Nepal",
-"Nicaragua",
-"Niger",
-"Nigeria",
-"Noruega",
-"NuevaZelanda",
-"Oman",
-"PaisesBajos",
-"Pakistan",
-"Palaos",
-"Palestina",
-"Panama",
-"Papua-NuevaGuinea",
-"Paraguay",
-"Peru",
-"Polonia",
-"Portugal",
-"PuertoRico",
-"Qatar",
-"RepublicaArabeSiria",
-"RepublicaCentroafricana",
-"RepublicaCheca",
-"RepublicadeCorea",
-"RepublicadeMoldavia",
-"RepublicadeTimorOriental",
-"RepublicadelCongo",
-"RepublicadeLao",
-"RepublicaDominicana",
-"RepublicadeIran",
-"RepublicadeChina",
-"RepublicademocraticadeCorea",
-"RepublicadeTanzania",
-"Ruanda",
-"Rumania",
-"Samoa",
-"SamoaAmericana",
-"SanCristobalYnieves",
-"SanMarino",
-"SanVicenteylasGranadinas",
-"SantaLucia",
-"SantoTomeyprincipe",
-"Senegal",
-"Serbia",
-"Seychelles",
-"SierraLeona",
-"Singapur",
-"Somalia",
-"SriLanka",
-"Sudafrica",
-"Sudan",
-"SudandelSur",
-"Suecia",
-"Suiza",
-"Surinam",
-"Tailandia",
-"Tayikistan",
-"Togo",
-"Tonga",
-"TrinidadyTobago",
-"Tunez",
-"Turkmenistan",
-"Turquia",
-"Tuvalu",
-"Ucrania",
-"Uganda",
-"Uruguay",
-"Uzbekistan",
-"Vanuatu",
-"Venezuela",
-"Vietnam",
-"Yemen",
-"Zambia",
-"Zimbabue",};
+"Balonmano de playa","Boxeo","Breaking","Ciclismo","Ecuestre","Escalada deportiva","Esgrima","Futsal",
+"Gimnasia acrobatica","Gimnasia artistica","Gimnasia ritmica","Gimnasia Trampolin","Gimnasia trampolin","Golf","Hockey5",
+"Judo","Karate","Levantamientodepesas","Lucha","Natacion","Patinaje dev elocidad sobre ruedas",
+"Pentatlonmoderno","Piraguismo","Remo","Rugby siete","Saltos","Taekwondo","Tenis","Tenis de mesa","Tiro con arco",
+"Tirodeportivo","Triatlon","Vela","Voley-playa","Afganistan","Albania","Alemania","Andorra","Angola","Antigua y Barbuda",
+"Arabia Saudi","Argelia","Argentina","Armenia","Aruba","Australia","Austria","Azerbaiyan","Bahamas","Bahrein","Bangladesh",
+"Barbados","Belgica","Belice","Benin","Bermudas","Bhutan","Bielorrusia","Bolivia","Bosnia","Botsuana","Brasil","Brunei","Bulgaria","Burkina Faso",
+"Burundi","Cabo Verde","Camboya","Camerun","Canada","Chad","Chile","China Taipei","Chipre","Colombia","Comoras","Congo","Costa de marfil",
+"CostaRica","Croacia","Cuba","Dinamarca","Djibouti","Dominica","Ecuador","Egipto","El salvador","Emiratos arabes unidos", 
+"Eritrea","Eslovaquia","Eslovenia","Espania","Estados Federados de micronesia","Estados Unidos","Estonia","Eswatini",
+"Etiopia","Ex republica Yugoslava","Federacion Rusa","Filipinas","Finlandia","Fiyi","Francia","Gabon","Gambia","Georgia","Ghana",
+"Gran Bretana","Granada","Grecia","Guam","Guatemala","Guinea","Guineaecuatorial","Guinea-Bissau","Guyana","Haiti","Honduras",
+"HongKong","Hungria","India","Indonesia","Iraq","Irlanda","Islandia","Islas Caiman","Islas Cook","Islas Marshall","Islas Salomon","Islas Virgenes Britanicas",
+"Islas Virgenes Estado Unidenses","Israel","Italia","Jamaica","Japon","Jordania","Kazajstan","Kenia","Kirguistan","Kiribati","Kosovo",
+"Kuwait","Lesotho","Letonia","Libano","Liberia","Libia","Liechtenstein","Lituania","Luxemburgo","Madagascar","Malasia","Malawi","Maldivas","Mali",
+"Malta","Marruecos","Mauricio","Mauritania","Mexico","Monaco","Mongolia","Montenegro","Mozambique","Myanmar","Namibia","Nauru","Nepal","Nicaragua","Niger","Nigeria",
+"Noruega","Nueva Zelanda","Oman","PaisesBajos","Pakistan","Palaos","Palestina","Panama","Papua-Nueva Guinea","Paraguay","Peru","Polonia","Portugal","PuertoRico","Qatar","Republica Arabe Siria","Republica Centroafricana",
+"Republica Checa","Republica de Corea","Republica de Moldavia","Republica de Timor Oriental","Republica del Congo","Republica de Lao","Republica Dominicana",
+"Republica de Iran","Republica de China","Republica democratica de Corea","Republica de Tanzania","Ruanda","Rumania","Samoa","Samoa Americana","San Cristobal Y nieves","San Marino","San Vicentey las Granadinas",
+"Santa Lucia","Santo Tome y principe","Senegal","Serbia","Seychelles","Sierra Leona","Singapur","Somalia","Sri Lanka","Sudafrica",
+"Sudan","SudandelSur","Suecia","Suiza","Surinam","Tailandia","Tayikistan","Togo","Tonga","Trinidad y Tobago","Tunez","Turkmenistan","Turquia","Tuvalu",
+"Ucrania","Uganda","Uruguay","Uzbekistan","Vanuatu","Venezuela","Vietnam","Yemen","Zambia","Zimbabue",};
 	
 
 	/**
@@ -804,6 +601,13 @@ public class Interfaz {
 		imagen.setToolTipText("Ir a la pagina oficial de las olimpiadas");
 		frame.add(imagen);
 		
+		TextAutoCompleter textAutoCompleter = new TextAutoCompleter(text);
+		for (String e: paises) 
+		{
+			textAutoCompleter.addItem(e);
+		}
+		
+		
 		tarea2=new TimerTask()
 		{
 
@@ -1261,36 +1065,36 @@ public class Interfaz {
 		}
 		
 		
-			frame.add(popup);
+			
 			
 	   text.addKeyListener(new KeyAdapter() 
 	   {
  			public void keyReleased(KeyEvent e)
  			{
- 					Pattern pat= Pattern.compile(text.getText());
-					
-					Matcher mat=pat.matcher(paises[0]);
-					
-					//popup.setVisible(true);
-					popup=null;
-					popup=new JPopupMenu();
-					popup.setLocation(1000,100);
-					
-					for (int i=0;i<paises.length;i++)
-					{
-						mat=pat.matcher(paises[i]);
-						
-						if (mat.find())
-						{
-							System.out.println (paises[i]);
-							
-							
-							popup.add((paises[i]));
-							
-						}
-					}
-					popup.updateUI();
-					popup.setVisible(true);
+// 					Pattern pat= Pattern.compile(text.getText());
+//					
+//					Matcher mat=pat.matcher(paises[0]);
+//					
+//					//popup.setVisible(true);
+//					popup=null;
+//					popup=new JPopupMenu();
+//					popup.setLocation(1000,100);
+//					
+//					for (int i=0;i<paises.length;i++)
+//					{
+//						mat=pat.matcher(paises[i]);
+//						
+//						if (mat.find())
+//						{
+//							System.out.println (paises[i]);
+//							
+//							
+//							popup.add((paises[i]));
+//							
+//						}
+//					}
+//					popup.updateUI();
+//					popup.setVisible(true);
 					
  				if (e.getKeyCode()==KeyEvent.VK_ENTER) 
  				{
@@ -1351,7 +1155,7 @@ public class Interfaz {
  					render.setInput("");
  					filtro("",table);
  					combo.setSelectedItem("Seleccionar...");
- 					popup.setVisible(false);
+ 					
  				}
  			}
 
