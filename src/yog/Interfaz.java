@@ -1342,7 +1342,7 @@ public class Interfaz {
  				
  				}
  					
- 			JLabel lab=new JLabel();
+ 	
  					
  				}
  				
