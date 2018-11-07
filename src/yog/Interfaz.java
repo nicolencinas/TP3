@@ -1324,9 +1324,9 @@ public class Interfaz {
 					try 
 					{
 						 atletas= gson.fromJson(json, Atleta[].class );
-						
-						// System.out.println(atletas[2]);
-					}catch (Exception r) 
+						 
+					}
+					catch (Exception r) 
 					{
 						continuar=false;
 						JOptionPane.showMessageDialog(selector, "Gson Error: "+r.getCause().getMessage()+" \n No se puede transformar el json en una lista de atletas", "Illegal State Exception:", JOptionPane.ERROR_MESSAGE);
@@ -1355,6 +1355,7 @@ public class Interfaz {
 						int i=0;
 					
 						solver=new Solver(atletas);
+						addConsoleLine(solver.estadisticasIniciales());
 						asignar.setEnabled(true);
 						asignar.setVisible(true);
 					
@@ -1447,12 +1448,11 @@ public class Interfaz {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				addConsoleLine(solver.estadisticas());
+				
 				asignar.setEnabled(false);
-				
-				
 				solver.resolvedor();
-				addConsoleLine(solver.estadisticas());
+				//addConsoleLine(solver.estadisticas());
+				addConsoleLine(solver.estadisticasFinales());
 				
 				
 				
