@@ -267,6 +267,7 @@ public class Interfaz {
 		
 		JButton asignar=new JButton ("Asignar...");
 		asignar.setEnabled(false);
+		asignar.setVisible(false);
 		asignar.setBounds(620,290,100,20);
 		frame.add(asignar);
 		
@@ -1050,19 +1051,12 @@ public class Interfaz {
 		
 		 try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (InstantiationException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IllegalAccessException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (UnsupportedLookAndFeelException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		} catch (Exception e1) 
+		 {
+			
+		 }
+			
+			
 		
 		
 			
@@ -1095,6 +1089,7 @@ public class Interfaz {
 //					}
 //					popup.updateUI();
 //					popup.setVisible(true);
+ 				
 					
  				if (e.getKeyCode()==KeyEvent.VK_ENTER) 
  				{
@@ -1361,6 +1356,7 @@ public class Interfaz {
 					
 						solver=new Solver(atletas);
 						asignar.setEnabled(true);
+						asignar.setVisible(true);
 					
 						for (Atleta a: atletas)
 						{
@@ -1453,6 +1449,8 @@ public class Interfaz {
 			{
 				addConsoleLine(solver.estadisticas());
 				asignar.setEnabled(false);
+				
+				
 				solver.resolvedor();
 				addConsoleLine(solver.estadisticas());
 				
