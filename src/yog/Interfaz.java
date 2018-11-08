@@ -252,6 +252,12 @@ public class Interfaz {
 		JCheckBoxMenuItem jcheckBox= new JCheckBoxMenuItem("Desactivar Animaciones");
 		jcheckBox.setMnemonic('d');
 	
+		JMenuItem modelo=new JMenuItem("Modelo de excel...");
+		menu2.add(modelo);
+		
+		
+			
+		
 		JMenu menu3=new JMenu("Tipo de archivo");
 		menu3.setMnemonic('t');
 		
@@ -1257,6 +1263,7 @@ public class Interfaz {
 			public void mouseReleased(MouseEvent e)
 			{
 				int seleccion= fc.showOpenDialog(selector);
+				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				 boolean continuar=true;
 				 
 			
@@ -1441,7 +1448,46 @@ public class Interfaz {
 			}
 			
 		});
-		
+		modelo.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				
+				int seleccion= fc.showOpenDialog(selector);
+				 if (seleccion==JFileChooser.APPROVE_OPTION) 
+				  {
+					 File destino=fc.getSelectedFile();
+					 File fichero=new File("Modelo Atletas.xlsx");
+					 
+					 
+					 Path origenPath = FileSystems.getDefault().getPath(fichero.getAbsolutePath());
+				       Path destinoPath = destino.toPath();
+				        
+					    if (fichero.exists()) {
+					        try
+					        {
+					        	
+								Files.copy(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(selector, "Se requieren permisos de administrador");
+							}
+					    } else {
+					        addConsoleLine("El fichero "+fichero+" no existe en el directorio ");
+					    }
+					    
+				  }
+					 
+					 
+				  }
+					  
+				
+			
+			
+		});
 		asignar.addActionListener(new ActionListener() 
 		{
 
