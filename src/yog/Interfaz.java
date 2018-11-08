@@ -1472,11 +1472,24 @@ public class Interfaz {
 					 System.out.println(destinoPath.toString());
 				        
 					 boolean continuar=true;
-					    if (fichero.exists()) {
+					 
+					    if (fichero.exists()) 
+					   {
 					        try
 					        {
-					        	
-								Files.copy(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+					        	int eleccion=JOptionPane.showConfirmDialog(selector, "Desea Guardar el archivo Modelo Atletas.xlsx en el directorio:" +
+										destinoPath.toString());
+					        	if (eleccion==0)
+					        	{
+					        		
+					        		Files.copy(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+					        	}
+					        	else
+					        	{
+					        		continuar=false;
+					        		JOptionPane.showMessageDialog(selector,"Se cancelo el copiado por el usuario");	
+					        	}
+								
 								
 							} catch (IOException e1) 
 					        {
@@ -1485,16 +1498,15 @@ public class Interfaz {
 							}finally
 							{
 								if (continuar)
-								JOptionPane.showMessageDialog(selector, "Se copio el modelo de excel en "+destinoPath.toString());
+								{
+									JOptionPane.showMessageDialog(selector, "Se copio el modelo de excel en "+destinoPath.toString());
+								}
+								
+								
 							}
 					        
 					        
 					    } 
-					    
-					    else 
-					    {
-					        addConsoleLine("El fichero "+fichero+" no existe en el directorio ");
-					    }
 					    
 				  }
 					 
