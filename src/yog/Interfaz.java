@@ -1464,18 +1464,35 @@ public class Interfaz {
 					 
 					 
 					 Path origenPath = FileSystems.getDefault().getPath(fichero.getAbsolutePath());
-				       Path destinoPath = destino.toPath();
+					 
+					
+				       Path destinoPath = FileSystems.getDefault().getPath(destino.getAbsolutePath()+"\\Modelo Atletas.xlsx");
+				       
+				      System.out.println(origenPath.toString());
+					 System.out.println(destinoPath.toString());
 				        
+					 boolean continuar=true;
 					    if (fichero.exists()) {
 					        try
 					        {
 					        	
 								Files.copy(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
-							} catch (IOException e1) {
-								// TODO Auto-generated catch block
+								
+							} catch (IOException e1) 
+					        {
+								continuar=false;
 								JOptionPane.showMessageDialog(selector, "Se requieren permisos de administrador");
+							}finally
+							{
+								if (continuar)
+								JOptionPane.showMessageDialog(selector, "Se copio el modelo de excel en "+destinoPath.toString());
 							}
-					    } else {
+					        
+					        
+					    } 
+					    
+					    else 
+					    {
 					        addConsoleLine("El fichero "+fichero+" no existe en el directorio ");
 					    }
 					    
