@@ -223,26 +223,26 @@ public class Solver
 		repartirPorGenero();
 		ordenarPorNacionalidad();
 		
-//		crearAlmenosDos(femenino,0);
-//		output.append("\nCantidad de departamentos con al menos dos ideales: \n");
-//		int AMDFemeninos=almenosDos.size();
-//		conteoFemeninos+=AMDFemeninos;
-//		output.append("Femeninos al menos dos: "+AMDFemeninos+"\n");
-//		
-//		crearAlmenosDos(masculino,1);
-//		
-//		int AMDMasculinos=almenosDos.size()-AMDFemeninos;
-//		conteoMasculinos+=AMDMasculinos;
-//		output.append("Masculinos al menos dos: "+AMDMasculinos+"\n");
-//		
-//		output.append("Al menos dos totales: "+almenosDos.size()+"\n");
-//		
-//		LimpiarAgregados();
-//		
-//		
-//		ordenarPorGenero();
-//		repartirPorGenero();
-//		ordenarPorNacionalidad();
+		crearAlmenosDos(femenino,0);
+		output.append("\nCantidad de departamentos con al menos dos ideales: \n");
+		int AMDFemeninos=almenosDos.size();
+		conteoFemeninos+=AMDFemeninos;
+		output.append("Femeninos al menos dos: "+AMDFemeninos+"\n");
+		
+		crearAlmenosDos(masculino,1);
+		
+		int AMDMasculinos=almenosDos.size()-AMDFemeninos;
+		conteoMasculinos+=AMDMasculinos;
+		output.append("Masculinos al menos dos: "+AMDMasculinos+"\n");
+		
+		output.append("Al menos dos totales: "+almenosDos.size()+"\n");
+		
+		LimpiarAgregados();
+		
+		
+		ordenarPorGenero();
+		repartirPorGenero();
+		ordenarPorNacionalidad();
 		
 		completar();
 		
@@ -273,10 +273,31 @@ public class Solver
 	{
 		for (Departamento d: mayorias) 
 		{
-			d.agregarAtleta(mejorCandidato(d));
+			Atleta a=mejorCandidato(d);
+			if (a!=null)
+			{
+				d.agregarAtleta(a);
+				
+			}else d.agregarAtleta(candidatoPordeporte(d));
 		}
 	}
 	
+	private Atleta candidatoPordeporte(Departamento d) 
+	{
+		
+		for (Atleta a: listaAtletas) 
+		{
+			if (d.getIntegrantes().get(0).mismoDeporte(a) && d.getIntegrantes().get(0).mismoGenero(a))
+			{
+				Atleta ret=a;
+				listaAtletas.remove(a);
+				return ret;
+				
+			}
+		}
+		return null;
+	}
+
 	private Atleta mejorCandidato(Departamento d) 
 	{
 		for (Atleta a: listaAtletas) 

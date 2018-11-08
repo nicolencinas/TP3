@@ -1461,13 +1461,13 @@ public class Interfaz {
 					System.out.println(de);
 				}
 				
-				System.out.print(solver.listaDepartamentos.size());
+				System.out.print("LA LISTA DE DEPARTAMENTOS ES: " + solver.listaDepartamentos.size());
 				
-//				for (Atleta a : solver.listaAtletas) 
-//				{
-//					System.out.println(a);
-//				}
-//				System.out.println(solver.listaAtletas.size());
+				for (Atleta a : solver.listaAtletas) 
+				{
+					System.out.println(a);
+				}
+				System.out.println("LA LISTA DE ATLETAS ES :"+solver.listaAtletas.size());
 				
 			}
 			
