@@ -1262,6 +1262,7 @@ public class Interfaz {
 			}
 			public void mouseReleased(MouseEvent e)
 			{
+				fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
 				int seleccion= fc.showOpenDialog(selector);
 				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				 boolean continuar=true;
