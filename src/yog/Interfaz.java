@@ -1379,8 +1379,8 @@ public class Interfaz {
 					));
 				
 					   JScrollPane pane=new JScrollPane (table);
-					   table.getColumnModel().getColumn(0).setMinWidth(30);
-					   table.getColumnModel().getColumn(0).setMaxWidth(30);
+					   table.getColumnModel().getColumn(0).setMinWidth(40);
+					   table.getColumnModel().getColumn(0).setMaxWidth(40);
 					   table.getColumnModel().getColumn(1).setMinWidth(200);
 					   table.getColumnModel().getColumn(1).setMaxWidth(200);
 					   table.getColumnModel().getColumn(2).setMinWidth(60);
@@ -1461,12 +1461,12 @@ public class Interfaz {
 					System.out.println(de);
 				}
 				
-				System.out.print("LA LISTA DE DEPARTAMENTOS ES: " + solver.listaDepartamentos.size());
+				System.out.println("LA LISTA DE DEPARTAMENTOS ES: " + solver.listaDepartamentos.size());
 				
-				for (Atleta a : solver.listaAtletas) 
-				{
-					System.out.println(a);
-				}
+//				for (Atleta a : solver.listaAtletas) 
+//				{
+//					System.out.println(a);
+//				}
 				System.out.println("LA LISTA DE ATLETAS ES :"+solver.listaAtletas.size());
 				
 			}

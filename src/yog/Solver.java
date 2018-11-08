@@ -246,6 +246,8 @@ public class Solver
 		
 		completar();
 		
+		crearNoIdeales();
+		
 		
 		
 		
@@ -257,6 +259,12 @@ public class Solver
 
 	}
 	
+	private void crearNoIdeales() 
+	{
+		
+		
+	}
+
 	private void LimpiarAgregados() 
 	{
 		for (Departamento dep: listaDepartamentos)
