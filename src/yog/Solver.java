@@ -278,8 +278,27 @@ public class Solver
 			{
 				d.agregarAtleta(a);
 				
-			}else d.agregarAtleta(candidatoPordeporte(d));
+			}
+			else d.agregarAtleta(candidatoPordeporte(d));
 		}
+		
+		for (int i=0;i<2;i++)
+		{
+			for (Departamento d: almenosDos) 
+			{
+			Atleta a=mejorCandidato(d);
+			if (a!=null)
+			{
+				d.agregarAtleta(a);
+				
+			}
+			else d.agregarAtleta(candidatoPordeporte(d));
+			}
+			
+		}
+		
+		
+		
 	}
 	
 	private Atleta candidatoPordeporte(Departamento d) 
