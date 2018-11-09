@@ -168,6 +168,42 @@ public class SavesManager
         	}
     	}
 }
+	
+	public void guardarLog(String ingreso) throws Exception
+	{
+		list.clear(); 
+		
+		File f=new File("informe.log");
+	
+
+		
+		try 
+		{
+        	fw = new FileWriter(f);
+        	
+                
+                fw.write(System.getProperty("line.separator")); 
+            	
+            	elem = ingreso; 
+            	fw.write(elem);
+        	
+    	} catch (IOException e) 
+		{
+        	e.printStackTrace();
+    	}
+    	finally{
+        	if (fw!=null)
+        	{
+            	try {
+                	fw.close(); 
+            	} catch (IOException e) {
+                	e.printStackTrace();
+            	}
+            	fw = null;
+        	}
+    	}
+}
+
 
 	public String cargar(String path)
 	{

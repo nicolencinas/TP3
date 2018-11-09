@@ -36,7 +36,7 @@ public class Departamento
 		String re="";
 		for (Atleta a :dep) 
 		{
-			re+="\n"+a+"\n\n------------------\n";
+			re+="\r\n"+a+"\r\n\r\n------------------\r\n";
 			
 		}
 		return re;

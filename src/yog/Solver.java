@@ -3,7 +3,10 @@ package yog;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.LinkedList;
+
+import com.google.gson.Gson;
 
 public class Solver 
 {
@@ -16,12 +19,14 @@ public class Solver
  	private LinkedList<Atleta> femenino = new LinkedList<Atleta>();
 	private LinkedList<Atleta> masculino = new LinkedList<Atleta>();
 	private ArrayList<Atleta> temp = new ArrayList<Atleta>();
+	private String toJson="[";
+	private Gson gson=new Gson();
 	int totalDeptos=0;
 	int deptosFemeninos=0;
 	int deptosMasculinos=0;
 	int conteoFemeninos=0;
 	int conteoMasculinos=0;
-	StringBuilder output= new StringBuilder("\nInformacion de las habitaciones: \n");
+	StringBuilder output= new StringBuilder("\r\nInformacion de las habitaciones: \r\n");
 	
 	SavesManager save=new SavesManager();
 	
@@ -46,29 +51,29 @@ public class Solver
 		totalDeptos=0;
 		totalDeptos+=femComp+mascComp;
 		
-		StringBuilder builder=new StringBuilder("\n Analisis previo de las habitaciones: \n");
+		StringBuilder builder=new StringBuilder("\r\n Analisis previo de las habitaciones: \r\n");
 		
 		builder.append("Cantidad de atletas femeninos: ");
-		builder.append(fem+"\n");
-		builder.append("Departamentos de 4 : "+femComp+"\n");
+		builder.append(fem+"\r\n");
+		builder.append("Departamentos de 4 : "+femComp+"\r\n");
 		if (femInc!=0) 
 		{
-			builder.append("Departamento adicional de : " +femInc+" mujeres"+"\n");
+			builder.append("Departamento adicional de : " +femInc+" mujeres"+"\r\n");
 			totalDeptos++;
 		}
 		
-		builder.append("\n");
+		builder.append("\r\n");
 		
 		builder.append("Cantidad de atletas masculinos: ");
-		builder.append(masc+"\n");
-		builder.append("Departamentos de 4 : "+mascComp+"\n");
+		builder.append(masc+"\r\n");
+		builder.append("Departamentos de 4 : "+mascComp+"\r\n");
 		if (mascInc!=0) 
 		{
-			builder.append("Departamento adicional de : " +mascInc+" varones"+"\n");
+			builder.append("Departamento adicional de : " +mascInc+" varones"+"\r\n");
 			totalDeptos++;
 		}
 		
-		builder.append("\nCantidad de habitaciones necesarias: "+ totalDeptos);
+		builder.append("\r\nCantidad de habitaciones necesarias: "+ totalDeptos);
 		return builder.toString();
 		
 	}
@@ -185,17 +190,17 @@ public class Solver
 		
 		crearIdeales(femenino);
 		
-		output.append("\nCantidad de departamentos ideales \n(Mismo Genero,Nacioanalidad y deporte): \n\n");
+		output.append("\r\nCantidad de departamentos ideales \r\n(Mismo Genero,Nacioanalidad y deporte): \r\n\r\n");
 		int IdealesFemeninos=ideales.size();
 		conteoFemeninos+=IdealesFemeninos;
-		output.append("Femeninos ideales :"+IdealesFemeninos+"\n");
+		output.append("Femeninos ideales :"+IdealesFemeninos+"\r\n");
 		
 		crearIdeales(masculino);
 		
 		int IdealesMasculinos=ideales.size()-IdealesFemeninos;
 		conteoMasculinos+=IdealesMasculinos;
-		output.append("Masculinos ideales: "+IdealesMasculinos+"\n");
-		output.append("Ideales totales: "+ideales.size()+"\n");
+		output.append("Masculinos ideales: "+IdealesMasculinos+"\r\n");
+		output.append("Ideales totales: "+ideales.size()+"\r\n");
 	
 		LimpiarAgregados();
 		
@@ -205,17 +210,17 @@ public class Solver
 		
 		crearMayorias(femenino,0);
 		
-		output.append("\nCantidad de departamentos con mayoria ideales: \n");
+		output.append("\r\nCantidad de departamentos con mayoria ideales: \r\n");
 		int MayoriaFemeninos=mayorias.size();
 		conteoFemeninos+=MayoriaFemeninos;
-		output.append("Femeninos mayoria: "+MayoriaFemeninos+"\n");
+		output.append("Femeninos mayoria: "+MayoriaFemeninos+"\r\n");
 		
 		crearMayorias (masculino,1);
 		
 		int MayoriaMasculinos=mayorias.size()-MayoriaFemeninos;
 		conteoMasculinos+=MayoriaMasculinos;
-		output.append("Masculinos mayoria: "+MayoriaMasculinos+"\n");
-		output.append("Mayorias totales: "+mayorias.size()+"\n");
+		output.append("Masculinos mayoria: "+MayoriaMasculinos+"\r\n");
+		output.append("Mayorias totales: "+mayorias.size()+"\r\n");
 		
 		LimpiarAgregados();
 		
@@ -224,18 +229,18 @@ public class Solver
 		ordenarPorNacionalidad();
 		
 		crearAlmenosDos(femenino,0);
-		output.append("\nCantidad de departamentos con mitad ideales: \n");
+		output.append("\nCantidad de departamentos con mitad ideales: \r\n");
 		int AMDFemeninos=almenosDos.size();
 		conteoFemeninos+=AMDFemeninos;
-		output.append("Femeninos al menos dos: "+AMDFemeninos+"\n");
+		output.append("Femeninos al menos dos: "+AMDFemeninos+"\r\n");
 		
 		crearAlmenosDos(masculino,1);
 		
 		int AMDMasculinos=almenosDos.size()-AMDFemeninos;
 		conteoMasculinos+=AMDMasculinos;
-		output.append("Masculinos al menos dos: "+AMDMasculinos+"\n");
+		output.append("Masculinos al menos dos: "+AMDMasculinos+"\r\n");
 		
-		output.append("Al menos dos totales: "+almenosDos.size()+"\n");
+		output.append("Al menos dos totales: "+almenosDos.size()+"\r\n");
 		
 		LimpiarAgregados();
 		
@@ -253,11 +258,11 @@ public class Solver
 		LimpiarAgregados();
 		crearNoIdeales(femenino);
 		
-		output.append("\nCantidad de departamentos no Ideales:\n(Mismo Genero y Nacioanalidad o solo ordenados por genero): \n");
+		output.append("\r\nCantidad de departamentos no Ideales:\r\n(Mismo Genero y Nacioanalidad o solo ordenados por genero): \r\n");
 		int NoIdealesFem=ningunoIdeal.size();
 		conteoFemeninos+=NoIdealesFem;
 		
-		output.append("Femeninos NO Ideales : "+NoIdealesFem+"\n");
+		output.append("Femeninos NO Ideales : "+NoIdealesFem+"\r\n");
 		
 		LimpiarAgregados();
 		
@@ -265,7 +270,7 @@ public class Solver
 		
 		int NoIdealesMasculinos=ningunoIdeal.size()-NoIdealesFem;
 		conteoMasculinos+=NoIdealesMasculinos;
-		output.append("Masculinos NO Ideales: "+NoIdealesMasculinos+"\n");
+		output.append("Masculinos NO Ideales: "+NoIdealesMasculinos+"\r\n");
 		LimpiarAgregados();
 		
 		output.append("La lista de NO ideales es :" +ningunoIdeal.size());
@@ -554,6 +559,36 @@ public class Solver
 	{
 		
 		return listaDepartamentos;
+	}
+
+	public String log()
+	{
+		StringBuilder retorno=new StringBuilder("");
+		retorno.append(new Date());
+		int i=1;
+		retorno.append(this.estadisticasFinales()+"\r\n\r\n");
+		for (Departamento depto :listaDepartamentos) 
+		{
+			
+			retorno.append("Departamento Nª"+i+"\r\n");
+			retorno.append(depto);
+			i++;
+			
+			toJson +=gson.toJson(depto);
+				if (i!=listaDepartamentos.size()-1)
+				{
+					toJson+=",\r\n";
+				}
+				i++;
+				
+			toJson+="]";
+		}
+		return retorno.toString();
+	}
+	
+	public String toJSon() 
+	{
+		return toJson;
 	}
 
 	

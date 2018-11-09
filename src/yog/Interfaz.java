@@ -28,6 +28,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
@@ -41,6 +42,7 @@ import com.mxrck.autocompleter.TextAutoCompleter;
 
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JViewport;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.ToolTipManager;
@@ -1067,6 +1069,8 @@ public class Interfaz {
 			
 			
 		JDialog dialog=new JDialog(frame,"Informacion de salida" );
+		dialog.setBounds(frame.getBounds());
+		
 		JTextArea info=new JTextArea();
 		info.setFocusable(false);
 	     info.setLineWrap(true);
@@ -1074,6 +1078,7 @@ public class Interfaz {
 		 info.setLocation(0,0);
 		 
 			JScrollPane	scroll2 = new JScrollPane(info);
+			scroll2.setAutoscrolls(false);
 			scroll2.setBounds(0, 0, 1000, 950);
 			scroll2.setBorder(new TitledBorder("Informacion Final: "));
 				scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -1081,15 +1086,135 @@ public class Interfaz {
 		dialog.add(scroll2);
 		
 		
-		dialog.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
+		dialog.addWindowListener(new WindowAdapter() 
+		{
+			public void windowClosing(WindowEvent e) 
+			{
+				
+				int i=JOptionPane.showConfirmDialog(dialog, "Desea guardar el infome final en informe.log");
+				
+				if (i==0) 
+				{
+					try 
+					{
+						save.guardarLog(solver.log());
+					} catch (Exception e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
+					fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+					
+					int seleccion= fc.showOpenDialog(selector);
+					 if (seleccion==JFileChooser.APPROVE_OPTION) 
+					  {
+						 File destino=fc.getSelectedFile();
+						 File fichero=new File("informe.log");
+						 
+						 
+						 Path origenPath = FileSystems.getDefault().getPath(fichero.getAbsolutePath());
+						 
+						
+					       Path destinoPath = FileSystems.getDefault().getPath(destino.getAbsolutePath()+"\\informe.log");
+					       
+					      System.out.println(origenPath.toString());
+						 System.out.println(destinoPath.toString());
+					        
+						 boolean continuar=true;
+						 
+						    if (fichero.exists()) 
+						   {
+						        try
+						        {
+						        	
+						        		
+						        		Files.move(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+						        	
+									
+									
+								} catch (IOException e1) 
+						        {
+									continuar=false;
+									JOptionPane.showMessageDialog(selector, "Se requieren permisos de administrador");
+								}finally
+								{
+									if (continuar)
+									{
+										JOptionPane.showMessageDialog(selector, "Se copio informe.log en: "+destinoPath.toString());
+									}
+									
+									
+								}
+						        
+						        
+						    } 
+						    
+					  }
+				}
 				frame.setVisible(true);
 				dialog.setVisible(false);
 			}
 		
-			public void windowClosed(WindowEvent e) {
+			public void windowClosed(WindowEvent e)
+			{
 				frame.setVisible(true);
 				dialog.setVisible(false);
+				
+				try 
+				{
+					save.guardarLog(solver.toJSon());
+				} catch (Exception e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				
+				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				
+				int seleccion= fc.showOpenDialog(selector);
+				 if (seleccion==JFileChooser.APPROVE_OPTION) 
+				  {
+					 File destino=fc.getSelectedFile();
+					 File fichero=new File("output.json");
+					 
+					 
+					 Path origenPath = FileSystems.getDefault().getPath(fichero.getAbsolutePath());
+					 
+					
+				       Path destinoPath = FileSystems.getDefault().getPath(destino.getAbsolutePath()+"\\output.json");
+				       
+				      System.out.println(origenPath.toString());
+					 System.out.println(destinoPath.toString());
+				        
+					 boolean continuar=true;
+					 
+					    if (fichero.exists()) 
+					   {
+					        try
+					        {
+					        	
+					        		
+					        		Files.move(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+					        	
+								
+								
+							} catch (IOException e1) 
+					        {
+								continuar=false;
+								JOptionPane.showMessageDialog(selector, "Se requieren permisos de administrador");
+							}finally
+							{
+								if (continuar)
+								{
+									JOptionPane.showMessageDialog(selector, "Se copio output.json en: "+destinoPath.toString());
+								}
+								
+								
+							}
+					        
+					        
+					    } 
+					    
+				  }
 			}
 		});
 			
@@ -1568,12 +1693,20 @@ public class Interfaz {
 				
 			for (Atleta a : solver.listaAtletas) 
 			{
-					System.out.println(a);
-					}
+				System.out.println(a);
+					
+			}
 			System.out.println("LA LISTA DE ATLETAS ES :"+solver.listaAtletas.size());
 			
+			info.setText(solver.log());
+			
+			
 			frame.setVisible(false);
+			
+			
 			dialog.setVisible(true);
+			
+			
 			}
 			
 			
