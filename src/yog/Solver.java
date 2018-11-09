@@ -1,10 +1,12 @@
 package yog;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.Locale;
 
 import com.google.gson.Gson;
 
@@ -564,7 +566,10 @@ public class Solver
 	public String log()
 	{
 		StringBuilder retorno=new StringBuilder("");
-		retorno.append(new Date());
+		 SimpleDateFormat formateador = new SimpleDateFormat(
+				   "dd 'de' MMMM 'de' yyyy 'a las' hh:mm:ss" , new Locale("es_ES"));
+		 Date date =new Date();
+		retorno.append(formateador.format(date));
 		int i=1;
 		retorno.append(this.estadisticasFinales()+"\r\n\r\n");
 		for (Departamento depto :listaDepartamentos) 
