@@ -1141,6 +1141,7 @@ public class Interfaz {
 									if (continuar)
 									{
 										JOptionPane.showMessageDialog(selector, "Se copio informe.log en: "+destinoPath.toString());
+										fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 									}
 									
 									
@@ -1211,7 +1212,9 @@ public class Interfaz {
 										if (continuar)
 										{
 											JOptionPane.showMessageDialog(selector, "Se copio output.json en: "+destinoPath.toString());
+											fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 											frame.dispose();
+											frame.hide();
 										}
 										
 										
@@ -1433,6 +1436,7 @@ public class Interfaz {
 			public void mouseReleased(MouseEvent e)
 			{
 				fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
+				
 				int seleccion= fc.showOpenDialog(selector);
 				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				 boolean continuar=true;
@@ -1671,6 +1675,8 @@ public class Interfaz {
 								if (continuar)
 								{
 									JOptionPane.showMessageDialog(selector, "Se copio el modelo de excel en "+destinoPath.toString());
+									fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+									
 								}
 								
 								
