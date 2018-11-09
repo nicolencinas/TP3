@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -125,6 +126,8 @@ public class Interfaz {
 	/**
 	 * Create the application.
 	 */
+	
+	
 	public Interfaz() 
 	{
 		initialize();
@@ -1063,9 +1066,32 @@ public class Interfaz {
 		 }
 			
 			
+		JDialog dialog=new JDialog(frame,"Informacion de salida" );
+		JTextArea info=new JTextArea();
+		info.setFocusable(false);
+	     info.setLineWrap(true);
+		 info.setSize(frame.getSize());
+		 info.setLocation(0,0);
+		 
+			JScrollPane	scroll2 = new JScrollPane(info);
+			scroll2.setBounds(0, 0, 1000, 950);
+			scroll2.setBorder(new TitledBorder("Informacion Final: "));
+				scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		
+		dialog.add(scroll2);
 		
 		
-			
+		dialog.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				frame.setVisible(true);
+				dialog.setVisible(false);
+			}
+		
+			public void windowClosed(WindowEvent e) {
+				frame.setVisible(true);
+				dialog.setVisible(false);
+			}
+		});
 			
 	   text.addKeyListener(new KeyAdapter() 
 	   {
@@ -1527,25 +1553,30 @@ public class Interfaz {
 				
 				asignar.setEnabled(false);
 				solver.resolvedor();
-				//addConsoleLine(solver.estadisticas());
+				
 				addConsoleLine(solver.estadisticasFinales());
 				
 				
-//				
+				int i=1;
 				for (Departamento de: solver.listaDepartamentos) 
 				{
-					System.out.println(de);
+					System.out.println("Departamento Nº"+i+"\n"+de);
+					i++;
 				}
 				
 				System.out.println("LA LISTA DE DEPARTAMENTOS ES: " + solver.listaDepartamentos.size());
 				
-//				for (Atleta a : solver.listaAtletas) 
-//				{
-//					System.out.println(a);
-//				}
-				System.out.println("LA LISTA DE ATLETAS ES :"+solver.listaAtletas.size());
-				
+			for (Atleta a : solver.listaAtletas) 
+			{
+					System.out.println(a);
+					}
+			System.out.println("LA LISTA DE ATLETAS ES :"+solver.listaAtletas.size());
+			
+			frame.setVisible(false);
+			dialog.setVisible(true);
 			}
+			
+			
 			
 		});
 		

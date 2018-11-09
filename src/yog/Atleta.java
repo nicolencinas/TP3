@@ -54,7 +54,7 @@ public class Atleta
 	
 	public String toString() 
 	{
-		return "Atleta: "+nombre +" Deporte: "+deporte+" Nacionalidad: "+nacionalidad + " Genero: "+genero;
+		return "Atleta: "+nombre +"\nDeporte: "+deporte+"\nNacionalidad: "+nacionalidad + "\nGenero: "+genero;
 	}
 	
 	public boolean mismoDeporte(Atleta at)

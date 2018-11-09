@@ -32,10 +32,12 @@ public class Departamento
 	
 	public String toString() 
 	{
+		
 		String re="";
 		for (Atleta a :dep) 
 		{
-			re+=a+"\n";
+			re+="\n"+a+"\n\n------------------\n";
+			
 		}
 		return re;
 	}

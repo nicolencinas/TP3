@@ -224,7 +224,7 @@ public class Solver
 		ordenarPorNacionalidad();
 		
 		crearAlmenosDos(femenino,0);
-		output.append("\nCantidad de departamentos con al menos dos ideales: \n");
+		output.append("\nCantidad de departamentos con mitad ideales: \n");
 		int AMDFemeninos=almenosDos.size();
 		conteoFemeninos+=AMDFemeninos;
 		output.append("Femeninos al menos dos: "+AMDFemeninos+"\n");
@@ -246,8 +246,38 @@ public class Solver
 		
 		completar();
 		
-		crearNoIdeales();
+		ordenarPorGenero();
+		repartirPorGenero();
+		ordenarPorNacionalidad();
 		
+		LimpiarAgregados();
+		crearNoIdeales(femenino);
+		
+		output.append("\nCantidad de departamentos no Ideales:\n(Mismo Genero y Nacioanalidad o solo ordenados por genero): \n");
+		int NoIdealesFem=ningunoIdeal.size();
+		conteoFemeninos+=NoIdealesFem;
+		
+		output.append("Femeninos NO Ideales : "+NoIdealesFem+"\n");
+		
+		LimpiarAgregados();
+		
+		crearNoIdeales (masculino);
+		
+		int NoIdealesMasculinos=ningunoIdeal.size()-NoIdealesFem;
+		conteoMasculinos+=NoIdealesMasculinos;
+		output.append("Masculinos NO Ideales: "+NoIdealesMasculinos+"\n");
+		LimpiarAgregados();
+		
+		output.append("La lista de NO ideales es :" +ningunoIdeal.size());
+		
+		
+		ordenarPorGenero();
+		repartirPorGenero();
+		ordenarPorNacionalidad();
+		
+		CrearDeptosEspeciales(femenino);
+		CrearDeptosEspeciales(masculino);
+		LimpiarAgregados();
 		
 		
 		
@@ -259,8 +289,52 @@ public class Solver
 
 	}
 	
-	private void crearNoIdeales() 
+	
+	
+
+
+
+	private void CrearDeptosEspeciales(LinkedList<Atleta> atletas)
 	{
+		
+			Departamento depto=new Departamento();
+			for (Atleta a : atletas)
+			{
+				depto.agregarAtleta(a);
+				System.out.println(a);
+				
+			}
+			
+			
+			listaDepartamentos.add(depto);
+			
+		
+	
+	}
+
+	private void crearNoIdeales(LinkedList <Atleta> atletas) 
+	{
+		int i=0;
+		while (i<atletas.size()-3 )
+		{
+			Departamento depto=new Departamento();
+			depto.agregarAtleta(atletas.get(i));
+			depto.agregarAtleta(atletas.get(i+1));
+			depto.agregarAtleta(atletas.get(i+2));
+			depto.agregarAtleta(atletas.get(i+3));
+			
+			ningunoIdeal.add(depto);
+			i+=4;
+			
+		}
+		
+		for (Departamento d: ningunoIdeal) 
+		{
+			if (!listaDepartamentos.contains(d))
+			listaDepartamentos.add(d);
+		}
+		
+		
 		
 		
 	}
@@ -292,15 +366,25 @@ public class Solver
 		
 		for (int i=0;i<2;i++)
 		{
+			Atleta a=null;
 			for (Departamento d: almenosDos) 
 			{
-			Atleta a=mejorCandidato(d);
+			 a=mejorCandidato(d);
 			if (a!=null)
 			{
 				d.agregarAtleta(a);
 				
 			}
-			else d.agregarAtleta(candidatoPordeporte(d));
+			else 
+			{
+				a=candidatoPordeporte(d);
+				if (a!=null) 
+				{
+				d.agregarAtleta(a);	
+				}
+				else d.agregarAtleta(candidatoPorGenero(d));
+			}
+				
 			}
 			
 		}
@@ -309,6 +393,22 @@ public class Solver
 		
 	}
 	
+	private Atleta candidatoPorGenero(Departamento d) 
+	{
+		for (Atleta a: listaAtletas) 
+		{
+			if (d.getIntegrantes().get(0).mismoGenero(a))
+			{
+				Atleta ret=a;
+				listaAtletas.remove(a);
+				return ret;
+				
+			}
+		}
+		return null;
+		
+	}
+
 	private Atleta candidatoPordeporte(Departamento d) 
 	{
 		
@@ -337,17 +437,6 @@ public class Solver
 				
 			}
 		}
-		
-//		for (Atleta a: listaAtletas) 
-//		{
-//			if (d.getIntegrantes().get(0).mismoDeporte(a) && d.getIntegrantes().get(0).mismoGenero(a))
-//			{
-//				Atleta ret=a;
-//				listaAtletas.remove(a);
-//				return ret;
-//				
-//			}
-//		}
 		return null;
 		
 	}
@@ -399,19 +488,6 @@ public class Solver
 	public void crearMayorias(LinkedList<Atleta> atletas, int j)
 	{
 		int i=0;
-		int fin=0;
-		int conteo=0;
-		if (j==0) 
-		{
-			fin=deptosFemeninos;
-			conteo=conteoFemeninos;
-			
-		}
-		else
-		{
-			fin=deptosMasculinos;
-			conteo=conteoMasculinos;
-		}
 		
 		while (i<atletas.size()-2)
 		{
@@ -442,21 +518,7 @@ public class Solver
 	
 	public void crearAlmenosDos(LinkedList<Atleta> atletas, int j)
 	{
-		int i=0;
-		int fin=0;
-		int conteo=0;
-		if (j==0) 
-		{
-			fin=deptosFemeninos;
-			conteo=conteoFemeninos;
-			
-		}
-		else
-		{
-			fin=deptosMasculinos;
-			conteo=conteoMasculinos;
-		}
-		
+		int i=0;		
 		while (i<atletas.size()-1)
 		{
 			
