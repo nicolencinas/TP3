@@ -1085,6 +1085,87 @@ public class Interfaz {
 		
 		dialog.add(scroll2);
 		
+		JButton guardar=new JButton("Guardar JSon");
+		
+		guardar.setText("Guardar Json");
+		guardar.setLocation(asignar.getLocation());
+		guardar.setSize(120,20);
+		guardar.setForeground(Color.BLUE);
+		guardar.setEnabled(false);
+		guardar.setVisible(false);
+		frame.add(guardar);
+		
+		guardar.addActionListener(new ActionListener() 
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				try 
+				{
+					save.guardar(solver.toJSon());
+				} catch (Exception e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				
+				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				
+				int seleccion= fc.showOpenDialog(selector);
+				 if (seleccion==JFileChooser.APPROVE_OPTION) 
+				  {
+					 File destino=fc.getSelectedFile();
+					 File fichero=new File("output.json");
+					 
+					 
+					 Path origenPath = FileSystems.getDefault().getPath(fichero.getAbsolutePath());
+					 
+					
+				       Path destinoPath = FileSystems.getDefault().getPath(destino.getAbsolutePath()+"\\output.json");
+				       
+				      System.out.println(origenPath.toString());
+					 System.out.println(destinoPath.toString());
+				        
+					 boolean continuar=true;
+					 
+					    if (fichero.exists()) 
+					   {
+					        try
+					        {
+					        	
+					        		
+					        		Files.move(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+					        	
+								
+								
+							} catch (IOException e1) 
+					        {
+								continuar=false;
+								JOptionPane.showMessageDialog(selector, "Se requieren permisos de administrador");
+							}finally
+							{
+								if (continuar)
+								{
+									JOptionPane.showMessageDialog(selector, "Se copio output.json en: "+destinoPath.toString());
+									fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+									
+								}
+								
+								
+							}
+					        
+					        
+					    } 
+					  
+									
+					    
+				  }
+				  
+				
+			}
+			
+		});
+		
 		
 		dialog.addWindowListener(new WindowAdapter() 
 		{
@@ -1153,81 +1234,13 @@ public class Interfaz {
 					  }
 				}
 				frame.setVisible(true);
+				frame.remove(asignar);
 				dialog.setVisible(false);
+				guardar.setEnabled(true);
+				guardar.setVisible(true);
 				
-				asignar.setText("Guardar Json");
-				asignar.setSize(120,20);
-				asignar.setForeground(Color.BLUE);
-				asignar.setEnabled(true);
-				asignar.invalidate();
-				asignar.addActionListener(new ActionListener() 
-				{
-
-					@Override
-					public void actionPerformed(ActionEvent arg0) 
-					{
-						try 
-						{
-							save.guardar(solver.toJSon());
-						} catch (Exception e2) {
-							// TODO Auto-generated catch block
-							e2.printStackTrace();
-						}
-						
-						fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-						
-						int seleccion= fc.showOpenDialog(selector);
-						 if (seleccion==JFileChooser.APPROVE_OPTION) 
-						  {
-							 File destino=fc.getSelectedFile();
-							 File fichero=new File("output.json");
-							 
-							 
-							 Path origenPath = FileSystems.getDefault().getPath(fichero.getAbsolutePath());
-							 
-							
-						       Path destinoPath = FileSystems.getDefault().getPath(destino.getAbsolutePath()+"\\output.json");
-						       
-						      System.out.println(origenPath.toString());
-							 System.out.println(destinoPath.toString());
-						        
-							 boolean continuar=true;
-							 
-							    if (fichero.exists()) 
-							   {
-							        try
-							        {
-							        	
-							        		
-							        		Files.move(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
-							        	
-										
-										
-									} catch (IOException e1) 
-							        {
-										continuar=false;
-										JOptionPane.showMessageDialog(selector, "Se requieren permisos de administrador");
-									}finally
-									{
-										if (continuar)
-										{
-											JOptionPane.showMessageDialog(selector, "Se copio output.json en: "+destinoPath.toString());
-											fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-											frame.dispose();
-											frame.hide();
-										}
-										
-										
-									}
-							        
-							        
-							    } 
-							    
-						  }
-						
-					}
-					
-				});
+				
+				
 			}
 		
 			public void windowClosed(WindowEvent e)
