@@ -584,7 +584,7 @@ public class Solver
 				{
 					toJson+=",\r\n";
 				}
-				i++;
+				
 				
 			toJson+="]";
 		}
