@@ -1275,32 +1275,8 @@ public class Interfaz {
 	   {
  			public void keyReleased(KeyEvent e)
  			{
-// 					Pattern pat= Pattern.compile(text.getText());
-//					
-//					Matcher mat=pat.matcher(paises[0]);
-//					
-//					//popup.setVisible(true);
-//					popup=null;
-//					popup=new JPopupMenu();
-//					popup.setLocation(1000,100);
-//					
-//					for (int i=0;i<paises.length;i++)
-//					{
-//						mat=pat.matcher(paises[i]);
-//						
-//						if (mat.find())
-//						{
-//							System.out.println (paises[i]);
-//							
-//							
-//							popup.add((paises[i]));
-//							
-//						}
-//					}
-//					popup.updateUI();
-//					popup.setVisible(true);
- 				
-					
+
+ 		
  				if (e.getKeyCode()==KeyEvent.VK_ENTER) 
  				{
  					String value = text.getText();
@@ -1484,8 +1460,6 @@ public class Interfaz {
 
 					  String extension=jsonFile.substring(jsonFile.lastIndexOf(".") +1);
 					 
-					  System.out.println(tipoArchivo);
-					  System.out.println(extension);
 					  if (!extension.equals(tipoArchivo))
 					  {
 						  continuar=false;
@@ -1524,7 +1498,6 @@ public class Interfaz {
 							    }
 							    
 							     json=save.jsonFromExcel(fichero.getAbsoluteFile().getName());
-							    System.out.println(json);
 						  }
 							  
 							 
@@ -1674,8 +1647,6 @@ public class Interfaz {
 					
 				       Path destinoPath = FileSystems.getDefault().getPath(destino.getAbsolutePath()+"\\Modelo Atletas.xlsx");
 				       
-				      System.out.println(origenPath.toString());
-					 System.out.println(destinoPath.toString());
 				        
 					 boolean continuar=true;
 					 
@@ -1738,22 +1709,6 @@ public class Interfaz {
 				
 				addConsoleLine(solver.estadisticasFinales());
 				
-				
-				int i=1;
-				for (Departamento de: solver.listaDepartamentos) 
-				{
-					System.out.println("Departamento Nº"+i+"\n"+de);
-					i++;
-				}
-				
-				System.out.println("LA LISTA DE DEPARTAMENTOS ES: " + solver.listaDepartamentos.size());
-				
-			for (Atleta a : solver.listaAtletas) 
-			{
-				System.out.println(a);
-					
-			}
-			System.out.println("LA LISTA DE ATLETAS ES :"+solver.listaAtletas.size());
 			
 			info.setText(solver.log());
 			
