@@ -1132,17 +1132,8 @@ public class Interfaz {
 					   {
 					        try
 					        {
-					        	
-					        		if (new File(destinoPath.toString()).exists()) 
-					        		{
-					        			int i=JOptionPane.showConfirmDialog(selector, "El archivo ya existe en el directorio seleccionado,  \n¿Desea sobreescribirlo?");
-					        			if (i==0) Files.move(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
-					        			else continuar=false;
-					        		}
-					        		
-					        	
-								
-								
+					        	Files.move(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+	
 							} catch (IOException e1) 
 					        {
 								continuar=false;
@@ -1220,17 +1211,9 @@ public class Interfaz {
 						   {
 						        try
 						        {
-						        	
-						        		
-						        	if (new File(destinoPath.toString()).exists()) 
-					        		{
-					        			int f=JOptionPane.showConfirmDialog(selector, "El archivo ya existe en el directorio seleccionado,  \n¿Desea sobrescribirlo?");
-					        			if (f==0) Files.move(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
-					        			else continuar=false;
-					        		}
-						        	
-									
-									
+					
+						       Files.move(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+	
 								} catch (IOException e1) 
 						        {
 									continuar=false;
@@ -1670,13 +1653,8 @@ public class Interfaz {
 					        	if (eleccion==0)
 					        	{
 					        		
-					        		if (new File(destinoPath.toString()).exists()) 
-					        		{
-					        			int i=JOptionPane.showConfirmDialog(selector, "El archivo ya existe en el directorio seleccionado,  \n¿Desea sobrescribirlo?");
-					        			if (i==0) Files.copy(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
-					        			else continuar=false;
-					        		}
-					        		
+					        		 Files.copy(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+					
 					        		
 					        	}
 					        	else
