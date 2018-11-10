@@ -577,17 +577,21 @@ public class Solver
 			
 			retorno.append("Departamento Nª"+i+"\r\n");
 			retorno.append(depto);
-			i++;
+			
 			
 			toJson +=gson.toJson(depto);
-				if (i!=listaDepartamentos.size()-1)
+				if (i!=listaDepartamentos.size())
 				{
 					toJson+=",\r\n";
 				}
 				
-				
-			toJson+="]";
+				toJson+="\r\n";
+			i++;	
+			
 		}
+		toJson+="]";
+		
+		
 		return retorno.toString();
 	}
 	
