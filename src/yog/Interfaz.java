@@ -1133,8 +1133,13 @@ public class Interfaz {
 					        try
 					        {
 					        	
+					        		if (new File(destinoPath.toString()).exists()) 
+					        		{
+					        			int i=JOptionPane.showConfirmDialog(selector, "El archivo ya existe en el directorio seleccionado,  \n¿Desea sobreescribirlo?");
+					        			if (i==0) Files.move(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+					        			else continuar=false;
+					        		}
 					        		
-					        		Files.move(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
 					        	
 								
 								
@@ -1146,7 +1151,7 @@ public class Interfaz {
 							{
 								if (continuar)
 								{
-									JOptionPane.showMessageDialog(selector, "Se copio output.json en: "+destinoPath.toString());
+									JOptionPane.showMessageDialog(selector, "Se creo el archivo output.json en: "+destinoPath.toString());
 									
 									
 									
@@ -1217,7 +1222,12 @@ public class Interfaz {
 						        {
 						        	
 						        		
-						        		Files.move(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+						        	if (new File(destinoPath.toString()).exists()) 
+					        		{
+					        			int f=JOptionPane.showConfirmDialog(selector, "El archivo ya existe en el directorio seleccionado,  \n¿Desea sobrescribirlo?");
+					        			if (f==0) Files.move(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+					        			else continuar=false;
+					        		}
 						        	
 									
 									
@@ -1229,7 +1239,7 @@ public class Interfaz {
 								{
 									if (continuar)
 									{
-										JOptionPane.showMessageDialog(selector, "Se copio informe.log en: "+destinoPath.toString());
+										JOptionPane.showMessageDialog(selector, "Se creo el archivo informe.log en: "+destinoPath.toString());
 										fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 									}
 									
@@ -1443,9 +1453,10 @@ public class Interfaz {
 			public void mouseReleased(MouseEvent e)
 			{
 				fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
+				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				
 				int seleccion= fc.showOpenDialog(selector);
-				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				
 				 boolean continuar=true;
 				 
 			
@@ -1659,7 +1670,14 @@ public class Interfaz {
 					        	if (eleccion==0)
 					        	{
 					        		
-					        		Files.copy(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+					        		if (new File(destinoPath.toString()).exists()) 
+					        		{
+					        			int i=JOptionPane.showConfirmDialog(selector, "El archivo ya existe en el directorio seleccionado,  \n¿Desea sobrescribirlo?");
+					        			if (i==0) Files.copy(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
+					        			else continuar=false;
+					        		}
+					        		
+					        		
 					        	}
 					        	else
 					        	{
