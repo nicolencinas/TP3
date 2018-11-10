@@ -1149,6 +1149,7 @@ public class Interfaz {
 									JOptionPane.showMessageDialog(selector, "Se copio output.json en: "+destinoPath.toString());
 									fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 									
+									
 								}
 								
 								
@@ -1159,7 +1160,13 @@ public class Interfaz {
 					  
 									
 					    
+				  }else 
+				  {
+					  File fichero=new File("output.json");
+					  if (fichero.exists())
+						  fichero.delete();
 				  }
+				 
 				  
 				
 			}
@@ -1232,7 +1239,16 @@ public class Interfaz {
 						    } 
 						    
 					  }
-				}
+					 
+					else 
+						  {
+							  File fichero=new File("output.json");
+							  if (fichero.exists())
+								  fichero.delete();
+						  }
+					 }
+					 
+				
 				frame.setVisible(true);
 				frame.remove(asignar);
 				dialog.setVisible(false);
