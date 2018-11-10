@@ -294,7 +294,7 @@ public class Interfaz {
 	
 		JMenuItem modelo=new JMenuItem("Modelo de excel...");
 		herramientas.add(modelo);
-		modelo.setMnemonic(KeyEvent.VK_O);
+		modelo.setMnemonic('o');
 		
 		
 			
