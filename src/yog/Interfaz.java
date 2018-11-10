@@ -1147,7 +1147,7 @@ public class Interfaz {
 								if (continuar)
 								{
 									JOptionPane.showMessageDialog(selector, "Se copio output.json en: "+destinoPath.toString());
-									fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+									
 									
 									
 								}
@@ -1160,13 +1160,14 @@ public class Interfaz {
 					  
 									
 					    
-				  }else 
+				  }
+				 else 
 				  {
 					  File fichero=new File("output.json");
 					  if (fichero.exists())
 						  fichero.delete();
 				  }
-				 
+				 fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				  
 				
 			}
@@ -1247,6 +1248,7 @@ public class Interfaz {
 								  fichero.delete();
 						  }
 					 }
+				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 					 
 				
 				frame.setVisible(true);
@@ -1704,7 +1706,7 @@ public class Interfaz {
 								if (continuar)
 								{
 									JOptionPane.showMessageDialog(selector, "Se copio el modelo de excel en "+destinoPath.toString());
-									fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+									
 									
 								}
 								
@@ -1716,8 +1718,9 @@ public class Interfaz {
 					    
 				  }
 					 
-					 
+					 fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				  }
+			
 					  
 				
 			
