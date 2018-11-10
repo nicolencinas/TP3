@@ -286,19 +286,21 @@ public class Interfaz {
 		Image icon3=new ImageIcon("maximize.png").getImage();
 		JMenuItem itemMax=new JMenuItem("Maximizar",new ImageIcon(icon3.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
 		
-		JMenu menu2=new JMenu("Herramientas");
-		menu2.setMnemonic('h');
+		JMenu herramientas=new JMenu("Herramientas");
+		herramientas.setMnemonic('h');
+		
 		JCheckBoxMenuItem jcheckBox= new JCheckBoxMenuItem("Desactivar Animaciones");
 		jcheckBox.setMnemonic('d');
 	
 		JMenuItem modelo=new JMenuItem("Modelo de excel...");
-		menu2.add(modelo);
+		herramientas.add(modelo);
+		modelo.setMnemonic(KeyEvent.VK_O);
 		
 		
 			
 		
-		JMenu menu3=new JMenu("Tipo de archivo");
-		menu3.setMnemonic('t');
+		JMenu type=new JMenu("Tipo de archivo");
+		type.setMnemonic('t');
 		
 		Image icon4=new ImageIcon("excel.png").getImage();
 		JRadioButtonMenuItem excel= new JRadioButtonMenuItem("Excel",new ImageIcon(icon4.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
@@ -391,17 +393,17 @@ public class Interfaz {
 		});
 		
 		
-		menu3.add(json);
-		menu3.add(excel);
+		type.add(json);
+		type.add(excel);
 		
 		menu.add(itemMax);
 		menu.add(itemMin);
 		itemMax.setEnabled(false);
 		menu.add(itemCerrar);
-		menu2.add(jcheckBox);
+		herramientas.add(jcheckBox);
 		menubar.add(menu);
-		menubar.add(menu2);
-		menubar.add(menu3);
+		menubar.add(herramientas);
+		menubar.add(type);
 		
 		menubar.add(Box.createHorizontalGlue());
 		menubar.add(check);
