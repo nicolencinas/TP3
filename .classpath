@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="poi-ooxml-schemas-3.16.jar"/>
 	<classpathentry kind="lib" path="xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="lib" path="AutoCompleter.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

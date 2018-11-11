@@ -154,11 +154,14 @@ public class Solver
 	}
 
 	//duplicamos el array original 
-	public ArrayList<Atleta> duplicarListaAtletas() 
+	public ArrayList<Atleta> duplicarListaAtletas()
 	{
-		Collections.copy(temp, listaAtletas);
+		
+		for (Atleta a:listaAtletas)
+			temp.add(a);
 		return temp;
-	}
+		}
+
 
 	//llena el array femenino con atletas femaninas y array masculino con altetas masculinos
 	public void repartirPorGenero()
@@ -358,6 +361,11 @@ public class Solver
 		}
 	}
 	
+	public ArrayList<Atleta> getListaAtletas()
+	{
+		return listaAtletas;
+		
+	}
 	private void completar() 
 	{
 		for (Departamento d: mayorias) 
@@ -598,6 +606,23 @@ public class Solver
 	public String toJSon() 
 	{
 		return toJson;
+	}
+
+	public LinkedList<Atleta> getFemenino()
+	{
+		return femenino;
+		
+	}
+
+	public LinkedList <Atleta> getMasculino() 
+	{
+		return masculino;
+		
+	}
+
+	public ArrayList <Atleta> getTemp() 
+	{
+		return temp;
 	}
 
 	
