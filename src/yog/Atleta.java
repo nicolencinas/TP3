@@ -11,9 +11,10 @@ public class Atleta
 	public Atleta(String nombre,String genero,String deporte,String nacionalidad)
 	{
 		this.nombre=nombre;
-		this.nacionalidad=nacionalidad;
-		this.deporte=deporte;
 		this.genero=genero;
+		this.deporte=deporte;
+		this.nacionalidad=nacionalidad;
+		
 	}
 	
 	//getters y setters
@@ -54,7 +55,7 @@ public class Atleta
 	
 	public String toString() 
 	{
-		return "Atleta: "+nombre +"\r\nDeporte: "+deporte+"\r\nNacionalidad: "+nacionalidad + "\r\nGenero: "+genero;
+		return "Atleta: "+nombre + "\r\nGenero: "+genero+"\r\nDeporte: "+deporte+"\r\nNacionalidad: "+nacionalidad ;
 	}
 	
 	public boolean mismoDeporte(Atleta at)
