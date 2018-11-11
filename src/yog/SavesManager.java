@@ -210,7 +210,7 @@ public class SavesManager
 		String linea="";
 	
 	File f = new File(path); 
-	System.out.println(f.getAbsolutePath());
+
 	
 	if (f.exists())  
 	{

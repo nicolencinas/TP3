@@ -311,8 +311,7 @@ public class Solver
 			for (Atleta a : atletas)
 			{
 				depto.agregarAtleta(a);
-				System.out.println(a);
-				
+
 			}
 			
 			

@@ -341,7 +341,6 @@ public class Interfaz {
 					
 					tipoArchivo="json";
 					
-					System.out.println(tipoArchivo);
 					archivojson=true;
 					excel.setSelected(false);
 					 
@@ -900,8 +899,6 @@ public class Interfaz {
 					
 				       Path destinoPath = FileSystems.getDefault().getPath(destino.getAbsolutePath()+"\\output.json");
 				       
-				      System.out.println(origenPath.toString());
-					 System.out.println(destinoPath.toString());
 				        
 					 boolean continuar=true;
 					 
@@ -979,8 +976,6 @@ public class Interfaz {
 						
 					       Path destinoPath = FileSystems.getDefault().getPath(destino.getAbsolutePath()+"\\informe.log");
 					       
-					      System.out.println(origenPath.toString());
-						 System.out.println(destinoPath.toString());
 					        
 						 boolean continuar=true;
 						 
