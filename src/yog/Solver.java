@@ -455,7 +455,7 @@ public class Solver
 		
 	}
 
-	private boolean sonTodosIguales(int inicio,int fin,LinkedList <Atleta> atletas) 
+	private boolean sonTodosIdeales(int inicio,int fin,LinkedList <Atleta> atletas) 
 	{
 		boolean retorno=true; 
 		for (int i=inicio;i<fin;i++) 
@@ -473,7 +473,7 @@ public class Solver
 		while (i<atletas.size()-3 )
 		{
 			
-				if (sonTodosIguales(i,i+3,atletas))
+				if (sonTodosIdeales(i,i+3,atletas))
 				{
 					Departamento depto=new Departamento();
 					depto.agregarAtleta(atletas.get(i));
@@ -506,7 +506,7 @@ public class Solver
 		while (i<atletas.size()-2)
 		{
 			
-				if (sonTodosIguales(i,i+2,atletas))
+				if (sonTodosIdeales(i,i+2,atletas))
 				{
 					Departamento depto=new Departamento();
 					depto.agregarAtleta(atletas.get(i));
@@ -564,7 +564,7 @@ public class Solver
 		return output.toString();
 	}
 
-	public Object getlistaDepartamentos()
+	public ArrayList<Departamento> getlistaDepartamentos()
 	{
 		
 		return listaDepartamentos;
