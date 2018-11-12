@@ -71,6 +71,7 @@ public class Interfaz {
 	
 	private StringBuilder consoleOut=new StringBuilder();
 	private boolean adminRights=true;
+	private boolean finalizado=false;
 	
 	
 	//Logica del solver
@@ -285,7 +286,10 @@ public class Interfaz {
 	
 		JMenuItem modelo=new JMenuItem("Modelo de excel...");
 		herramientas.add(modelo);
-		modelo.setMnemonic('o');
+		modelo.setMnemonic('x');
+		
+		JMenuItem output=new JMenuItem("Visualizar output.json");
+		herramientas.add(output);
 		
 		
 			
@@ -848,6 +852,7 @@ public class Interfaz {
 			
 		JDialog dialog=new JDialog(frame,"Informacion de salida" );
 		dialog.setBounds(frame.getBounds());
+		dialog.setModal(true);
 		
 		JTextArea info=new JTextArea();
 		info.setFocusable(false);
@@ -1020,10 +1025,15 @@ public class Interfaz {
 					 
 				
 				frame.setVisible(true);
-				frame.remove(asignar);
 				dialog.setVisible(false);
+				if (finalizado) 
+				{
+					frame.remove(asignar);
+				
 				guardar.setEnabled(true);
 				guardar.setVisible(true);
+				}
+				
 				
 				
 				
@@ -1280,6 +1290,11 @@ public class Interfaz {
 					try 
 					{
 						 atletas= gson.fromJson(json, Atleta[].class );
+						 if (atletas[0].equals("")) 
+						 {
+							 continuar=false;
+							 JOptionPane.showMessageDialog(selector, "El Json cargado no posee el formato esperado" , "Illegal State Exception:", JOptionPane.ERROR_MESSAGE);
+						 }
 						 
 						 
 					}
@@ -1473,6 +1488,84 @@ public class Interfaz {
 			
 			
 		});
+		
+		output.addActionListener(new ActionListener() 
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				boolean continuar=true;
+				int seleccion= fc.showOpenDialog(selector);
+				Departamento[] deptos=null;
+				  if (seleccion==JFileChooser.APPROVE_OPTION) 
+				  {
+					  File fichero=fc.getSelectedFile();
+					  String js=fichero.getAbsolutePath();
+					   String json="";
+					  if (tipoArchivo.equals("json"))
+						 
+							json=save.cargar(fichero.getAbsolutePath()); 
+					  
+					  
+					  String extension=js.substring(js.lastIndexOf(".") +1);
+						 
+					  if (!extension.equals("json"))
+					  {
+						  continuar=false;
+						  JOptionPane.showMessageDialog(selector, "No se admiten archivos con formato : "+ extension.toUpperCase(), "Archive's extension not Supported", JOptionPane.ERROR_MESSAGE);
+						  addConsoleLine(">>Archive's extension not Supported Exception<<<");
+						  addConsoleLine("No se admiten archivos con formato '"+extension.toUpperCase()+"'\n");
+						  fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
+					  }
+					  
+						Gson gson=new Gson();
+						
+						try 
+						{
+							 deptos= gson.fromJson(json, Departamento[].class );
+							 
+							 if (deptos[0].toString().equals("")) 
+							 {
+								 JOptionPane.showMessageDialog(selector, "El Json cargado no posee el formato esperado" , "Illegal State Exception:", JOptionPane.ERROR_MESSAGE);
+								 continuar=false;
+							 }
+							 
+							 
+						}
+						catch (Exception r) 
+						{
+							continuar=false;
+							JOptionPane.showMessageDialog(selector, "Gson Error: "+r.getCause().getMessage()+" \n No se puede transformar el json en una lista de atletas", "Illegal State Exception:", JOptionPane.ERROR_MESSAGE);
+							addConsoleLine(">>"+r.getCause().getMessage()+"<<");
+							addConsoleLine("Error al transformar el archivo json");
+							fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
+						}
+						
+						if (continuar) 
+						{
+							String in="";
+							int i=1;
+							for (Departamento dep : deptos) 
+							{
+								in+="Departamento Nª "+i+"\n"+dep.toString()+"\n";
+								i++;
+							}
+							
+							info.setText(in);
+							
+							
+							frame.setVisible(false);
+							
+							
+							dialog.setVisible(true);
+						}
+					  
+				  }
+					  
+			}
+			
+		});
 		asignar.addActionListener(new ActionListener() 
 		{
 
@@ -1481,6 +1574,7 @@ public class Interfaz {
 			{
 				
 				asignar.setEnabled(false);
+				finalizado=true;
 				solver.resolvedor();
 				
 				addConsoleLine(solver.estadisticasFinales());
