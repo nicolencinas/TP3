@@ -1011,7 +1011,7 @@ public class Interfaz {
 					 
 					else 
 						  {
-							  File fichero=new File("output.json");
+							  File fichero=new File("informe.log");
 							  if (fichero.exists())
 								  fichero.delete();
 						  }
