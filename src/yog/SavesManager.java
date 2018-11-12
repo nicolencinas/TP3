@@ -22,7 +22,6 @@ public class SavesManager
 
 	private FileWriter fw=null;
 	private ArrayList<String> list;
-	private StringBuilder retorno;
 	private String elem;
 	private Integer contador=0;
 	

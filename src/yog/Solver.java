@@ -23,11 +23,7 @@ public class Solver
 	private ArrayList<Atleta> temp = new ArrayList<Atleta>();
 	private String toJson="[";
 	private Gson gson=new Gson();
-	int totalDeptos=0;
-	int deptosFemeninos=0;
-	int deptosMasculinos=0;
-	int conteoFemeninos=0;
-	int conteoMasculinos=0;
+	private int totalDeptos=0;
 	StringBuilder output= new StringBuilder("\r\nInformacion de las habitaciones: \r\n");
 	
 	SavesManager save=new SavesManager();
@@ -197,13 +193,11 @@ public class Solver
 		
 		output.append("\r\nCantidad de departamentos ideales \r\n(Mismo Genero,Nacioanalidad y deporte): \r\n\r\n");
 		int IdealesFemeninos=ideales.size();
-		conteoFemeninos+=IdealesFemeninos;
 		output.append("Femeninos ideales :"+IdealesFemeninos+"\r\n");
 		
 		crearIdeales(masculino);
 		
 		int IdealesMasculinos=ideales.size()-IdealesFemeninos;
-		conteoMasculinos+=IdealesMasculinos;
 		output.append("Masculinos ideales: "+IdealesMasculinos+"\r\n");
 		output.append("Ideales totales: "+ideales.size()+"\r\n");
 	
@@ -217,13 +211,11 @@ public class Solver
 		
 		output.append("\r\nCantidad de departamentos con mayoria ideales: \r\n");
 		int MayoriaFemeninos=mayorias.size();
-		conteoFemeninos+=MayoriaFemeninos;
 		output.append("Femeninos mayoria: "+MayoriaFemeninos+"\r\n");
 		
 		crearMayorias (masculino,1);
 		
 		int MayoriaMasculinos=mayorias.size()-MayoriaFemeninos;
-		conteoMasculinos+=MayoriaMasculinos;
 		output.append("Masculinos mayoria: "+MayoriaMasculinos+"\r\n");
 		output.append("Mayorias totales: "+mayorias.size()+"\r\n");
 		
@@ -236,13 +228,11 @@ public class Solver
 		crearAlmenosDos(femenino,0);
 		output.append("\nCantidad de departamentos con mitad ideales: \r\n");
 		int AMDFemeninos=almenosDos.size();
-		conteoFemeninos+=AMDFemeninos;
 		output.append("Femeninos al menos dos: "+AMDFemeninos+"\r\n");
 		
 		crearAlmenosDos(masculino,1);
 		
 		int AMDMasculinos=almenosDos.size()-AMDFemeninos;
-		conteoMasculinos+=AMDMasculinos;
 		output.append("Masculinos al menos dos: "+AMDMasculinos+"\r\n");
 		
 		output.append("Al menos dos totales: "+almenosDos.size()+"\r\n");
@@ -265,7 +255,6 @@ public class Solver
 		
 		output.append("\r\nCantidad de departamentos no Ideales:\r\n(Mismo Genero y Nacioanalidad o solo ordenados por genero): \r\n");
 		int NoIdealesFem=ningunoIdeal.size();
-		conteoFemeninos+=NoIdealesFem;
 		
 		output.append("Femeninos NO Ideales : "+NoIdealesFem+"\r\n");
 		
@@ -274,7 +263,6 @@ public class Solver
 		crearNoIdeales (masculino);
 		
 		int NoIdealesMasculinos=ningunoIdeal.size()-NoIdealesFem;
-		conteoMasculinos+=NoIdealesMasculinos;
 		output.append("Masculinos NO Ideales: "+NoIdealesMasculinos+"\r\n");
 		LimpiarAgregados();
 		
