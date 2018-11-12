@@ -186,7 +186,7 @@ public class Solver
 	}
 //falta transformar el json en arraylist
 	
-	public void resolvedor()
+	public void aplicarSolucion()
 	{
 		
 		ordenarPorGenero();

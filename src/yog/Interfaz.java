@@ -1586,7 +1586,7 @@ public class Interfaz {
 				
 				asignar.setEnabled(false);
 				finalizado=true;
-				solver.resolvedor();
+				solver.aplicarSolucion();
 				
 				addConsoleLine(solver.estadisticasFinales());
 				
