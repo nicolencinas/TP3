@@ -1277,7 +1277,7 @@ public class Interfaz {
 							    }
 							    
 							     json=save.jsonFromExcel(fichero.getAbsoluteFile().getName());
-							     System.out.println(json);
+							     
 						  }
 							  
 							 
