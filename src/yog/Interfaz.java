@@ -1085,7 +1085,7 @@ public class Interfaz {
  					else 
  					{
  						render.setInput("");
- 						JOptionPane.showMessageDialog(frame, "No se encontraron resultados para: '"+value+"'");
+ 						JOptionPane.showMessageDialog(frame, "No se encontraron resultados para: '"+value+"'","Busqueda para "+value, JOptionPane.ERROR_MESSAGE, null);
  						addConsoleLine(">>Search content Exception<<");
  						addConsoleLine( "No se encontraron resultados para: "+value+"\n");
  					    text.setText("");
