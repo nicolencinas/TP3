@@ -288,7 +288,7 @@ public class Interfaz {
 		herramientas.add(modelo);
 		modelo.setMnemonic('x');
 		
-		JMenuItem output=new JMenuItem("Visualizar output.json");
+		JMenuItem output=new JMenuItem("Visualizar output.json...");
 		herramientas.add(output);
 		
 		
@@ -1495,20 +1495,29 @@ public class Interfaz {
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
+				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				 fc.resetChoosableFileFilters();
+				 FileNameExtensionFilter filtro2= new FileNameExtensionFilter("JavaScript Object Notation File", "json", "JSON"); 
+				fc.setFileFilter(filtro2);
+				
 				boolean continuar=true;
 				int seleccion= fc.showOpenDialog(selector);
 				Departamento[] deptos=null;
+				 
+					
 				  if (seleccion==JFileChooser.APPROVE_OPTION) 
 				  {
 					  File fichero=fc.getSelectedFile();
 					  String js=fichero.getAbsolutePath();
 					   String json="";
-					  if (tipoArchivo.equals("json"))
-						 
-							json=save.cargar(fichero.getAbsolutePath()); 
+					 
 					  
 					  
 					  String extension=js.substring(js.lastIndexOf(".") +1);
+					  
+					  if (extension.equals("json"))
+						 
+							json=save.cargar(fichero.getAbsolutePath()); 
 						 
 					  if (!extension.equals("json"))
 					  {
@@ -1538,7 +1547,7 @@ public class Interfaz {
 							continuar=false;
 							JOptionPane.showMessageDialog(selector, "Gson Error: "+r.getCause().getMessage()+" \n No se puede transformar el json en una lista de atletas", "Illegal State Exception:", JOptionPane.ERROR_MESSAGE);
 							addConsoleLine(">>"+r.getCause().getMessage()+"<<");
-							addConsoleLine("Error al transformar el archivo json");
+						    addConsoleLine("Error al transformar el archivo json");
 							fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
 						}
 						
@@ -1562,6 +1571,8 @@ public class Interfaz {
 						}
 					  
 				  }
+				  
+				 
 					  
 			}
 			
