@@ -20,11 +20,12 @@ import com.google.gson.Gson;
 public class SavesManager 
 {
 
-	FileWriter fw=null;
-	ArrayList<String> list;
-	StringBuilder retorno;
-	String elem;
-	Integer contador=0;
+	private FileWriter fw=null;
+	private ArrayList<String> list;
+	private StringBuilder retorno;
+	private String elem;
+	private Integer contador=0;
+	
 	public SavesManager()
 	{
 

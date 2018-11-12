@@ -45,40 +45,40 @@ import javax.swing.UIManager;
 public class Interfaz {
 
 	private JFrame frame;
-	BlueForegroundCell render=new BlueForegroundCell();
+	private BlueForegroundCell render=new BlueForegroundCell();
 
-	SavesManager save=new SavesManager();
+	private SavesManager save=new SavesManager();
 	private JTextArea ta = new JTextArea("",33,42);
-	String jsonFile="";
-	Object[][] objetos=new Object[5][5];
-	Atleta[] atletas=new Atleta[0];
-	JTable table=new JTable();
+	private String jsonFile="";
+	private Object[][] objetos=new Object[5][5];
+	private Atleta[] atletas=new Atleta[0];
+	private JTable table=new JTable();
 	
 	//Recursos para las animaciones
-	static int contador=0;
-	int dir=0;
-	Timer timer;
-	TimerTask tarea;
+	private static int contador=0;
+	private int dir=0;
+	private Timer timer;
+	private TimerTask tarea;
 	
-	static int contador2=0;
-	int dir2=0;
-	Timer timer2;
-	TimerTask tarea2;
+	private static int contador2=0;
+	private int dir2=0;
+	private Timer timer2;
+	private TimerTask tarea2;
 	
-	boolean activo=true;
-	boolean  archivojson=true;
-	String tipoArchivo="json";
+	private boolean activo=true;
+	private boolean  archivojson=true;
+	private String tipoArchivo="json";
 	
-	StringBuilder consoleOut=new StringBuilder();
-	boolean adminRights=true;
+	private StringBuilder consoleOut=new StringBuilder();
+	private boolean adminRights=true;
 	
 	
 	//Logica del solver
-	Solver solver=null;
-	ArrayList<String>nacionalidades=new ArrayList<String>();
-	ArrayList<String>deportes=new ArrayList<String>();
-	ArrayList<String> generos=new ArrayList<String>();
-	ArrayList <String> sugerencias=new ArrayList <String>();
+	private Solver solver=null;
+	private ArrayList<String>nacionalidades=new ArrayList<String>();
+	private ArrayList<String>deportes=new ArrayList<String>();
+	private ArrayList<String> generos=new ArrayList<String>();
+	private ArrayList <String> sugerencias=new ArrayList <String>();
 	
 	/**
 	 * Launch the application.
@@ -124,7 +124,7 @@ public class Interfaz {
 				deportes.add(deporte);
 			}
 			
-			if (generos.contains(sexo)) 
+			if (!generos.contains(sexo)) 
 			{
 				generos.add(sexo);
 			}
@@ -351,6 +351,7 @@ public class Interfaz {
 					json.setEnabled(false);
 					excel.setEnabled(true);
 					
+					
 				}
 				
 			}
@@ -375,6 +376,7 @@ public class Interfaz {
 						 
 						 excel.setEnabled(false);
 						 json.setEnabled(true);
+						 
 					
 				}
 				
@@ -976,6 +978,7 @@ public class Interfaz {
 						
 					       Path destinoPath = FileSystems.getDefault().getPath(destino.getAbsolutePath()+"\\informe.log");
 					       
+
 					        
 						 boolean continuar=true;
 						 
@@ -1264,6 +1267,7 @@ public class Interfaz {
 							    }
 							    
 							     json=save.jsonFromExcel(fichero.getAbsoluteFile().getName());
+							     System.out.println(json);
 						  }
 							  
 							 

@@ -12,8 +12,8 @@ import com.google.gson.Gson;
 
 public class Solver 
 {
-	ArrayList<Atleta> listaAtletas = new ArrayList<Atleta>();
-	 ArrayList<Departamento> listaDepartamentos = new ArrayList<Departamento>();
+	private ArrayList<Atleta> listaAtletas = new ArrayList<Atleta>();
+	private ArrayList<Departamento> listaDepartamentos = new ArrayList<Departamento>();
 	private ArrayList<Departamento> ideales=new ArrayList<Departamento>();
 	private ArrayList<Departamento> mayorias=new ArrayList<Departamento>();
 	private ArrayList<Departamento> almenosDos=new ArrayList<Departamento>();
