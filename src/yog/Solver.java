@@ -578,7 +578,6 @@ public class Solver
 					toJson+=",\r\n";
 				}
 				
-				toJson+="\r\n";
 			i++;	
 			
 		}
