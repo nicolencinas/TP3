@@ -573,15 +573,16 @@ public class Solver
 			
 			
 			toJson +=gson.toJson(depto);
-				if (i!=listaDepartamentos.size())
-				{
-					toJson+=",\r\n";
-				}
-				
-			i++;	
+			if (i!=listaDepartamentos.size())
+			{
+				toJson+=",\r\n";
+			}
 			
-		}
-		toJson+="]";
+			toJson+="\r\n";
+		i++;	
+		
+	}
+	toJson+="]";
 		
 		
 		return retorno.toString();

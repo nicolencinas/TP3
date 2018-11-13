@@ -1573,7 +1573,7 @@ public class Interfaz {
 						catch (Exception r) 
 						{
 							continuar=false;
-							JOptionPane.showMessageDialog(selector, "Gson Error: "+r.getCause().getMessage()+" \n No se puede transformar el json en una lista de atletas", "Illegal State Exception:", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(selector, "Gson Error: "+r.getCause().getMessage()+" \n No se puede transformar el json en una lista de departamentos", "Illegal State Exception:", JOptionPane.ERROR_MESSAGE);
 							addConsoleLine(">>"+r.getCause().getMessage()+"<<");
 						    addConsoleLine("Error al transformar el archivo json");
 							fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
