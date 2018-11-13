@@ -1570,7 +1570,9 @@ public class Interfaz {
 				
 				if (hall==3)
 				{
-					JOptionPane.showMessageDialog(frame, "Bueno si insistes:\nModo halloween agregado","Unknow Message", JOptionPane.ERROR_MESSAGE, null);
+					Image im2=new ImageIcon("calabaza.png").getImage();
+					ImageIcon ic=(new ImageIcon(im2.getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+					JOptionPane.showMessageDialog(frame, "Bueno si insistes:\nModo halloween agregado","JA JA JA JA", JOptionPane.ERROR_MESSAGE,ic);
 					addConsoleLine("Bueno si insistes:");
 					halloween.setVisible(true);
 					check.setSelected(false);
