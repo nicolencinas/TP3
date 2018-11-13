@@ -1445,10 +1445,17 @@ public class Interfaz {
 				if (halloween.isSelected())
 				{
 					HallowenMode=true;	
+					Image im2=new ImageIcon("calabaza.png").getImage();
+					consoleIcon.setIcon(new ImageIcon(im2.getScaledInstance(25, 25, Image.SCALE_SMOOTH)));
+					consoleIcon.setToolTipText("MUA JA JA JA JA");
+					
 				}
 				else
 				{
 					HallowenMode=false;	
+					Image im2=new ImageIcon("console.png").getImage();
+					consoleIcon.setIcon(new ImageIcon(im2.getScaledInstance(25, 25, Image.SCALE_SMOOTH)));
+					consoleIcon.setToolTipText("Consola de informacion");
 				}
 				
 			}
@@ -1551,15 +1558,17 @@ public class Interfaz {
 				if (hall==1)
 				{
 					addConsoleLine("Nada por aqui");
+					selector.requestFocus();
 				}
 				if (hall==2)
 				{
 					addConsoleLine("En serio, este menu no hace nada");
+					selector.requestFocus();
 				}
 				
 				if (hall==3)
 				{
-					addConsoleLine("Bueno si insistes");
+					addConsoleLine("Bueno si insistes:");
 					halloween.setVisible(true);
 					check.setSelected(false);
 					
