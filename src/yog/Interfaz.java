@@ -1557,17 +1557,20 @@ public class Interfaz {
 				
 				if (hall==1)
 				{
+					JOptionPane.showMessageDialog(frame, "Nada por aqui","Unknow Message", JOptionPane.ERROR_MESSAGE, null);
 					addConsoleLine("Nada por aqui");
 					selector.requestFocus();
 				}
 				if (hall==2)
 				{
+					JOptionPane.showMessageDialog(frame, "En serio, este menu no hace nada","Unknow Message", JOptionPane.ERROR_MESSAGE, null);
 					addConsoleLine("En serio, este menu no hace nada");
 					selector.requestFocus();
 				}
 				
 				if (hall==3)
 				{
+					JOptionPane.showMessageDialog(frame, "Bueno si insistes:\nModo halloween agregado","Unknow Message", JOptionPane.ERROR_MESSAGE, null);
 					addConsoleLine("Bueno si insistes:");
 					halloween.setVisible(true);
 					check.setSelected(false);
