@@ -11,6 +11,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,8 +33,10 @@ import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+
 import com.google.gson.Gson;
 import com.mxrck.autocompleter.TextAutoCompleter;
+
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -81,7 +84,7 @@ public class Interfaz {
 	private ArrayList<String> generos=new ArrayList<String>();
 	private ArrayList <String> sugerencias=new ArrayList <String>();
 	boolean HallowenMode=false;
-	
+	int hall=0;
 	/**
 	 * Launch the application.
 	 */
@@ -406,6 +409,7 @@ public class Interfaz {
 		
 		menubar.add(Box.createHorizontalGlue());
 		check.add(halloween);
+		halloween.setVisible(false);
 		menubar.add(check);
 		
 		
@@ -1513,6 +1517,63 @@ public class Interfaz {
 
 		});
 		
+		check.addMouseListener(new MouseListener()
+		{
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				hall++;
+				
+				if (hall==1)
+				{
+					addConsoleLine("Nada por aqui");
+				}
+				if (hall==2)
+				{
+					addConsoleLine("En serio, este menu no hace nada");
+				}
+				
+				if (hall==3)
+				{
+					addConsoleLine("Bueno si insistes");
+					halloween.setVisible(true);
+					check.setSelected(false);
+					
+					addConsoleLine("\nModo halloween agregado");
+					
+				}
+				
+				
+			}
+
+	
+			
+			
+		});
 		output.addActionListener(new ActionListener() 
 		{
 
