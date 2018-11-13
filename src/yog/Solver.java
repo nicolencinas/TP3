@@ -141,8 +141,6 @@ public class Solver
 			}
 	}
 	
-	
-
 	//ordenamos la  lista por genero, primero femenino y luego masculinos
 	public void ordenarPorGenero() 
 	{

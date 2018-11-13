@@ -80,6 +80,7 @@ public class Interfaz {
 	private ArrayList<String>deportes=new ArrayList<String>();
 	private ArrayList<String> generos=new ArrayList<String>();
 	private ArrayList <String> sugerencias=new ArrayList <String>();
+	boolean HallowenMode=false;
 	
 	/**
 	 * Launch the application.
@@ -290,6 +291,8 @@ public class Interfaz {
 		
 		JMenuItem output=new JMenuItem("Visualizar output.json...");
 		herramientas.add(output);
+		JCheckBoxMenuItem halloween= new JCheckBoxMenuItem("Modo Halloween");
+		
 		
 		
 			
@@ -402,7 +405,9 @@ public class Interfaz {
 		menubar.add(type);
 		
 		menubar.add(Box.createHorizontalGlue());
+		check.add(halloween);
 		menubar.add(check);
+		
 		
 	
 		
@@ -461,7 +466,10 @@ public class Interfaz {
 				
 					
 				ImageIcon icono;
+				
 				String im= (archivojson) ? "f" : "e";
+				if (HallowenMode)
+					im="h";
 				
 				
 				if (activo)
@@ -1422,6 +1430,26 @@ public class Interfaz {
 			}
 			
 		});
+		
+
+		halloween.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if (halloween.isSelected())
+				{
+					HallowenMode=true;	
+				}
+				else
+				{
+					HallowenMode=false;	
+				}
+				
+			}
+			
+		});
 		modelo.addActionListener(new ActionListener()
 		{
 
@@ -1482,11 +1510,7 @@ public class Interfaz {
 					 
 					 fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				  }
-			
-					  
-				
-			
-			
+
 		});
 		
 		output.addActionListener(new ActionListener() 
