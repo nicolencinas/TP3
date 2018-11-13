@@ -1525,6 +1525,7 @@ public class Interfaz {
 				fc.setFileFilter(filtro2);
 				
 				boolean continuar=true;
+				boolean transform=true;
 				int seleccion= fc.showOpenDialog(selector);
 				Departamento[] deptos=null;
 				 
@@ -1546,13 +1547,16 @@ public class Interfaz {
 					  if (!extension.equals("json"))
 					  {
 						  continuar=false;
+						  transform=false;
 						  JOptionPane.showMessageDialog(selector, "No se admiten archivos con formato : "+ extension.toUpperCase(), "Archive's extension not Supported", JOptionPane.ERROR_MESSAGE);
 						  addConsoleLine(">>Archive's extension not Supported Exception<<<");
 						  addConsoleLine("No se admiten archivos con formato '"+extension.toUpperCase()+"'\n");
 						  fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
 					  }
 					  
-						Gson gson=new Gson();
+					  if (transform) 
+					  {
+							Gson gson=new Gson();
 						
 						try 
 						{
@@ -1573,7 +1577,9 @@ public class Interfaz {
 							addConsoleLine(">>"+r.getCause().getMessage()+"<<");
 						    addConsoleLine("Error al transformar el archivo json");
 							fc.setCurrentDirectory(new File(new File(".").getAbsolutePath()));
-						}
+						}  
+					  }
+					
 						
 						if (continuar) 
 						{
